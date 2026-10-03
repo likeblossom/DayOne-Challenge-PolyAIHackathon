@@ -1,0 +1,59 @@
+{
+  "form_id": "early_postnatal_newborn",
+  "title_fr": "Consultation du post-partum précoce — Nouveau-né",
+  "title_en": "Early Postnatal Visit — Newborn",
+  "fields": {
+    "consultation_date": {"type": "date"},
+    "age_days": {"type": "double", "unit": "days"},
+    "temperature_c": {"type": "double", "unit": "°C"},
+    "weight_g": {"type": "double", "unit": "g"},
+    "length_cm": {"type": "double", "unit": "cm"},
+    "head_circumference_cm": {"type": "double", "unit": "cm"},
+    "premature": {"type": "boolean"},
+    "small_for_gestational_age": {"type": "boolean"},
+    "feeding_method": {"type": "enum", "values": ["EXCLUSIVE_BREASTFEEDING", "FORMULA", "MIXED"]},
+    "danger_signs": {
+      "type": "array",
+      "items": {
+        "type": "enum",
+        "values": [
+          "CONVULSIONS", "REFUSAL_TO_FEED", "HEMATEMESIS", "MELENA", "DIARRHEA", "JAUNDICE",
+          "SUBCOSTAL_RETRACTIONS", "COUGH", "ABNORMAL_RESPIRATORY_RATE", "FEVER", "HYPOTHERMIA", "OTHER"
+        ]
+      }
+    },
+    "other_danger_sign": {"type": "string"},
+    "trauma_or_malformations": {
+      "type": "array",
+      "items": {
+        "type": "enum",
+        "values": ["CAPUT_OR_CEPHALOHEMATOMA", "CONGENITAL_HIP_DISLOCATION", "REDUCED_LIMB_MOBILITY", "OTHER"]
+      }
+    },
+    "other_trauma_or_malformation": {"type": "string"},
+    "breastfeeding_evaluation": {"type": "enum", "values": ["NORMAL", "PROBLEMS"]},
+    "vaccination_status": {"type": "string"},
+    "vaccines_given_today": {
+      "type": "array",
+      "items": {"type": "enum", "values": ["BCG", "HEPATITIS_B", "OTHER"]}
+    },
+    "vitamin_d_supplementation": {"type": "boolean"},
+    "complications_or_malformations": {
+      "type": "array",
+      "items": {
+        "type": "enum",
+        "values": ["JAUNDICE", "INFECTION", "CONJUNCTIVITIS", "TRAUMA", "MALFORMATION", "OTHER"]
+      }
+    },
+    "examiner_role": {"type": "string"},
+    "decision": {"type": "string"},
+    "treatment": {"type": "string"},
+    "transferred": {"type": "boolean"},
+    "referral_facility": {"type": "string"},
+    "exclusive_breastfeeding_advice_given": {"type": "boolean"},
+    "keep_warm_advice_given": {"type": "boolean"},
+    "return_warning_signs_advice_given": {"type": "boolean"},
+    "follow_up_date": {"type": "date"}
+  }
+}
+

@@ -1,0 +1,8 @@
+.venv/
+.pytest_cache/
+__pycache__/
+*.py[cod]
+output/
+derived_image_label_dataset/images/
+*:Zone.Identifier*
+.DS_Store

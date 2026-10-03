@@ -1,0 +1,46 @@
+{
+  "form_id": "labor_and_delivery",
+  "title_fr": "Déroulement de l'accouchement",
+  "title_en": "Course of Labor and Delivery",
+  "fields": {
+    "delivery_setting": {"type": "enum", "values": ["SUPERVISED", "HOME"]},
+    "facility_type": {
+      "type": "enum",
+      "values": ["BIRTH_CENTER", "MATERNITY_UNIT", "PRIVATE_CLINIC", "OTHER", "NOT_APPLICABLE"]
+    },
+    "other_facility_type": {"type": "string"},
+    "qualified_attendant_present": {"type": "boolean"},
+    "other_attendant": {"type": "string"},
+    "delivery_date": {"type": "date"},
+    "delivery_mode": {
+      "type": "enum",
+      "values": [
+        "NON_INSTRUMENTAL_VAGINAL", "INSTRUMENTAL_VAGINAL", "PLANNED_CESAREAN",
+        "EMERGENCY_CESAREAN"
+      ]
+    },
+    "instrument": {"type": "enum", "values": ["FORCEPS", "VACUUM", "NONE"]},
+    "episiotomy": {"type": "boolean"},
+    "cesarean_indication": {"type": "string"},
+    "complications_present": {"type": "boolean"},
+    "complication_timing": {
+      "type": "array",
+      "items": {"type": "enum", "values": ["DURING_DELIVERY", "POSTPARTUM"]}
+    },
+    "complication_types": {
+      "type": "array",
+      "items": {
+        "type": "enum",
+        "values": ["PREECLAMPSIA", "ECLAMPSIA", "HEMORRHAGE", "INFECTION", "OTHER"]
+      }
+    },
+    "other_complication": {"type": "string"},
+    "newborn_status": {"type": "enum", "values": ["ALIVE", "STILLBORN", "DIED_WITHIN_24_HOURS"]},
+    "newborn_sex": {"type": "enum", "values": ["FEMALE", "MALE", "INDETERMINATE"]},
+    "birth_weight_g": {"type": "double", "unit": "g"},
+    "head_circumference_cm": {"type": "double", "unit": "cm"},
+    "newborn_abnormality": {"type": "string"},
+    "gestational_age_weeks": {"type": "double", "unit": "weeks"}
+  }
+}
+

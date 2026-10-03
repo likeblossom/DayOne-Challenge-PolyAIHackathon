@@ -1,0 +1,89 @@
+{
+  "form_id": "identification_and_history",
+  "title_fr": "Identification et antécédents",
+  "title_en": "Identification and Medical History",
+  "fields": {
+    "age_years": {"type": "double", "unit": "years"},
+    "education_level": {"type": "string"},
+    "occupation": {"type": "string"},
+    "spouse_occupation": {"type": "string"},
+    "consanguinity": {"type": "boolean"},
+    "desired_pregnancy": {"type": "boolean"},
+    "family_history": {
+      "type": "object",
+      "fields": {
+        "woman_family": {
+          "type": "object",
+          "fields": {
+            "hypertension": {"type": "string"},
+            "diabetes": {"type": "string"},
+            "hereditary_diseases": {"type": "string"},
+            "malformations": {"type": "string"},
+            "allergies": {"type": "string"}
+          }
+        },
+        "spouse_family": {
+          "type": "object",
+          "fields": {
+            "hypertension": {"type": "string"},
+            "diabetes": {"type": "string"},
+            "hereditary_diseases": {"type": "string"},
+            "malformations": {"type": "string"},
+            "allergies": {"type": "string"}
+          }
+        }
+      }
+    },
+    "woman_history": {
+      "type": "object",
+      "fields": {
+        "medical": {"type": "string"},
+        "surgical": {"type": "string"},
+        "gynecological": {"type": "string"}
+      }
+    },
+    "previous_pregnancy_anomalies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "fields": {
+          "nature": {
+            "type": "enum",
+            "values": ["ABORTION", "PRETERM_DELIVERY", "INTRAUTERINE_FETAL_DEATH", "OTHER"]
+          },
+          "count": {"type": "integer"},
+          "date": {"type": "date"},
+          "place": {"type": "string"},
+          "gestational_age_weeks": {"type": "double", "unit": "weeks"},
+          "other_description": {"type": "string"}
+        }
+      }
+    },
+    "previous_deliveries": {
+      "type": "array",
+      "maximum_items": 5,
+      "items": {
+        "type": "object",
+        "fields": {
+          "delivery_number": {"type": "integer"},
+          "date": {"type": "date"},
+          "delivery_method": {"type": "string"},
+          "cesarean_indication": {"type": "string"},
+          "maternal_complication": {"type": "string"},
+          "newborn_weight_g": {"type": "double", "unit": "g"},
+          "newborn_complication": {"type": "string"}
+        }
+      }
+    },
+    "gravidity": {"type": "integer"},
+    "parity": {"type": "integer"},
+    "living_children": {"type": "integer"},
+    "tetanus_vaccination_dose": {"type": "integer", "minimum": 1, "maximum": 5},
+    "rubella_vaccinated": {"type": "boolean"},
+    "rubella_vaccination_date": {"type": "date"},
+    "hepatitis_b_vaccinated": {"type": "boolean"},
+    "hepatitis_b_vaccination_date": {"type": "date"},
+    "cervical_smear_or_via_result": {"type": "string"}
+  }
+}
+

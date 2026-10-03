@@ -1,0 +1,40 @@
+{
+  "form_id": "late_postnatal_newborn",
+  "reference_size": [1654, 2339],
+  "aspect_ratio": 0.7071,
+  "description": "Initial ROIs for the supplied clean synthetic template; align field photos first",
+  "fields": {
+    "consultation_date": {"kind": "ocr", "type": "date", "bbox": [0.709, 0.081, 0.852, 0.112]},
+    "age_days": {"kind": "ocr", "type": "double", "bbox": [0.112, 0.119, 0.198, 0.145]},
+    "temperature_c": {"kind": "ocr", "type": "double", "bbox": [0.404, 0.119, 0.492, 0.145]},
+    "weight_g": {"kind": "ocr", "type": "double", "bbox": [0.680, 0.119, 0.790, 0.145]},
+    "length_cm": {"kind": "ocr", "type": "double", "bbox": [0.119, 0.143, 0.207, 0.168]},
+    "head_circumference_cm": {"kind": "ocr", "type": "double", "bbox": [0.430, 0.143, 0.527, 0.168]},
+    "premature": {"kind": "checkbox", "type": "boolean", "bbox": [0.080, 0.176, 0.097, 0.197], "checked_threshold": 0.15},
+    "small_for_gestational_age": {"kind": "checkbox", "type": "boolean", "bbox": [0.320, 0.176, 0.338, 0.197], "checked_threshold": 0.15},
+    "feeding_method": {
+      "kind": "checkbox_enum",
+      "type": "enum",
+      "values": ["EXCLUSIVE_BREASTFEEDING", "FORMULA", "MIXED"],
+      "checked_threshold": 0.15,
+      "options": {
+        "EXCLUSIVE_BREASTFEEDING": [0.184, 0.203, 0.203, 0.224],
+        "FORMULA": [0.418, 0.203, 0.438, 0.224],
+        "MIXED": [0.553, 0.203, 0.573, 0.224]
+      }
+    },
+    "breastfeeding_evaluation": {
+      "kind": "checkbox_enum",
+      "type": "enum",
+      "values": ["NORMAL", "PROBLEMS"],
+      "checked_threshold": 0.15,
+      "options": {
+        "NORMAL": [0.417, 0.476, 0.437, 0.498],
+        "PROBLEMS": [0.535, 0.476, 0.555, 0.498]
+      }
+    },
+    "vitamin_d_supplementation": {"kind": "checkbox", "type": "boolean", "bbox": [0.075, 0.541, 0.093, 0.562], "checked_threshold": 0.15},
+    "transferred": {"kind": "checkbox", "type": "boolean", "bbox": [0.072, 0.794, 0.091, 0.816], "checked_threshold": 0.15},
+    "follow_up_date": {"kind": "ocr", "type": "date", "bbox": [0.350, 0.894, 0.493, 0.925]}
+  }
+}

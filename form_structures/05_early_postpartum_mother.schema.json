@@ -1,0 +1,48 @@
+{
+  "form_id": "early_postpartum_mother",
+  "title_fr": "Consultation du post-partum précoce — Mère",
+  "title_en": "Early Postpartum Visit — Mother",
+  "fields": {
+    "visit_timing": {"type": "enum", "values": ["DAY_7_TO_8", "AFTER_DAY_8"]},
+    "consultation_date": {"type": "date"},
+    "temperature_c": {"type": "double", "unit": "°C"},
+    "systolic_bp_mmhg": {"type": "double", "unit": "mmHg"},
+    "diastolic_bp_mmhg": {"type": "double", "unit": "mmHg"},
+    "pulse_bpm": {"type": "double", "unit": "bpm"},
+    "weight_kg": {"type": "double", "unit": "kg"},
+    "conjunctiva_condition": {"type": "enum", "values": ["NORMAL", "PALE"]},
+    "uterine_globe_present": {"type": "boolean"},
+    "lochia": {
+      "type": "array",
+      "items": {"type": "enum", "values": ["ODORLESS", "FOUL_SMELLING", "CLEAR", "BLOODY", "YELLOWISH"]}
+    },
+    "perineum_condition": {"type": "enum", "values": ["NORMAL", "EPISIOTOMY", "REPAIRED", "TEAR"]},
+    "sphincter_condition": {"type": "enum", "values": ["NORMAL", "ABNORMAL"]},
+    "cesarean_performed": {"type": "boolean"},
+    "cesarean_scar_condition": {"type": "string"},
+    "breast_condition": {"type": "enum", "values": ["NORMAL", "LYMPHANGITIS", "MASTITIS_OR_ABSCESS"]},
+    "calf_findings": {
+      "type": "array",
+      "items": {"type": "enum", "values": ["NORMAL", "RED", "WARM", "PAINFUL_DORSIFLEXION"]}
+    },
+    "complications": {
+      "type": "array",
+      "items": {
+        "type": "enum",
+        "values": ["HEMORRHAGE", "INFECTION", "ECLAMPSIA", "PHLEBITIS", "BREAST_COMPLICATION", "ANEMIA", "OTHER"]
+      }
+    },
+    "medications_taken": {"type": "string"},
+    "iron_prescribed": {"type": "boolean"},
+    "vitamin_a_prescribed": {"type": "boolean"},
+    "other_treatment": {"type": "string"},
+    "next_appointment_date": {"type": "date"},
+    "wants_family_planning": {"type": "boolean"},
+    "family_planning_method": {"type": "enum", "values": ["PILL", "IUD", "OTHER", "NONE"]},
+    "other_family_planning_method": {"type": "string"},
+    "contraception_prescribed": {"type": "boolean"},
+    "family_planning_referral": {"type": "boolean"},
+    "reason_declined_family_planning": {"type": "string"}
+  }
+}
+

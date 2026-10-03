@@ -1,0 +1,23 @@
+{
+  "description": "Envelope required for every extracted leaf field",
+  "structure": {
+    "value": "declared field type or null",
+    "status": {
+      "type": "enum",
+      "values": [
+        "KNOWN",
+        "UNKNOWN",
+        "NOT_PROVIDED",
+        "ILLEGIBLE",
+        "NOT_APPLICABLE",
+        "NEEDS_REVIEW"
+      ]
+    },
+    "confidence": {
+      "type": "double",
+      "minimum": 0.0,
+      "maximum": 1.0
+    }
+  }
+}
+
