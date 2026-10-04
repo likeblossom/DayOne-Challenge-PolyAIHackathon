@@ -1,19 +1,15 @@
 # Sanad
 
-## Install and run (judges)
+## Install and run
 
 **The APK alone is not enough. You must import the model pack once before using OCR.**
 
 1. Download `Sanad-v0.2.0-judge-kit.zip` (about 3 GB). The download link will be added here after upload.
-2. Extract **this outer ZIP**. It contains `Sanad-v0.2.0.apk`, `Sanad-models-v1.zip`, and `README.txt`. **Do not extract `Sanad-models-v1.zip`.**
+2. Extract **this outer ZIP**. It contains `Sanad-v0.2.0.apk`, `Sanad-models-v1.zip`, and `README.txt`.
 3. On a **64-bit Android phone (Android 8 or newer)**, open the APK and allow installation from your browser/file manager if Android asks. Install Sanad.
-4. Copy/download `Sanad-models-v1.zip` to the phone's **Downloads** folder. Open **Sanad → Settings (top right) → Import model pack** and select that ZIP, **not the judge-kit ZIP**.
+4. Copy/download `Sanad-models-v1.zip` to the phone's **Downloads** folder. Open **Sanad → Settings (top right) → Import model pack** and select that ZIP.
 5. Keep Sanad open until it says **Models ready**. Import happens once; no computer, account, Wi-Fi or USB connection is needed for OCR afterward.
 6. Choose a registry when prompted. Tap the **paperclip** to select a form image, or the **camera** to photograph one. Wait for extraction, check/edit the fields, then submit. Tap the attached image to zoom; use **Saved records** to reopen saved results.
-
-Allow **10 GB free** if downloading and extracting the whole kit on the phone, or **6 GB free** if extracting it on a computer first and copying only the APK and model ZIP. After successful import, you can delete the downloaded ZIPs; do not clear Sanad's app storage.
-
-**Troubleshooting:** If you selected the wrong ZIP or import fails, select `Sanad-models-v1.zip` again and check free space. For an incomplete download, re-download it. If Android reports a signing conflict with an existing development build, use another phone—uninstalling or clearing the existing app deletes its saved records. PC database sync is optional and requires the separate [USB setup](android-app/USB_SYNC.txt).
 
 ## What we built
 
