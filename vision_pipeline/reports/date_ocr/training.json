@@ -1,0 +1,923 @@
+{
+  "initial_checkpoint": "/home/anon/Documents/Projects/DayOne-Challenge-PolyAIHackathon/vision_pipeline/models/trocr_latin",
+  "dataset": "/home/anon/Documents/Projects/DayOne-Challenge-PolyAIHackathon/data/dates",
+  "label_sha256": "c0f8fb85f9b37a40f9cabcba53be8bbadb333926fe99b3261a36fd5b9a7a7d62",
+  "cuda_device": "NVIDIA GeForce RTX 5060 Ti",
+  "precision": "BF16 autocast, FP32 master weights",
+  "trainable_parameters": 333921792,
+  "train_samples": 6000,
+  "validation_samples": 600,
+  "epochs_requested": 3,
+  "batch_size": 8,
+  "learning_rate": 2e-05,
+  "selection": "Synthetic validation exact transcription accuracy, CER tie-break; no organizer images",
+  "preprocessing": "Unchanged original TrOCR processor; direct resize to 384x384",
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.6609134476434362,
+      "validation": {
+        "n": 600,
+        "correct": 517,
+        "exact_accuracy": 0.8616666666666667,
+        "cer": 0.05622552858261551,
+        "groups": {
+          "written_month": {
+            "n": 182,
+            "correct": 141
+          },
+          "ar": {
+            "n": 110,
+            "correct": 36
+          },
+          "en": {
+            "n": 241,
+            "correct": 234
+          },
+          "numeric": {
+            "n": 325,
+            "correct": 297
+          },
+          "fr": {
+            "n": 249,
+            "correct": 247
+          },
+          "missing_year": {
+            "n": 39,
+            "correct": 31
+          },
+          "two_digit_year": {
+            "n": 34,
+            "correct": 28
+          },
+          "blank": {
+            "n": 20,
+            "correct": 20
+          }
+        },
+        "examples": [
+          {
+            "expected": "٤ أبريل ١٩٦٢",
+            "predicted": "٤ أفبريل ١٩٧٤",
+            "format": "written_month",
+            "language": "ar"
+          },
+          {
+            "expected": "23rd May 2033",
+            "predicted": "23rd May 2033",
+            "format": "written_month",
+            "language": "en"
+          },
+          {
+            "expected": "September 17, 2001",
+            "predicted": "September 17, 2001",
+            "format": "written_month",
+            "language": "en"
+          },
+          {
+            "expected": "25/11/1980",
+            "predicted": "25/11/1980",
+            "format": "numeric",
+            "language": "en"
+          },
+          {
+            "expected": "15/02/1986",
+            "predicted": "15/02/1986",
+            "format": "numeric",
+            "language": "en"
+          },
+          {
+            "expected": "20/09/2040",
+            "predicted": "20/09/2040",
+            "format": "numeric",
+            "language": "fr"
+          },
+          {
+            "expected": "16th February 1979",
+            "predicted": "North February 1979",
+            "format": "written_month",
+            "language": "en"
+          },
+          {
+            "expected": "١٨ مايو ٢٠٤٠",
+            "predicted": "٢٠٤٤ مار ٢٠٤",
+            "format": "written_month",
+            "language": "ar"
+          },
+          {
+            "expected": "June 17, 1995",
+            "predicted": "June 17, 1995",
+            "format": "written_month",
+            "language": "en"
+          },
+          {
+            "expected": "16/12/1996",
+            "predicted": "16/12/1996",
+            "format": "numeric",
+            "language": "fr"
+          },
+          {
+            "expected": "٢ سبتمبر",
+            "predicted": "١٠ سٳبتتو",
+            "format": "missing_year",
+            "language": "ar"
+          },
+          {
+            "expected": "٩-٢٦-٢٠٠٠",
+            "predicted": "٢٠-٠٠-٢٠٠٩",
+            "format": "numeric",
+            "language": "ar"
+          },
+          {
+            "expected": "18/11/1973",
+            "predicted": "18/11/1973",
+            "format": "numeric",
+            "language": "en"
+          },
+          {
+            "expected": "23/06/1955",
+            "predicted": "23/06/1955",
+            "format": "numeric",
+            "language": "en"
+          },
+          {
+            "expected": "6 avril 2030",
+            "predicted": "6 avril 2030",
+            "format": "written_month",
+            "language": "fr"
+          },
+          {
+            "expected": "26/01/1958",
+            "predicted": "26/01/1958",
+            "format": "numeric",
+            "language": "en"
+          },
+          {
+            "expected": "17 février 2032",
+            "predicted": "17 février 2032",
+            "format": "written_month",
+            "language": "fr"
+          },
+          {
+            "expected": "19/07/2046",
+            "predicted": "19/07/2046",
+            "format": "numeric",
+            "language": "en"
+          },
+          {
+            "expected": "2 mars 2035",
+            "predicted": "2 mars 2035",
+            "format": "written_month",
+            "language": "fr"
+          },
+          {
+            "expected": "October 1st, 1967",
+            "predicted": "October 1st, 1967",
+            "format": "written_month",
+            "language": "en"
+          },
+          {
+            "expected": "01/16/2003",
+            "predicted": "01/16/2003",
+            "format": "numeric",
+            "language": "en"
+          },
+          {
+            "expected": "23/8/1966",
+            "predicted": "23/8/1966",
+            "format": "numeric",
+            "language": "en"
+          },
+          {
+            "expected": "1958/12/13",
+            "predicted": "1958/12/13",
+            "format": "numeric",
+            "language": "fr"
+          },
+          {
+            "expected": "April 28th, 2018",
+            "predicted": "April 28th, 2018",
+            "format": "written_month",
+            "language": "en"
+          },
+          {
+            "expected": "19/06/2030",
+            "predicted": "19/06/2030",
+            "format": "numeric",
+            "language": "en"
+          },
+          {
+            "expected": "09-12-1991",
+            "predicted": "09-12-1991",
+            "format": "numeric",
+            "language": "en"
+          },
+          {
+            "expected": "19 mars 2002",
+            "predicted": "19 mars 2002",
+            "format": "written_month",
+            "language": "fr"
+          },
+          {
+            "expected": "١٧.٠٧.١٩٧٩",
+            "predicted": "١٧.٠٧.١٩٧٩",
+            "format": "numeric",
+            "language": "ar"
+          },
+          {
+            "expected": "14 juillet 1985",
+            "predicted": "14 juillet 1985",
+            "format": "written_month",
+            "language": "fr"
+          },
+          {
+            "expected": "9-03-2020",
+            "predicted": "9-03-2020",
+            "format": "numeric",
+            "language": "fr"
+          }
+        ]
+      },
+      "seconds": 171
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.07121481639117216,
+      "validation": {
+        "n": 600,
+        "correct": 563,
+        "exact_accuracy": 0.9383333333333334,
+        "cer": 0.013155833985904464,
+        "groups": {
+          "written_month": {
+            "n": 182,
+            "correct": 168
+          },
+          "ar": {
+            "n": 110,
+            "correct": 75
+          },
+          "en": {
+            "n": 241,
+            "correct": 240
+          },
+          "numeric": {
+            "n": 325,
+            "correct": 309
+          },
+          "fr": {
+            "n": 249,
+            "correct": 248
+          },
+          "missing_year": {
+            "n": 39,
+            "correct": 37
+          },
+          "two_digit_year": {
+            "n": 34,
+            "correct": 29
+          },
+          "blank": {
+            "n": 20,
+            "correct": 20
+          }
+        },
+        "examples": [
+          {
+            "expected": "٤ أبريل ١٩٦٢",
+            "predicted": "٤ أبريل ١٩٦٢",
+            "format": "written_month",
+            "language": "ar"
+          },
+          {
+            "expected": "23rd May 2033",
+            "predicted": "23rd May 2033",
+            "format": "written_month",
+            "language": "en"
+          },
+          {
+            "expected": "September 17, 2001",
+            "predicted": "September 17, 2001",
+            "format": "written_month",
+            "language": "en"
+          },
+          {
+            "expected": "25/11/1980",
+            "predicted": "25/11/1980",
+            "format": "numeric",
+            "language": "en"
+          },
+          {
+            "expected": "15/02/1986",
+            "predicted": "15/02/1986",
+            "format": "numeric",
+            "language": "en"
+          },
+          {
+            "expected": "20/09/2040",
+            "predicted": "20/09/2040",
+            "format": "numeric",
+            "language": "fr"
+          },
+          {
+            "expected": "16th February 1979",
+            "predicted": "18th February 1977",
+            "format": "written_month",
+            "language": "en"
+          },
+          {
+            "expected": "١٨ مايو ٢٠٤٠",
+            "predicted": "١٨ مايو ٢٠٤٠",
+            "format": "written_month",
+            "language": "ar"
+          },
+          {
+            "expected": "June 17, 1995",
+            "predicted": "June 17, 1995",
+            "format": "written_month",
+            "language": "en"
+          },
+          {
+            "expected": "16/12/1996",
+            "predicted": "16/12/1996",
+            "format": "numeric",
+            "language": "fr"
+          },
+          {
+            "expected": "٢ سبتمبر",
+            "predicted": "٢ سبتمبر",
+            "format": "missing_year",
+            "language": "ar"
+          },
+          {
+            "expected": "٩-٢٦-٢٠٠٠",
+            "predicted": "٢٩-٠٦-٢٠٠٠",
+            "format": "numeric",
+            "language": "ar"
+          },
+          {
+            "expected": "18/11/1973",
+            "predicted": "18/11/1973",
+            "format": "numeric",
+            "language": "en"
+          },
+          {
+            "expected": "23/06/1955",
+            "predicted": "23/06/1955",
+            "format": "numeric",
+            "language": "en"
+          },
+          {
+            "expected": "6 avril 2030",
+            "predicted": "6 avril 2030",
+            "format": "written_month",
+            "language": "fr"
+          },
+          {
+            "expected": "26/01/1958",
+            "predicted": "26/01/1958",
+            "format": "numeric",
+            "language": "en"
+          },
+          {
+            "expected": "17 février 2032",
+            "predicted": "17 février 2032",
+            "format": "written_month",
+            "language": "fr"
+          },
+          {
+            "expected": "19/07/2046",
+            "predicted": "19/07/2046",
+            "format": "numeric",
+            "language": "en"
+          },
+          {
+            "expected": "2 mars 2035",
+            "predicted": "2 mars 2035",
+            "format": "written_month",
+            "language": "fr"
+          },
+          {
+            "expected": "October 1st, 1967",
+            "predicted": "October 1st, 1967",
+            "format": "written_month",
+            "language": "en"
+          },
+          {
+            "expected": "01/16/2003",
+            "predicted": "01/16/2003",
+            "format": "numeric",
+            "language": "en"
+          },
+          {
+            "expected": "23/8/1966",
+            "predicted": "23/8/1966",
+            "format": "numeric",
+            "language": "en"
+          },
+          {
+            "expected": "1958/12/13",
+            "predicted": "1958/12/13",
+            "format": "numeric",
+            "language": "fr"
+          },
+          {
+            "expected": "April 28th, 2018",
+            "predicted": "April 28th, 2018",
+            "format": "written_month",
+            "language": "en"
+          },
+          {
+            "expected": "19/06/2030",
+            "predicted": "19/06/2030",
+            "format": "numeric",
+            "language": "en"
+          },
+          {
+            "expected": "09-12-1991",
+            "predicted": "09-12-1991",
+            "format": "numeric",
+            "language": "en"
+          },
+          {
+            "expected": "19 mars 2002",
+            "predicted": "19 mars 2002",
+            "format": "written_month",
+            "language": "fr"
+          },
+          {
+            "expected": "١٧.٠٧.١٩٧٩",
+            "predicted": "١٧.٠٧.١٩٧٩",
+            "format": "numeric",
+            "language": "ar"
+          },
+          {
+            "expected": "14 juillet 1985",
+            "predicted": "14 juillet 1985",
+            "format": "written_month",
+            "language": "fr"
+          },
+          {
+            "expected": "9-03-2020",
+            "predicted": "9-03-2020",
+            "format": "numeric",
+            "language": "fr"
+          }
+        ]
+      },
+      "seconds": 334
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.006875329402382098,
+      "validation": {
+        "n": 600,
+        "correct": 575,
+        "exact_accuracy": 0.9583333333333334,
+        "cer": 0.007517619420516836,
+        "groups": {
+          "written_month": {
+            "n": 182,
+            "correct": 170
+          },
+          "ar": {
+            "n": 110,
+            "correct": 86
+          },
+          "en": {
+            "n": 241,
+            "correct": 240
+          },
+          "numeric": {
+            "n": 325,
+            "correct": 318
+          },
+          "fr": {
+            "n": 249,
+            "correct": 249
+          },
+          "missing_year": {
+            "n": 39,
+            "correct": 36
+          },
+          "two_digit_year": {
+            "n": 34,
+            "correct": 31
+          },
+          "blank": {
+            "n": 20,
+            "correct": 20
+          }
+        },
+        "examples": [
+          {
+            "expected": "٤ أبريل ١٩٦٢",
+            "predicted": "٤ أبريل ١٩٦٢",
+            "format": "written_month",
+            "language": "ar"
+          },
+          {
+            "expected": "23rd May 2033",
+            "predicted": "23rd May 2033",
+            "format": "written_month",
+            "language": "en"
+          },
+          {
+            "expected": "September 17, 2001",
+            "predicted": "September 17, 2001",
+            "format": "written_month",
+            "language": "en"
+          },
+          {
+            "expected": "25/11/1980",
+            "predicted": "25/11/1980",
+            "format": "numeric",
+            "language": "en"
+          },
+          {
+            "expected": "15/02/1986",
+            "predicted": "15/02/1986",
+            "format": "numeric",
+            "language": "en"
+          },
+          {
+            "expected": "20/09/2040",
+            "predicted": "20/09/2040",
+            "format": "numeric",
+            "language": "fr"
+          },
+          {
+            "expected": "16th February 1979",
+            "predicted": "18th February 1979",
+            "format": "written_month",
+            "language": "en"
+          },
+          {
+            "expected": "١٨ مايو ٢٠٤٠",
+            "predicted": "١٨ مايو ٢٠٤٠",
+            "format": "written_month",
+            "language": "ar"
+          },
+          {
+            "expected": "June 17, 1995",
+            "predicted": "June 17, 1995",
+            "format": "written_month",
+            "language": "en"
+          },
+          {
+            "expected": "16/12/1996",
+            "predicted": "16/12/1996",
+            "format": "numeric",
+            "language": "fr"
+          },
+          {
+            "expected": "٢ سبتمبر",
+            "predicted": "٢ سبتمبر",
+            "format": "missing_year",
+            "language": "ar"
+          },
+          {
+            "expected": "٩-٢٦-٢٠٠٠",
+            "predicted": "٩-٢٠٦-٢٠٠٠",
+            "format": "numeric",
+            "language": "ar"
+          },
+          {
+            "expected": "18/11/1973",
+            "predicted": "18/11/1973",
+            "format": "numeric",
+            "language": "en"
+          },
+          {
+            "expected": "23/06/1955",
+            "predicted": "23/06/1955",
+            "format": "numeric",
+            "language": "en"
+          },
+          {
+            "expected": "6 avril 2030",
+            "predicted": "6 avril 2030",
+            "format": "written_month",
+            "language": "fr"
+          },
+          {
+            "expected": "26/01/1958",
+            "predicted": "26/01/1958",
+            "format": "numeric",
+            "language": "en"
+          },
+          {
+            "expected": "17 février 2032",
+            "predicted": "17 février 2032",
+            "format": "written_month",
+            "language": "fr"
+          },
+          {
+            "expected": "19/07/2046",
+            "predicted": "19/07/2046",
+            "format": "numeric",
+            "language": "en"
+          },
+          {
+            "expected": "2 mars 2035",
+            "predicted": "2 mars 2035",
+            "format": "written_month",
+            "language": "fr"
+          },
+          {
+            "expected": "October 1st, 1967",
+            "predicted": "October 1st, 1967",
+            "format": "written_month",
+            "language": "en"
+          },
+          {
+            "expected": "01/16/2003",
+            "predicted": "01/16/2003",
+            "format": "numeric",
+            "language": "en"
+          },
+          {
+            "expected": "23/8/1966",
+            "predicted": "23/8/1966",
+            "format": "numeric",
+            "language": "en"
+          },
+          {
+            "expected": "1958/12/13",
+            "predicted": "1958/12/13",
+            "format": "numeric",
+            "language": "fr"
+          },
+          {
+            "expected": "April 28th, 2018",
+            "predicted": "April 28th, 2018",
+            "format": "written_month",
+            "language": "en"
+          },
+          {
+            "expected": "19/06/2030",
+            "predicted": "19/06/2030",
+            "format": "numeric",
+            "language": "en"
+          },
+          {
+            "expected": "09-12-1991",
+            "predicted": "09-12-1991",
+            "format": "numeric",
+            "language": "en"
+          },
+          {
+            "expected": "19 mars 2002",
+            "predicted": "19 mars 2002",
+            "format": "written_month",
+            "language": "fr"
+          },
+          {
+            "expected": "١٧.٠٧.١٩٧٩",
+            "predicted": "١٧.٠٧.١٩٧٩",
+            "format": "numeric",
+            "language": "ar"
+          },
+          {
+            "expected": "14 juillet 1985",
+            "predicted": "14 juillet 1985",
+            "format": "written_month",
+            "language": "fr"
+          },
+          {
+            "expected": "9-03-2020",
+            "predicted": "9-03-2020",
+            "format": "numeric",
+            "language": "fr"
+          }
+        ]
+      },
+      "seconds": 503
+    }
+  ],
+  "best_epoch": 3,
+  "synthetic_test": {
+    "n": 600,
+    "correct": 569,
+    "exact_accuracy": 0.9483333333333334,
+    "cer": 0.010287118071549209,
+    "groups": {
+      "missing_year": {
+        "n": 39,
+        "correct": 38
+      },
+      "en": {
+        "n": 258,
+        "correct": 243
+      },
+      "numeric": {
+        "n": 309,
+        "correct": 288
+      },
+      "fr": {
+        "n": 216,
+        "correct": 209
+      },
+      "ar": {
+        "n": 126,
+        "correct": 117
+      },
+      "two_digit_year": {
+        "n": 39,
+        "correct": 35
+      },
+      "written_month": {
+        "n": 198,
+        "correct": 193
+      },
+      "blank": {
+        "n": 15,
+        "correct": 15
+      }
+    },
+    "examples": [
+      {
+        "expected": "24th December",
+        "predicted": "24th December",
+        "format": "missing_year",
+        "language": "en"
+      },
+      {
+        "expected": "22/09/2008",
+        "predicted": "22/09/2008",
+        "format": "numeric",
+        "language": "en"
+      },
+      {
+        "expected": "15/06/1964",
+        "predicted": "15/06/1964",
+        "format": "numeric",
+        "language": "en"
+      },
+      {
+        "expected": "10/02/1978",
+        "predicted": "10/09/1978",
+        "format": "numeric",
+        "language": "en"
+      },
+      {
+        "expected": "29/02/2044",
+        "predicted": "29/02/2044",
+        "format": "numeric",
+        "language": "en"
+      },
+      {
+        "expected": "19 octobre",
+        "predicted": "19 octobre",
+        "format": "missing_year",
+        "language": "fr"
+      },
+      {
+        "expected": "06/11/1986",
+        "predicted": "06/11/1986",
+        "format": "numeric",
+        "language": "fr"
+      },
+      {
+        "expected": "02/6/1974",
+        "predicted": "02/6/1974",
+        "format": "numeric",
+        "language": "en"
+      },
+      {
+        "expected": "07/10/2023",
+        "predicted": "07/10/2023",
+        "format": "numeric",
+        "language": "fr"
+      },
+      {
+        "expected": "١٤/٠٤/٢٠١٦",
+        "predicted": "١٤/٠٤/٢٠١٦",
+        "format": "numeric",
+        "language": "ar"
+      },
+      {
+        "expected": "28/06/81",
+        "predicted": "28/06/81",
+        "format": "two_digit_year",
+        "language": "en"
+      },
+      {
+        "expected": "30 avril 2002",
+        "predicted": "30 avril 2002",
+        "format": "written_month",
+        "language": "fr"
+      },
+      {
+        "expected": "20/03/2000",
+        "predicted": "20/03/2000",
+        "format": "numeric",
+        "language": "en"
+      },
+      {
+        "expected": "14/01/1965",
+        "predicted": "14/01/1965",
+        "format": "numeric",
+        "language": "fr"
+      },
+      {
+        "expected": "١٩٥٧-٠٧-١٨",
+        "predicted": "١٨-٠٧-١٩٥٧",
+        "format": "numeric",
+        "language": "ar"
+      },
+      {
+        "expected": "17/07/2027",
+        "predicted": "17/07/2027",
+        "format": "numeric",
+        "language": "en"
+      },
+      {
+        "expected": "8 September 1992",
+        "predicted": "8 September 1992",
+        "format": "written_month",
+        "language": "en"
+      },
+      {
+        "expected": "25/09/2000",
+        "predicted": "25/09/2000",
+        "format": "numeric",
+        "language": "en"
+      },
+      {
+        "expected": "٠٨-٠٦-٢٠٣٢",
+        "predicted": "٠٨-٠٦-٢٠٣٢",
+        "format": "numeric",
+        "language": "ar"
+      },
+      {
+        "expected": "27th May 1960",
+        "predicted": "27th May 1960",
+        "format": "written_month",
+        "language": "en"
+      },
+      {
+        "expected": "26.12.1983",
+        "predicted": "26.12.1983",
+        "format": "numeric",
+        "language": "fr"
+      },
+      {
+        "expected": "17 juillet 2003",
+        "predicted": "17 juillet 2003",
+        "format": "written_month",
+        "language": "fr"
+      },
+      {
+        "expected": "٢٧/١٠/٥٨",
+        "predicted": "٢٧/١٠/٥٨",
+        "format": "two_digit_year",
+        "language": "ar"
+      },
+      {
+        "expected": "31/12/1984",
+        "predicted": "31/12/1984",
+        "format": "numeric",
+        "language": "fr"
+      },
+      {
+        "expected": "23 juin 2015",
+        "predicted": "23 juin 2015",
+        "format": "written_month",
+        "language": "fr"
+      },
+      {
+        "expected": "02/10/2046",
+        "predicted": "02/10/2046",
+        "format": "numeric",
+        "language": "en"
+      },
+      {
+        "expected": "27.10.2013",
+        "predicted": "27.10.2013",
+        "format": "numeric",
+        "language": "fr"
+      },
+      {
+        "expected": "7.03.2024",
+        "predicted": "7.03.2024",
+        "format": "numeric",
+        "language": "fr"
+      },
+      {
+        "expected": "٢٧.٠٢.١٩٨٦",
+        "predicted": "٢٧.٠٢.١٩٨٦",
+        "format": "numeric",
+        "language": "ar"
+      },
+      {
+        "expected": "",
+        "predicted": "",
+        "format": "blank",
+        "language": "fr"
+      }
+    ]
+  },
+  "seconds": 518,
+  "checkpoint_sha256": "cbda11c79a27e90591b01f3709c70c26b6d4cd514222e7e1768780779feccc82"
+}

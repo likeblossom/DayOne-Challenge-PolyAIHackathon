@@ -1,0 +1,152 @@
+{
+  "task": "script",
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.09216265419078594,
+      "train_accuracy": 0.9615934526450722,
+      "validation": {
+        "accuracy": 0.9568965517241379,
+        "loss": 0.12473731846267573,
+        "n": 2784,
+        "confusion_matrix": [
+          [
+            1294,
+            113
+          ],
+          [
+            7,
+            1370
+          ]
+        ]
+      },
+      "seconds": 15
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.011411678701133486,
+      "train_accuracy": 0.9965488339989154,
+      "validation": {
+        "accuracy": 0.9683908045977011,
+        "loss": 0.10695620626840291,
+        "n": 2784,
+        "confusion_matrix": [
+          [
+            1321,
+            86
+          ],
+          [
+            2,
+            1375
+          ]
+        ]
+      },
+      "seconds": 21
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.006057777001596361,
+      "train_accuracy": 0.9979293003993492,
+      "validation": {
+        "accuracy": 0.9885057471264368,
+        "loss": 0.04260155908121253,
+        "n": 2784,
+        "confusion_matrix": [
+          [
+            1376,
+            31
+          ],
+          [
+            1,
+            1376
+          ]
+        ]
+      },
+      "seconds": 26
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.0017941171105119909,
+      "train_accuracy": 0.9995069762855593,
+      "validation": {
+        "accuracy": 0.9931752873563219,
+        "loss": 0.025339532432820073,
+        "n": 2784,
+        "confusion_matrix": [
+          [
+            1392,
+            15
+          ],
+          [
+            4,
+            1373
+          ]
+        ]
+      },
+      "seconds": 32
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.0024970463675812807,
+      "train_accuracy": 0.999211162056895,
+      "validation": {
+        "accuracy": 0.9956896551724138,
+        "loss": 0.012093972124147074,
+        "n": 2784,
+        "confusion_matrix": [
+          [
+            1395,
+            12
+          ],
+          [
+            0,
+            1377
+          ]
+        ]
+      },
+      "seconds": 39
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.0028080225860688812,
+      "train_accuracy": 0.9991125573140068,
+      "validation": {
+        "accuracy": 0.975933908045977,
+        "loss": 0.08075120995168088,
+        "n": 2784,
+        "confusion_matrix": [
+          [
+            1340,
+            67
+          ],
+          [
+            0,
+            1377
+          ]
+        ]
+      },
+      "seconds": 47
+    }
+  ],
+  "synthetic_test": {
+    "accuracy": 0.9978070175438597,
+    "loss": 0.009286425037354698,
+    "n": 2736,
+    "confusion_matrix": [
+      [
+        1344,
+        5
+      ],
+      [
+        1,
+        1386
+      ]
+    ]
+  },
+  "classes": [
+    "arabic",
+    "latin"
+  ],
+  "seconds": 48,
+  "external_test_not_used": true
+}

@@ -1,0 +1,32 @@
+{
+  "variants": {
+    "nearest": {
+      "pages": 78,
+      "known_text_fields": 1826,
+      "assigned": 784,
+      "adequate_coverage": 488
+    },
+    "row_relative": {
+      "pages": 78,
+      "known_text_fields": 1826,
+      "assigned": 1716,
+      "adequate_coverage": 1680
+    },
+    "row_and_column_relative": {
+      "pages": 78,
+      "known_text_fields": 1826,
+      "assigned": 1715,
+      "adequate_coverage": 1682
+    }
+  },
+  "scope": "Same frozen detections on correctly classified organizer pages. Change assignment only; no OCR rerun. Approximate PDF glyph coverage >=50% area and >=85% width. Not independent causal proof.",
+  "raw_ocr": {
+    "characters": 11308,
+    "character_edits": 4115,
+    "words": 2288,
+    "word_edits": 1524,
+    "fields": 1839
+  },
+  "raw_cer": 0.36390166253979483,
+  "raw_wer": 0.666083916083916
+}

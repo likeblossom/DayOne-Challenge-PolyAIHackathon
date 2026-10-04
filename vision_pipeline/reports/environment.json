@@ -1,0 +1,9 @@
+{
+  "python": "3.11.11",
+  "torch": "2.13.0+cu130",
+  "torchvision": "0.28.0+cu130",
+  "transformers": "4.48.3",
+  "ultralytics": "8.4.172",
+  "cuda": "13.0",
+  "gpu": "NVIDIA GeForce RTX 5060 Ti"
+}

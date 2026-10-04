@@ -1,0 +1,20 @@
+{
+  "slides": 6,
+  "titles": [
+    "Sanad",
+    "We generated the training data",
+    "On-device architecture",
+    "Models trained for the app",
+    "Three problems we addressed",
+    "Running on an Android phone"
+  ],
+  "words_per_slide": [
+    33,
+    37,
+    91,
+    76,
+    53,
+    28
+  ],
+  "scope": "Android app; synthetic training metrics separately identified"
+}

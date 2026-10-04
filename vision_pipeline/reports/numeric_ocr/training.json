@@ -1,0 +1,1004 @@
+{
+  "initial_checkpoint": "vision_pipeline/models/trocr_dates",
+  "initial_checkpoint_sha256": "cbda11c79a27e90591b01f3709c70c26b6d4cd514222e7e1768780779feccc82",
+  "dataset": "/home/anon/Documents/Projects/DayOne-Challenge-PolyAIHackathon/data/numbers",
+  "label_sha256": "119f912914371136aa2b8f66f40b67137898815488a1b1773fc53b7d3dd7b44c",
+  "cuda_device": "NVIDIA GeForce RTX 5060 Ti",
+  "precision": "BF16 autocast, FP32 master weights",
+  "trainable_parameters": 333921792,
+  "train_samples": 9000,
+  "validation_samples": 900,
+  "epochs_requested": 3,
+  "batch_size": 8,
+  "learning_rate": 2e-05,
+  "selection": "Synthetic validation exact transcription accuracy, CER tie-break; no organizer images",
+  "preprocessing": "Unchanged original TrOCR processor; direct resize to 384x384",
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.5399659852004713,
+      "validation": {
+        "n": 900,
+        "correct": 649,
+        "exact_accuracy": 0.7211111111111111,
+        "cer": 0.09808612440191387,
+        "groups": {
+          "blank": {
+            "n": 96,
+            "correct": 96
+          },
+          "en": {
+            "n": 364,
+            "correct": 287
+          },
+          "alphanumeric": {
+            "n": 68,
+            "correct": 43
+          },
+          "fr": {
+            "n": 358,
+            "correct": 295
+          },
+          "mass": {
+            "n": 117,
+            "correct": 90
+          },
+          "ar": {
+            "n": 178,
+            "correct": 67
+          },
+          "temperature": {
+            "n": 171,
+            "correct": 103
+          },
+          "decimal": {
+            "n": 86,
+            "correct": 60
+          },
+          "age": {
+            "n": 68,
+            "correct": 41
+          },
+          "length": {
+            "n": 113,
+            "correct": 86
+          },
+          "character": {
+            "n": 63,
+            "correct": 45
+          },
+          "integer": {
+            "n": 57,
+            "correct": 39
+          },
+          "pressure": {
+            "n": 61,
+            "correct": 46
+          }
+        },
+        "examples": [
+          {
+            "expected": "",
+            "predicted": "",
+            "format": "blank",
+            "language": "en"
+          },
+          {
+            "expected": "IXYhaCbk",
+            "predicted": "JXYhaC6k",
+            "format": "alphanumeric",
+            "language": "fr"
+          },
+          {
+            "expected": "٥٩٢٠g",
+            "predicted": "١٩٢٠ g",
+            "format": "mass",
+            "language": "ar"
+          },
+          {
+            "expected": "22.7  °C",
+            "predicted": "22.7 °C",
+            "format": "temperature",
+            "language": "fr"
+          },
+          {
+            "expected": "4538.7  g/L",
+            "predicted": "4538.7 g/L",
+            "format": "decimal",
+            "language": "en"
+          },
+          {
+            "expected": "sh2b",
+            "predicted": "sh2b",
+            "format": "alphanumeric",
+            "language": "fr"
+          },
+          {
+            "expected": "40,602 mmol/L",
+            "predicted": "40,602 mmolol/L",
+            "format": "decimal",
+            "language": "fr"
+          },
+          {
+            "expected": "15,93 mL",
+            "predicted": "15,93 mL",
+            "format": "decimal",
+            "language": "fr"
+          },
+          {
+            "expected": "",
+            "predicted": "",
+            "format": "blank",
+            "language": "en"
+          },
+          {
+            "expected": "٩٧  أسبوع",
+            "predicted": "٩٩ أسبوع",
+            "format": "age",
+            "language": "ar"
+          },
+          {
+            "expected": "54.8°C",
+            "predicted": "54.8°C",
+            "format": "temperature",
+            "language": "en"
+          },
+          {
+            "expected": "63 cm",
+            "predicted": "63 cm",
+            "format": "length",
+            "language": "en"
+          },
+          {
+            "expected": "1667g",
+            "predicted": "1667g",
+            "format": "mass",
+            "language": "en"
+          },
+          {
+            "expected": "8B506",
+            "predicted": "8B506",
+            "format": "alphanumeric",
+            "language": "ar"
+          },
+          {
+            "expected": "n",
+            "predicted": "r",
+            "format": "character",
+            "language": "fr"
+          },
+          {
+            "expected": "11359 g",
+            "predicted": "11359 g",
+            "format": "mass",
+            "language": "fr"
+          },
+          {
+            "expected": "",
+            "predicted": "",
+            "format": "blank",
+            "language": "en"
+          },
+          {
+            "expected": "899 g",
+            "predicted": "899 g",
+            "format": "mass",
+            "language": "fr"
+          },
+          {
+            "expected": "٣٧.٥°C",
+            "predicted": "٣٧.٥ °C",
+            "format": "temperature",
+            "language": "ar"
+          },
+          {
+            "expected": "+3182.4mmol/L",
+            "predicted": "+3122.4mmol/L",
+            "format": "decimal",
+            "language": "fr"
+          },
+          {
+            "expected": "",
+            "predicted": "",
+            "format": "blank",
+            "language": "ar"
+          },
+          {
+            "expected": "40,6  °C",
+            "predicted": "40,6 °C",
+            "format": "temperature",
+            "language": "fr"
+          },
+          {
+            "expected": "",
+            "predicted": "",
+            "format": "blank",
+            "language": "fr"
+          },
+          {
+            "expected": "1592g",
+            "predicted": "1592g",
+            "format": "mass",
+            "language": "en"
+          },
+          {
+            "expected": "+2138,0µL",
+            "predicted": "+2138,0µL",
+            "format": "decimal",
+            "language": "fr"
+          },
+          {
+            "expected": "6",
+            "predicted": "6",
+            "format": "character",
+            "language": "fr"
+          },
+          {
+            "expected": "3387 g",
+            "predicted": "3387 g",
+            "format": "mass",
+            "language": "fr"
+          },
+          {
+            "expected": "4341.6 g/dL",
+            "predicted": "4341.6 g/dL",
+            "format": "decimal",
+            "language": "en"
+          },
+          {
+            "expected": "111 mm",
+            "predicted": "111 mm",
+            "format": "length",
+            "language": "en"
+          },
+          {
+            "expected": "",
+            "predicted": "",
+            "format": "blank",
+            "language": "ar"
+          }
+        ]
+      },
+      "seconds": 248
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.1275720489307617,
+      "validation": {
+        "n": 900,
+        "correct": 760,
+        "exact_accuracy": 0.8444444444444444,
+        "cer": 0.048767022451232975,
+        "groups": {
+          "blank": {
+            "n": 96,
+            "correct": 96
+          },
+          "en": {
+            "n": 364,
+            "correct": 343
+          },
+          "alphanumeric": {
+            "n": 68,
+            "correct": 47
+          },
+          "fr": {
+            "n": 358,
+            "correct": 322
+          },
+          "mass": {
+            "n": 117,
+            "correct": 105
+          },
+          "ar": {
+            "n": 178,
+            "correct": 95
+          },
+          "temperature": {
+            "n": 171,
+            "correct": 152
+          },
+          "decimal": {
+            "n": 86,
+            "correct": 75
+          },
+          "age": {
+            "n": 68,
+            "correct": 48
+          },
+          "length": {
+            "n": 113,
+            "correct": 90
+          },
+          "character": {
+            "n": 63,
+            "correct": 54
+          },
+          "integer": {
+            "n": 57,
+            "correct": 43
+          },
+          "pressure": {
+            "n": 61,
+            "correct": 50
+          }
+        },
+        "examples": [
+          {
+            "expected": "",
+            "predicted": "",
+            "format": "blank",
+            "language": "en"
+          },
+          {
+            "expected": "IXYhaCbk",
+            "predicted": "JXYhaCbk",
+            "format": "alphanumeric",
+            "language": "fr"
+          },
+          {
+            "expected": "٥٩٢٠g",
+            "predicted": "٥٩٢٠g",
+            "format": "mass",
+            "language": "ar"
+          },
+          {
+            "expected": "22.7  °C",
+            "predicted": "22.7  °C",
+            "format": "temperature",
+            "language": "fr"
+          },
+          {
+            "expected": "4538.7  g/L",
+            "predicted": "4538.7  g/L",
+            "format": "decimal",
+            "language": "en"
+          },
+          {
+            "expected": "sh2b",
+            "predicted": "sh2b",
+            "format": "alphanumeric",
+            "language": "fr"
+          },
+          {
+            "expected": "40,602 mmol/L",
+            "predicted": "40,602 mmol/L",
+            "format": "decimal",
+            "language": "fr"
+          },
+          {
+            "expected": "15,93 mL",
+            "predicted": "15,93 mL",
+            "format": "decimal",
+            "language": "fr"
+          },
+          {
+            "expected": "",
+            "predicted": "",
+            "format": "blank",
+            "language": "en"
+          },
+          {
+            "expected": "٩٧  أسبوع",
+            "predicted": "٩٧.٧ أسبوع",
+            "format": "age",
+            "language": "ar"
+          },
+          {
+            "expected": "54.8°C",
+            "predicted": "54.8°C",
+            "format": "temperature",
+            "language": "en"
+          },
+          {
+            "expected": "63 cm",
+            "predicted": "63 cm",
+            "format": "length",
+            "language": "en"
+          },
+          {
+            "expected": "1667g",
+            "predicted": "1667g",
+            "format": "mass",
+            "language": "en"
+          },
+          {
+            "expected": "8B506",
+            "predicted": "8B506",
+            "format": "alphanumeric",
+            "language": "ar"
+          },
+          {
+            "expected": "n",
+            "predicted": "n",
+            "format": "character",
+            "language": "fr"
+          },
+          {
+            "expected": "11359 g",
+            "predicted": "11359 g",
+            "format": "mass",
+            "language": "fr"
+          },
+          {
+            "expected": "",
+            "predicted": "",
+            "format": "blank",
+            "language": "en"
+          },
+          {
+            "expected": "899 g",
+            "predicted": "899 g",
+            "format": "mass",
+            "language": "fr"
+          },
+          {
+            "expected": "٣٧.٥°C",
+            "predicted": "+٣.٩°C",
+            "format": "temperature",
+            "language": "ar"
+          },
+          {
+            "expected": "+3182.4mmol/L",
+            "predicted": "+3182.4mmol/L",
+            "format": "decimal",
+            "language": "fr"
+          },
+          {
+            "expected": "",
+            "predicted": "",
+            "format": "blank",
+            "language": "ar"
+          },
+          {
+            "expected": "40,6  °C",
+            "predicted": "40,6  °C",
+            "format": "temperature",
+            "language": "fr"
+          },
+          {
+            "expected": "",
+            "predicted": "",
+            "format": "blank",
+            "language": "fr"
+          },
+          {
+            "expected": "1592g",
+            "predicted": "1592g",
+            "format": "mass",
+            "language": "en"
+          },
+          {
+            "expected": "+2138,0µL",
+            "predicted": "+2138.0µL",
+            "format": "decimal",
+            "language": "fr"
+          },
+          {
+            "expected": "6",
+            "predicted": "6",
+            "format": "character",
+            "language": "fr"
+          },
+          {
+            "expected": "3387 g",
+            "predicted": "3387 g",
+            "format": "mass",
+            "language": "fr"
+          },
+          {
+            "expected": "4341.6 g/dL",
+            "predicted": "4341.6 g/dL",
+            "format": "decimal",
+            "language": "en"
+          },
+          {
+            "expected": "111 mm",
+            "predicted": "111  mm",
+            "format": "length",
+            "language": "en"
+          },
+          {
+            "expected": "",
+            "predicted": "",
+            "format": "blank",
+            "language": "ar"
+          }
+        ]
+      },
+      "seconds": 487
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.02349879088588447,
+      "validation": {
+        "n": 900,
+        "correct": 774,
+        "exact_accuracy": 0.86,
+        "cer": 0.04527051895472948,
+        "groups": {
+          "blank": {
+            "n": 96,
+            "correct": 96
+          },
+          "en": {
+            "n": 364,
+            "correct": 346
+          },
+          "alphanumeric": {
+            "n": 68,
+            "correct": 49
+          },
+          "fr": {
+            "n": 358,
+            "correct": 335
+          },
+          "mass": {
+            "n": 117,
+            "correct": 108
+          },
+          "ar": {
+            "n": 178,
+            "correct": 93
+          },
+          "temperature": {
+            "n": 171,
+            "correct": 159
+          },
+          "decimal": {
+            "n": 86,
+            "correct": 80
+          },
+          "age": {
+            "n": 68,
+            "correct": 50
+          },
+          "length": {
+            "n": 113,
+            "correct": 91
+          },
+          "character": {
+            "n": 63,
+            "correct": 44
+          },
+          "integer": {
+            "n": 57,
+            "correct": 46
+          },
+          "pressure": {
+            "n": 61,
+            "correct": 51
+          }
+        },
+        "examples": [
+          {
+            "expected": "",
+            "predicted": "",
+            "format": "blank",
+            "language": "en"
+          },
+          {
+            "expected": "IXYhaCbk",
+            "predicted": "JXYhaCbk",
+            "format": "alphanumeric",
+            "language": "fr"
+          },
+          {
+            "expected": "٥٩٢٠g",
+            "predicted": "٥٩٢٠g",
+            "format": "mass",
+            "language": "ar"
+          },
+          {
+            "expected": "22.7  °C",
+            "predicted": "22.7  °C",
+            "format": "temperature",
+            "language": "fr"
+          },
+          {
+            "expected": "4538.7  g/L",
+            "predicted": "4538.7  g/L",
+            "format": "decimal",
+            "language": "en"
+          },
+          {
+            "expected": "sh2b",
+            "predicted": "sh2b",
+            "format": "alphanumeric",
+            "language": "fr"
+          },
+          {
+            "expected": "40,602 mmol/L",
+            "predicted": "40,602 mmol/L",
+            "format": "decimal",
+            "language": "fr"
+          },
+          {
+            "expected": "15,93 mL",
+            "predicted": "15,93 mL",
+            "format": "decimal",
+            "language": "fr"
+          },
+          {
+            "expected": "",
+            "predicted": "",
+            "format": "blank",
+            "language": "en"
+          },
+          {
+            "expected": "٩٧  أسبوع",
+            "predicted": "٩٧ أسبوع",
+            "format": "age",
+            "language": "ar"
+          },
+          {
+            "expected": "54.8°C",
+            "predicted": "54.8°C",
+            "format": "temperature",
+            "language": "en"
+          },
+          {
+            "expected": "63 cm",
+            "predicted": "63 cm",
+            "format": "length",
+            "language": "en"
+          },
+          {
+            "expected": "1667g",
+            "predicted": "1667g",
+            "format": "mass",
+            "language": "en"
+          },
+          {
+            "expected": "8B506",
+            "predicted": "8B506",
+            "format": "alphanumeric",
+            "language": "ar"
+          },
+          {
+            "expected": "n",
+            "predicted": "n",
+            "format": "character",
+            "language": "fr"
+          },
+          {
+            "expected": "11359 g",
+            "predicted": "11359 g",
+            "format": "mass",
+            "language": "fr"
+          },
+          {
+            "expected": "",
+            "predicted": "",
+            "format": "blank",
+            "language": "en"
+          },
+          {
+            "expected": "899 g",
+            "predicted": "899 g",
+            "format": "mass",
+            "language": "fr"
+          },
+          {
+            "expected": "٣٧.٥°C",
+            "predicted": "٣٧.٥°C",
+            "format": "temperature",
+            "language": "ar"
+          },
+          {
+            "expected": "+3182.4mmol/L",
+            "predicted": "+3182.4mmol/L",
+            "format": "decimal",
+            "language": "fr"
+          },
+          {
+            "expected": "",
+            "predicted": "",
+            "format": "blank",
+            "language": "ar"
+          },
+          {
+            "expected": "40,6  °C",
+            "predicted": "40,6  °C",
+            "format": "temperature",
+            "language": "fr"
+          },
+          {
+            "expected": "",
+            "predicted": "",
+            "format": "blank",
+            "language": "fr"
+          },
+          {
+            "expected": "1592g",
+            "predicted": "1592g",
+            "format": "mass",
+            "language": "en"
+          },
+          {
+            "expected": "+2138,0µL",
+            "predicted": "+2138.0µL",
+            "format": "decimal",
+            "language": "fr"
+          },
+          {
+            "expected": "6",
+            "predicted": "6",
+            "format": "character",
+            "language": "fr"
+          },
+          {
+            "expected": "3387 g",
+            "predicted": "3387 g",
+            "format": "mass",
+            "language": "fr"
+          },
+          {
+            "expected": "4341.6 g/dL",
+            "predicted": "4341.6 g/dL",
+            "format": "decimal",
+            "language": "en"
+          },
+          {
+            "expected": "111 mm",
+            "predicted": "111 mm",
+            "format": "length",
+            "language": "en"
+          },
+          {
+            "expected": "",
+            "predicted": "",
+            "format": "blank",
+            "language": "ar"
+          }
+        ]
+      },
+      "seconds": 732
+    }
+  ],
+  "best_epoch": 3,
+  "synthetic_test": {
+    "n": 900,
+    "correct": 706,
+    "exact_accuracy": 0.7844444444444445,
+    "cer": 0.047415329768270946,
+    "groups": {
+      "decimal": {
+        "n": 105,
+        "correct": 60
+      },
+      "ar": {
+        "n": 168,
+        "correct": 109
+      },
+      "mass": {
+        "n": 148,
+        "correct": 120
+      },
+      "en": {
+        "n": 360,
+        "correct": 304
+      },
+      "alphanumeric": {
+        "n": 62,
+        "correct": 32
+      },
+      "fr": {
+        "n": 372,
+        "correct": 293
+      },
+      "length": {
+        "n": 86,
+        "correct": 77
+      },
+      "age": {
+        "n": 57,
+        "correct": 53
+      },
+      "blank": {
+        "n": 88,
+        "correct": 88
+      },
+      "character": {
+        "n": 60,
+        "correct": 39
+      },
+      "temperature": {
+        "n": 149,
+        "correct": 121
+      },
+      "pressure": {
+        "n": 75,
+        "correct": 61
+      },
+      "integer": {
+        "n": 70,
+        "correct": 55
+      }
+    },
+    "examples": [
+      {
+        "expected": "٢٢٥٢٫٩ mmol/L",
+        "predicted": "٢٢٥٢٫٩  mmol/L",
+        "format": "decimal",
+        "language": "ar"
+      },
+      {
+        "expected": "10811  g",
+        "predicted": "1081  g",
+        "format": "mass",
+        "language": "en"
+      },
+      {
+        "expected": "8lUXssa",
+        "predicted": "8lU9qssa",
+        "format": "alphanumeric",
+        "language": "fr"
+      },
+      {
+        "expected": "51.976kg",
+        "predicted": "51.976kg",
+        "format": "mass",
+        "language": "en"
+      },
+      {
+        "expected": "9351 g",
+        "predicted": "9351 g",
+        "format": "mass",
+        "language": "fr"
+      },
+      {
+        "expected": "95.8cm",
+        "predicted": "95.8cm",
+        "format": "length",
+        "language": "fr"
+      },
+      {
+        "expected": "2636,9  %",
+        "predicted": "2636.9  %",
+        "format": "decimal",
+        "language": "fr"
+      },
+      {
+        "expected": "73 days",
+        "predicted": "73 days",
+        "format": "age",
+        "language": "en"
+      },
+      {
+        "expected": "١٤٨.٣٢ mmol/L",
+        "predicted": "١٤٨.٣٢  mmol/L",
+        "format": "decimal",
+        "language": "ar"
+      },
+      {
+        "expected": "",
+        "predicted": "",
+        "format": "blank",
+        "language": "ar"
+      },
+      {
+        "expected": "١٤٫١٠٤ mmol/L",
+        "predicted": "١٤٫١٤  mmol/L",
+        "format": "decimal",
+        "language": "ar"
+      },
+      {
+        "expected": "10994  g",
+        "predicted": "10994  g",
+        "format": "mass",
+        "language": "en"
+      },
+      {
+        "expected": "971 g",
+        "predicted": "971 g",
+        "format": "mass",
+        "language": "fr"
+      },
+      {
+        "expected": "2101 g",
+        "predicted": "2101 g",
+        "format": "mass",
+        "language": "en"
+      },
+      {
+        "expected": "٣٩ سم",
+        "predicted": "٣٩ سم",
+        "format": "length",
+        "language": "ar"
+      },
+      {
+        "expected": "vJtfI993",
+        "predicted": "4Jtf993",
+        "format": "alphanumeric",
+        "language": "en"
+      },
+      {
+        "expected": "e",
+        "predicted": "e",
+        "format": "character",
+        "language": "en"
+      },
+      {
+        "expected": "R",
+        "predicted": "R",
+        "format": "character",
+        "language": "en"
+      },
+      {
+        "expected": "24.0 °C",
+        "predicted": "24.0 °C",
+        "format": "temperature",
+        "language": "fr"
+      },
+      {
+        "expected": "20.3 °C",
+        "predicted": "20.3 °C",
+        "format": "temperature",
+        "language": "en"
+      },
+      {
+        "expected": "٥١٠٫٦٣bpm",
+        "predicted": "٥١٠٫٦٣bpm",
+        "format": "decimal",
+        "language": "ar"
+      },
+      {
+        "expected": "R",
+        "predicted": "R",
+        "format": "character",
+        "language": "en"
+      },
+      {
+        "expected": "74/79mmHg",
+        "predicted": "74/79mmHg",
+        "format": "pressure",
+        "language": "fr"
+      },
+      {
+        "expected": "34.144 %",
+        "predicted": "34.144 %",
+        "format": "decimal",
+        "language": "en"
+      },
+      {
+        "expected": "38,4 °C",
+        "predicted": "38,4 °C",
+        "format": "temperature",
+        "language": "fr"
+      },
+      {
+        "expected": "",
+        "predicted": "",
+        "format": "blank",
+        "language": "en"
+      },
+      {
+        "expected": "7489 g",
+        "predicted": "7489 g",
+        "format": "mass",
+        "language": "fr"
+      },
+      {
+        "expected": "149.6  cm",
+        "predicted": "149.6  cm",
+        "format": "length",
+        "language": "fr"
+      },
+      {
+        "expected": "٣٣.٢ °C",
+        "predicted": "٣٣.٢ °C",
+        "format": "temperature",
+        "language": "ar"
+      },
+      {
+        "expected": "ZJZw",
+        "predicted": "ZIZw",
+        "format": "alphanumeric",
+        "language": "ar"
+      }
+    ]
+  },
+  "seconds": 749,
+  "checkpoint_sha256": "8c884bdbcc66878f37d63ea9912c1b16aa331e4040b032137d01b75d843ca1b2"
+}

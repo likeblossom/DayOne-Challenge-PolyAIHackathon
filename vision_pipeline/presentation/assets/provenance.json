@@ -1,0 +1,39 @@
+{
+  "source_pdf": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes.pdf",
+  "source_sha256": "2797a99aee490ee255ee8f6487b7d20804175df216724098289d7033d78d22fb",
+  "page": 6,
+  "synthetic_record": "06_000004.jpg",
+  "seed": 20861008,
+  "font": "dancingscript",
+  "language": "fr",
+  "augmentation": {
+    "profile": "rotated",
+    "rotation_deg": 19.88514596782686,
+    "scale": 0.6894715269859024,
+    "homography": [
+      [
+        0.6483626961708069,
+        -0.23451392352581024,
+        565.0680541992188
+      ],
+      [
+        0.23451392352581024,
+        0.6483626961708069,
+        217.29678344726562
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "noise": 0.002,
+    "blur": 0,
+    "gpu": true,
+    "jpeg_quality": 78,
+    "resolution_scale": 1.0
+  },
+  "renderer_replay_verified": true,
+  "source_unchanged": true,
+  "method": "Read supplied vector PDF in memory. Remove /F3 handwriting text objects and blue vector mark paths; retain printed artwork. Render exact labels with the existing handwriting-font renderer. Augmented image is the actual saved dataset page. This is not general raster handwriting erasure or generative handwriting."
+}

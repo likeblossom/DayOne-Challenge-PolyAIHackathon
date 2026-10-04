@@ -1,0 +1,28 @@
+{
+  "form_id": "pregnancy_postpartum_monitoring",
+  "title_fr": "Fiche de surveillance de la grossesse et du post-partum",
+  "title_en": "Pregnancy and Postpartum Monitoring Form",
+  "fields": {
+    "record_code": {"type": "string", "description": "Non-personal code assigned by the midwife"},
+    "region": {"type": "string"},
+    "province": {"type": "string"},
+    "health_facility_name": {"type": "string"},
+    "health_facility_type": {
+      "type": "enum",
+      "values": ["DR", "CSC", "CSU", "CSCA", "CSUA", "OTHER"]
+    },
+    "coverage_mode": {"type": "enum", "values": ["FIXED", "MOBILE"]},
+    "high_risk_pregnancy": {"type": "boolean"},
+    "risk_factors": {
+      "type": "array",
+      "items": {
+        "type": "enum",
+        "values": [
+          "ANEMIA", "HYPERTENSION", "DIABETES", "HEART_DISEASE", "METRORRHAGIA",
+          "INFECTION", "PREECLAMPSIA", "ECLAMPSIA", "OTHER"
+        ]
+      }
+    },
+    "other_risk_factor": {"type": "string"}
+  }
+}

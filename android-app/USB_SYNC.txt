@@ -1,0 +1,35 @@
+SANAD USB DATABASE
+
+Start on the PC (from repository root):
+  rtk python android-app/tools/usb_database.py --serial DEVICE_SERIAL
+Keep that process running. It binds only to 127.0.0.1:8765, not Wi-Fi/LAN.
+It pairs a random private bearer token and configures adb reverse over USB.
+After unplugging/reconnecting while the server is still running:
+  rtk python android-app/tools/usb_database.py --serial DEVICE_SERIAL --pair-only
+
+Android uses a Unix-domain socket (localabstract:sanad-usb-db), forwarded by
+ADB to the PC localhost port. It needs NO INTERNET permission, Wi-Fi or mobile
+data. Phone network restrictions remain untouched. Requests still authenticate.
+App polling checks authenticated server reachability every five seconds while
+open. Background retries use JobScheduler and can be delayed by Android.
+
+All photos, OCR drafts and reviewed results remain in encrypted app storage.
+Saved records are always accessible offline. Review and Submit queues a record;
+only submitted reviewed records transfer, not unconfirmed OCR drafts.
+Disconnects retain the queue. Commit acknowledgments mark records synced.
+Repeated uploads are idempotent by record ID + payload hash; changed content
+must use a new revision record. Previous simulated-sync records without a PC
+receipt are eligible for real sync. No original or model file is deleted.
+
+The PC SQLite database is android-app/.usb-database/sanad.sqlite3.
+It stores structured fields, statuses, confidence, raw OCR and provenance.
+Original photos stay on the phone; image_file is a local reference, not a PC file.
+List received records:
+  rtk python android-app/tools/usb_database.py --list
+
+Security scope: hackathon specimen data. PC storage is permission-restricted,
+not encrypted at rest. This is not a production clinical data service. Protect
+the PC account and token. USB debugging must be authorized only for trusted PCs.
+
+Record codes use numeric OCR while retaining string values, hyphens and leading
+zeroes. In-chat originals appear with results; tap to expand, pinch/drag to inspect.

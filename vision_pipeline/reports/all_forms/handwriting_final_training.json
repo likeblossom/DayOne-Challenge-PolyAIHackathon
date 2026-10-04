@@ -1,0 +1,21 @@
+{
+  "form": "handwriting",
+  "epochs": 6,
+  "seconds": 442,
+  "initial_weights": "/home/anon/Documents/Projects/DayOne-Challenge-PolyAIHackathon/vision_pipeline/models/all_forms/handwriting/weights/best.pt",
+  "best_checkpoint": "/home/anon/Documents/Projects/DayOne-Challenge-PolyAIHackathon/vision_pipeline/models/all_forms_final/handwriting/weights/best.pt",
+  "validation_metrics": {
+    "metrics/precision(B)": 0.9997227098256576,
+    "metrics/recall(B)": 0.9999123498992024,
+    "metrics/mAP50(B)": 0.995,
+    "metrics/mAP50-95(B)": 0.9366665647635051,
+    "fitness": 0.9366665647635051
+  },
+  "training_source": "data/forms base pages plus the existing synthetic long_handwriting pages; no organizer handwriting",
+  "organizer_test_used_for_training": false,
+  "dataset_pages": {
+    "train": 4320,
+    "val": 600,
+    "test": 600
+  }
+}

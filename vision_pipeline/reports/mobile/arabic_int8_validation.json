@@ -1,0 +1,298 @@
+{
+  "route": "arabic",
+  "precision": "int8",
+  "n": 15,
+  "raw_equal": 14,
+  "results": [
+    {
+      "source": "outputs/unit_grammar/page_06/relative/ocr/examiner_role/arabic/ocr_output.json",
+      "reference_raw": "#### ١٨",
+      "export_raw": "#### ١٨",
+      "raw_equal": true,
+      "seconds": 0.9934701500023948,
+      "token_ids": [
+        3323,
+        243,
+        172,
+        117,
+        172,
+        124,
+        221,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_06/relative/ocr/vaccines_given_today/arabic/ocr_output.json",
+      "reference_raw": "#### ١",
+      "export_raw": "#### ١",
+      "raw_equal": true,
+      "seconds": 0.922351165994769,
+      "token_ids": [
+        3323,
+        243,
+        172,
+        117,
+        221,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_22/relative/ocr/other_danger_sign/arabic/ocr_output.json",
+      "reference_raw": "#### ١",
+      "export_raw": "#### ١",
+      "raw_equal": true,
+      "seconds": 0.9063511910062516,
+      "token_ids": [
+        3323,
+        243,
+        172,
+        117,
+        221,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_22/relative/ocr/treatment/arabic/ocr_output.json",
+      "reference_raw": "#### ١",
+      "export_raw": "#### ١",
+      "raw_equal": true,
+      "seconds": 0.9335750169993844,
+      "token_ids": [
+        3323,
+        243,
+        172,
+        117,
+        221,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_30/relative/ocr/other_danger_sign/arabic/ocr_output.json",
+      "reference_raw": "#### ١",
+      "export_raw": "#### ١",
+      "raw_equal": true,
+      "seconds": 0.9160195110016502,
+      "token_ids": [
+        3323,
+        243,
+        172,
+        117,
+        221,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_30/relative/ocr/treatment/arabic/ocr_output.json",
+      "reference_raw": "#### ١",
+      "export_raw": "#### ١",
+      "raw_equal": true,
+      "seconds": 0.9093084969936172,
+      "token_ids": [
+        3323,
+        243,
+        172,
+        117,
+        221,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_38/relative/ocr/examiner_role/arabic/ocr_output.json",
+      "reference_raw": "١١١١١١",
+      "export_raw": "١١١١١١",
+      "raw_equal": true,
+      "seconds": 1.0553595119999954,
+      "token_ids": [
+        172,
+        117,
+        172,
+        117,
+        172,
+        117,
+        172,
+        117,
+        172,
+        117,
+        172,
+        117,
+        221,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_46/relative/ocr/decision/arabic/ocr_output.json",
+      "reference_raw": "#### أنباعة عنظام عندمانية",
+      "export_raw": "#### أنباعة عنظام عنها، وأنباع منعك٣٣٤",
+      "raw_equal": false,
+      "seconds": 1.9679768339992734,
+      "token_ids": [
+        3323,
+        44474,
+        119,
+        28620,
+        33396,
+        16119,
+        171,
+        140,
+        171,
+        125,
+        44474,
+        140,
+        28620,
+        171,
+        139,
+        16119,
+        27688,
+        44474,
+        140,
+        28620,
+        39508,
+        16119,
+        171,
+        257,
+        243,
+        30780,
+        171,
+        119,
+        28620,
+        33396,
+        16119,
+        171,
+        140,
+        243,
+        27688,
+        28620,
+        171,
+        140,
+        172,
+        248,
+        172,
+        119,
+        172,
+        119,
+        172,
+        120,
+        221,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_62/relative/ocr/other_danger_sign/arabic/ocr_output.json",
+      "reference_raw": "#### ١",
+      "export_raw": "#### ١",
+      "raw_equal": true,
+      "seconds": 0.9056753300101263,
+      "token_ids": [
+        3323,
+        243,
+        172,
+        117,
+        221,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_62/relative/ocr/treatment/arabic/ocr_output.json",
+      "reference_raw": "#### ١",
+      "export_raw": "#### ١",
+      "raw_equal": true,
+      "seconds": 0.9110815879976144,
+      "token_ids": [
+        3323,
+        243,
+        172,
+        117,
+        221,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_70/relative/ocr/examiner_role/arabic/ocr_output.json",
+      "reference_raw": "٥٥٥",
+      "export_raw": "٥٥٥",
+      "raw_equal": true,
+      "seconds": 0.9444070420140633,
+      "token_ids": [
+        172,
+        121,
+        172,
+        121,
+        172,
+        121,
+        221,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_70/relative/ocr/other_danger_sign/arabic/ocr_output.json",
+      "reference_raw": "#### ١",
+      "export_raw": "#### ١",
+      "raw_equal": true,
+      "seconds": 0.9103958329942543,
+      "token_ids": [
+        3323,
+        243,
+        172,
+        117,
+        221,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_70/relative/ocr/treatment/arabic/ocr_output.json",
+      "reference_raw": "#### ١",
+      "export_raw": "#### ١",
+      "raw_equal": true,
+      "seconds": 0.9034944159939187,
+      "token_ids": [
+        3323,
+        243,
+        172,
+        117,
+        221,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_78/relative/ocr/examiner_role/arabic/ocr_output.json",
+      "reference_raw": "٣٣٣٣٣٣",
+      "export_raw": "٣٣٣٣٣٣",
+      "raw_equal": true,
+      "seconds": 1.0597313910111552,
+      "token_ids": [
+        172,
+        119,
+        172,
+        119,
+        172,
+        119,
+        172,
+        119,
+        172,
+        119,
+        172,
+        119,
+        221,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_78/relative/ocr/vaccines_given_today/arabic/ocr_output.json",
+      "reference_raw": "#### ١",
+      "export_raw": "#### ١",
+      "raw_equal": true,
+      "seconds": 0.8907567970018135,
+      "token_ids": [
+        3323,
+        243,
+        172,
+        117,
+        221,
+        2
+      ]
+    }
+  ],
+  "peak_process_rss_gb": 2.164584448,
+  "scope": "Desktop ONNX CPU on saved normalized tensors; not Android preprocessing, not organizer ground-truth accuracy. Agreement is with original FP16 outputs.",
+  "model_bytes": 420902474
+}

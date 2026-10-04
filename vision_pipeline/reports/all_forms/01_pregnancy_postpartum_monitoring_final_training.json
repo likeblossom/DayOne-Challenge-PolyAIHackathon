@@ -1,0 +1,16 @@
+{
+  "form": "01_pregnancy_postpartum_monitoring",
+  "epochs": 24,
+  "seconds": 208,
+  "initial_weights": "/home/anon/Documents/Projects/DayOne-Challenge-PolyAIHackathon/vision_pipeline/models/all_forms/01_pregnancy_postpartum_monitoring/weights/best.pt",
+  "best_checkpoint": "/home/anon/Documents/Projects/DayOne-Challenge-PolyAIHackathon/vision_pipeline/models/all_forms_final/01_pregnancy_postpartum_monitoring/weights/best.pt",
+  "validation_metrics": {
+    "metrics/precision(B)": 0.986078393743752,
+    "metrics/recall(B)": 0.9977953170334123,
+    "metrics/mAP50(B)": 0.9949789915966388,
+    "metrics/mAP50-95(B)": 0.9859403197259857,
+    "fitness": 0.9859403197259857
+  },
+  "training_source": "data/forms only",
+  "organizer_test_used_for_training": false
+}

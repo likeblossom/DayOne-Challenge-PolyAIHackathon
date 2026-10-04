@@ -1,0 +1,70 @@
+{
+  "initial_checkpoint": "/home/anon/Documents/Projects/DayOne-Challenge-PolyAIHackathon/vision_pipeline/models/label_anchor_pilot/handwriting/weights/best.pt",
+  "initial_checkpoint_sha256": "3b11c208e9385cf770b6f3fa96cc1f5322bf79433f9a486a741525ee39e4445e",
+  "checkpoint": "/home/anon/Documents/Projects/DayOne-Challenge-PolyAIHackathon/vision_pipeline/models/long_handwriting/handwriting/weights/best.pt",
+  "checkpoint_sha256": "13f9e2351cb07742a7887ba80f57639827f9ec335669689f99f1d49b2d2aec25",
+  "epochs": 8,
+  "image_size": 1280,
+  "seconds": 176,
+  "cuda_device": "NVIDIA GeForce RTX 5060 Ti",
+  "validation_metrics": {
+    "metrics/precision(B)": 0.9986142630308539,
+    "metrics/recall(B)": 1.0,
+    "metrics/mAP50(B)": 0.9948286203941732,
+    "metrics/mAP50-95(B)": 0.911003252982536,
+    "fitness": 0.911003252982536
+  },
+  "selection": "Ultralytics best checkpoint on mixed synthetic validation mAP; organizer images excluded",
+  "preparation": {
+    "new_pages": 720,
+    "original_pages": 600,
+    "new_splits": {
+      "train": 560,
+      "val": 80,
+      "test": 80
+    },
+    "mixed_splits": {
+      "train": 1030,
+      "val": 145,
+      "test": 145
+    },
+    "new_regions": 12321,
+    "long_regions_5plus_words": 4735,
+    "fonts": {
+      "allura": 40,
+      "amiri": 40,
+      "dancingscript": 40,
+      "arefruqaa": 40,
+      "caveat": 40,
+      "lateef": 40,
+      "marckscript": 40,
+      "scheherazadenew": 40,
+      "badscript": 40,
+      "reemkufi": 40,
+      "sacramento": 40,
+      "mirza": 40,
+      "kalam": 40,
+      "patrickhand": 40,
+      "handlee": 40,
+      "shadowsintolight": 40,
+      "satisfy": 40,
+      "parisienne": 40
+    },
+    "labels_sha256": "51e7dc1e2ef85aefac9c0d687f118fdf17a3dc15ad6b4f6de9fd5eaf63c511a5",
+    "organizer_handwriting_used": false,
+    "source": "Blank form-06 artwork + independent synthetic sentence vocabulary; exact renderer-alpha full-line boxes. Original short fields mixed in.",
+    "limitations": [
+      "Font synthesis, not real human writers.",
+      "Single-line sentences only; multiline grouping is not implemented.",
+      "Shared template, font-disjoint synthetic splits; vocabulary is shared across splits.",
+      "Some forced text overrides ignore clinical applicability; this dataset trains ink localization, not clinical decisions."
+    ]
+  },
+  "synthetic_test_metrics": {
+    "metrics/precision(B)": 0.9998350871277769,
+    "metrics/recall(B)": 1.0,
+    "metrics/mAP50(B)": 0.995,
+    "metrics/mAP50-95(B)": 0.9253191136485388,
+    "fitness": 0.9253191136485388
+  }
+}

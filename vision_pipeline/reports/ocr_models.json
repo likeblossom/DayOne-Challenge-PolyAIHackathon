@@ -1,0 +1,12 @@
+{
+  "trocr_latin": {
+    "repo": "microsoft/trocr-base-handwritten",
+    "revision": "eaacaf452b06415df8f10bb6fad3a4c11e609406",
+    "license": "MIT"
+  },
+  "nougat_arabic": {
+    "repo": "MohamedRashad/arabic-small-nougat",
+    "revision": "2ccd10dd3b1d3ba9a24bc5274aa4c8a7508e8784",
+    "license": "GPL-3.0"
+  }
+}

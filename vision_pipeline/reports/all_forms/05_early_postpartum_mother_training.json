@@ -1,0 +1,16 @@
+{
+  "form": "05_early_postpartum_mother",
+  "epochs": 8,
+  "seconds": 73,
+  "initial_weights": "/home/anon/Documents/Projects/DayOne-Challenge-PolyAIHackathon/vision_pipeline/models/yolo11n-obb.pt",
+  "best_checkpoint": "/home/anon/Documents/Projects/DayOne-Challenge-PolyAIHackathon/vision_pipeline/models/all_forms/05_early_postpartum_mother/weights/best.pt",
+  "validation_metrics": {
+    "metrics/precision(B)": 0.39712352911208376,
+    "metrics/recall(B)": 0.28904357955937543,
+    "metrics/mAP50(B)": 0.2892316124577516,
+    "metrics/mAP50-95(B)": 0.2523636302558969,
+    "fitness": 0.2523636302558969
+  },
+  "training_source": "data/forms only",
+  "organizer_test_used_for_training": false
+}

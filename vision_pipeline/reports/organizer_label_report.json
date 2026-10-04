@@ -1,0 +1,261 @@
+{
+  "unique_pdf_mapped_images": 80,
+  "excluded": [
+    {
+      "image": "data/organizer/data/Paper Registry/1-1.jpg",
+      "reason": "NO_PDF_PAGE_MAPPING: manual annotation required"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/1-2.jpg",
+      "reason": "NO_PDF_PAGE_MAPPING: manual annotation required"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/1-3.jpg",
+      "reason": "NO_PDF_PAGE_MAPPING: manual annotation required"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/1-4.jpg",
+      "reason": "NO_PDF_PAGE_MAPPING: manual annotation required"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/1-5.jpg",
+      "reason": "NO_PDF_PAGE_MAPPING: manual annotation required"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-07__1qaWGv8qLJ.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-07__1O_M-H0E7z.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-10__1YQQbSs_NO.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-10__1U_S1pqftP.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-12__1MSer0e6h1.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-12__1D4u3zWyes.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-14__1pnAIEwOi1.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-14__1NRsJ9Ddo8.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-15__1jUDWVMcE-.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-15__1NMe1Ym5MK.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-16__1OBRq_dz53.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-16__1CB60L7TiS.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-17__1oBPaU3YTV.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-17__1JAXyAcTm1.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-18__1baIjVKeMw.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-18__1YDapV3RjJ.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-19__1yUclbTmix.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-19__1CnJAvJyYe.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-20__1Fe9vKiY1J.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-20__18kYVBTwE4.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-21__1uKoGpOPgd.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-21__1YGNHKDIuK.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-23__1Ot9b8mqEv.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-23__1M0bYiZmc7.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-24__1sK7jnFhTK.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-24__11w0IP6pSn.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-25__1y1StxYt4T.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-25__1-CjNUosOk.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-26__1sByprDs4N.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-26__17ANHGh7D9.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-27__1v5jkynbxz.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-27__1IYSy5g-zc.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-28__1xE6UA-qzN.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-28__1OtF9rNsnr.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-29__1mN4qfTcFX.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-29__1IIeCj5Sjq.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-30__1kKkGMBMD5.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-30__1MEUrnbu5W.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-31__1kEzf9yMpL.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-31__1Nue3NqAua.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-32__1csOqNdzZT.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-32__1Bx-67ocGy.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-33__1NG6kKSvcL.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-33__15ITQvlEdR.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-34__12oVhijHWY.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-34__1-TNB7bUpy.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-35__1dlbkeq5N9.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-35__1G4fXy_5Gm.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-36__1RkGX7Zoyd.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-36__10YoYqH4k6.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-37__1WUTegRE-Q.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-37__1ClQJtts9I.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-38__1IM4rRG5Yr.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-38__1CXcCUFyrj.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-39__1YErqisjMy.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-39__17KgDI_D25.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-40__1s1Z5scO-G.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-40__1WnbGI6FRA.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-41__1soPpS91RH.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-41__1PEcVIoFXJ.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-42__1h8zxWGG4P.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-42__1RrCOGAZgm.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-44__1iKRCirxp9.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-44__1XxzcLjCYe.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-45__1jejwmzfhf.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-45__1CU3r5Tdou.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-46__14c_tFYKBo.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-46__13tFG11aaA.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-47__1IqdH6NkRH.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-47__1IUs1h6KZQ.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-48__1yPzNR2jPe.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-48__1JY9DkRr_Z.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-49__1hm5RSPNCf.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-49__1SVq0XRfj2.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-50__1xXF5g-WKK.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-50__1JrJI1k9zk.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-51__1CBmi9gojK.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-51__1ArSWOxwYZ.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-52__1hTETTbfnm.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-52__13GPlkmxU-.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-53__1dTvG8Cvh5.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-53__1Djbws5jOt.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-54__1fIE23rXM4.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-54__155-coOlhB.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-55__1vzizet8Xd.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-55__1t5UQZZmWv.png"
+    },
+    {
+      "image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-56__1FD_HmSh0t.png",
+      "reason": "EXACT_DUPLICATE",
+      "canonical_image": "data/organizer/data/Paper Registry/dossiers_specimen_10_patientes-56__14R5jqMZgt.png"
+    }
+  ],
+  "status_counts": {
+    "KNOWN": 2659,
+    "NOT_PROVIDED": 2226,
+    "ILLEGIBLE": 129,
+    "NEEDS_REVIEW": 156
+  },
+  "score_eligible_fields": 4885,
+  "manually_reviewed_fields": 0,
+  "csv_join_used": false,
+  "csv_join_reason": "CSV first row age=24; PDF patient 1 age=31. No verified identifier join.",
+  "caveats": [
+    "Template geometry shared with synthetic training; this tests handwriting/domain shift, not unseen forms.",
+    "PDF-vector labels are draft reference annotations, not a fully human-reviewed benchmark.",
+    "Exact duplicate images are counted once.",
+    "No direct personal identifiers are extracted or copied."
+  ]
+}

@@ -1,0 +1,4118 @@
+{
+  "01_pregnancy_postpartum_monitoring": {
+    "record_code": {
+      "type": "string",
+      "description": "Non-personal code assigned by the midwife",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 40,
+      "allow_multiline": true,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_\\-/ ]{0,39}$"
+    },
+    "region": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 120,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "province": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 120,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "health_facility_name": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "health_facility_type": {
+      "type": "enum",
+      "values": [
+        "DR",
+        "CSC",
+        "CSU",
+        "CSCA",
+        "CSUA",
+        "OTHER"
+      ],
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "coverage_mode": {
+      "type": "enum",
+      "values": [
+        "FIXED",
+        "MOBILE"
+      ],
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "high_risk_pregnancy": {
+      "type": "boolean",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "allowed_text": [
+        "0",
+        "1",
+        "checked",
+        "false",
+        "no",
+        "non",
+        "oui",
+        "true",
+        "unchecked",
+        "x",
+        "yes",
+        "لا",
+        "نعم"
+      ]
+    },
+    "risk_factors": {
+      "type": "array",
+      "items": {
+        "type": "enum",
+        "values": [
+          "ANEMIA",
+          "HYPERTENSION",
+          "DIABETES",
+          "HEART_DISEASE",
+          "METRORRHAGIA",
+          "INFECTION",
+          "PREECLAMPSIA",
+          "ECLAMPSIA",
+          "OTHER"
+        ]
+      },
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "other_risk_factor": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    }
+  },
+  "02_identification_and_history": {
+    "age_years": {
+      "type": "double",
+      "unit": "years",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        8,
+        70
+      ],
+      "unit_aliases": {
+        "year": 1,
+        "years": 1,
+        "ans": 1,
+        "an": 1,
+        "سنة": 1,
+        "سنوات": 1
+      },
+      "unit_policy": {
+        "expected_unit": "years",
+        "unitless_field": false,
+        "missing_unit": "Use declared schema unit; source=SCHEMA, not an observed OCR unit.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {
+          "an5": "ans",
+          "year5": "years"
+        },
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    },
+    "education_level": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 120,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "occupation": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 120,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "spouse_occupation": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 120,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "consanguinity": {
+      "type": "boolean",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "allowed_text": [
+        "0",
+        "1",
+        "checked",
+        "false",
+        "no",
+        "non",
+        "oui",
+        "true",
+        "unchecked",
+        "x",
+        "yes",
+        "لا",
+        "نعم"
+      ]
+    },
+    "desired_pregnancy": {
+      "type": "boolean",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "allowed_text": [
+        "0",
+        "1",
+        "checked",
+        "false",
+        "no",
+        "non",
+        "oui",
+        "true",
+        "unchecked",
+        "x",
+        "yes",
+        "لا",
+        "نعم"
+      ]
+    },
+    "family_history.woman_family.hypertension": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "family_history.woman_family.diabetes": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "family_history.woman_family.hereditary_diseases": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "family_history.woman_family.malformations": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "family_history.woman_family.allergies": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "family_history.spouse_family.hypertension": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "family_history.spouse_family.diabetes": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "family_history.spouse_family.hereditary_diseases": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "family_history.spouse_family.malformations": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "family_history.spouse_family.allergies": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "woman_history.medical": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "woman_history.surgical": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "woman_history.gynecological": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "previous_pregnancy_anomalies[].nature": {
+      "type": "enum",
+      "values": [
+        "ABORTION",
+        "PRETERM_DELIVERY",
+        "INTRAUTERINE_FETAL_DEATH",
+        "OTHER"
+      ],
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "previous_pregnancy_anomalies[].count": {
+      "type": "integer",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        0,
+        30
+      ],
+      "unit_aliases": {},
+      "unit_policy": {
+        "expected_unit": null,
+        "unitless_field": true,
+        "missing_unit": "Count: numeric value only; unit suffixes rejected.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {},
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    },
+    "previous_pregnancy_anomalies[].date": {
+      "type": "date",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "formats": [
+        "YYYY-MM-DD",
+        "DD/MM/YYYY",
+        "DD-MM-YYYY",
+        "DD.MM.YYYY"
+      ],
+      "year_range": [
+        1900,
+        2100
+      ],
+      "ambiguous_two_digit_year": "review"
+    },
+    "previous_pregnancy_anomalies[].place": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "previous_pregnancy_anomalies[].gestational_age_weeks": {
+      "type": "double",
+      "unit": "weeks",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        0,
+        46
+      ],
+      "unit_aliases": {
+        "week": 1,
+        "weeks": 1,
+        "sem": 1,
+        "sem.": 1,
+        "semaine": 1,
+        "semaines": 1,
+        "sa": 1,
+        "أسبوع": 1,
+        "أسابيع": 1
+      },
+      "unit_policy": {
+        "expected_unit": "weeks",
+        "unitless_field": false,
+        "missing_unit": "Use declared schema unit; source=SCHEMA, not an observed OCR unit.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {
+          "sern": "sem",
+          "sema1nes": "semaines",
+          "week5": "weeks"
+        },
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    },
+    "previous_pregnancy_anomalies[].other_description": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "previous_deliveries[].delivery_number": {
+      "type": "integer",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        1,
+        5
+      ],
+      "unit_aliases": {},
+      "unit_policy": {
+        "expected_unit": null,
+        "unitless_field": true,
+        "missing_unit": "Count: numeric value only; unit suffixes rejected.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {},
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    },
+    "previous_deliveries[].date": {
+      "type": "date",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "formats": [
+        "YYYY-MM-DD",
+        "DD/MM/YYYY",
+        "DD-MM-YYYY",
+        "DD.MM.YYYY"
+      ],
+      "year_range": [
+        1900,
+        2100
+      ],
+      "ambiguous_two_digit_year": "review"
+    },
+    "previous_deliveries[].delivery_method": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "previous_deliveries[].cesarean_indication": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "previous_deliveries[].maternal_complication": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "previous_deliveries[].newborn_weight_g": {
+      "type": "double",
+      "unit": "g",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        200,
+        10000
+      ],
+      "unit_aliases": {
+        "g": 1,
+        "gr": 1,
+        "gram": 1,
+        "grams": 1,
+        "gramme": 1,
+        "grammes": 1,
+        "غ": 1,
+        "غرام": 1,
+        "جم": 1,
+        "kg": 1000,
+        "كغ": 1000,
+        "كجم": 1000
+      },
+      "unit_policy": {
+        "expected_unit": "g",
+        "unitless_field": false,
+        "missing_unit": "Use declared schema unit; source=SCHEMA, not an observed OCR unit.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {
+          "9": "g",
+          "q": "g",
+          "k9": "kg",
+          "kq": "kg"
+        },
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    },
+    "previous_deliveries[].newborn_complication": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "gravidity": {
+      "type": "integer",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        0,
+        30
+      ],
+      "unit_aliases": {},
+      "unit_policy": {
+        "expected_unit": null,
+        "unitless_field": true,
+        "missing_unit": "Count: numeric value only; unit suffixes rejected.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {},
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    },
+    "parity": {
+      "type": "integer",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        0,
+        30
+      ],
+      "unit_aliases": {},
+      "unit_policy": {
+        "expected_unit": null,
+        "unitless_field": true,
+        "missing_unit": "Count: numeric value only; unit suffixes rejected.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {},
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    },
+    "living_children": {
+      "type": "integer",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        0,
+        40
+      ],
+      "unit_aliases": {},
+      "unit_policy": {
+        "expected_unit": null,
+        "unitless_field": true,
+        "missing_unit": "Count: numeric value only; unit suffixes rejected.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {},
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    },
+    "tetanus_vaccination_dose": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5,
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        1,
+        5
+      ],
+      "unit_aliases": {},
+      "unit_policy": {
+        "expected_unit": null,
+        "unitless_field": true,
+        "missing_unit": "Count: numeric value only; unit suffixes rejected.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {},
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    },
+    "rubella_vaccinated": {
+      "type": "boolean",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "allowed_text": [
+        "0",
+        "1",
+        "checked",
+        "false",
+        "no",
+        "non",
+        "oui",
+        "true",
+        "unchecked",
+        "x",
+        "yes",
+        "لا",
+        "نعم"
+      ]
+    },
+    "rubella_vaccination_date": {
+      "type": "date",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "formats": [
+        "YYYY-MM-DD",
+        "DD/MM/YYYY",
+        "DD-MM-YYYY",
+        "DD.MM.YYYY"
+      ],
+      "year_range": [
+        1900,
+        2100
+      ],
+      "ambiguous_two_digit_year": "review"
+    },
+    "hepatitis_b_vaccinated": {
+      "type": "boolean",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "allowed_text": [
+        "0",
+        "1",
+        "checked",
+        "false",
+        "no",
+        "non",
+        "oui",
+        "true",
+        "unchecked",
+        "x",
+        "yes",
+        "لا",
+        "نعم"
+      ]
+    },
+    "hepatitis_b_vaccination_date": {
+      "type": "date",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "formats": [
+        "YYYY-MM-DD",
+        "DD/MM/YYYY",
+        "DD-MM-YYYY",
+        "DD.MM.YYYY"
+      ],
+      "year_range": [
+        1900,
+        2100
+      ],
+      "ambiguous_two_digit_year": "review"
+    },
+    "cervical_smear_or_via_result": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "May be a qualitative result, titre, numeric result, or narrative; do not force binary."
+    }
+  },
+  "03_current_pregnancy": {
+    "last_menstrual_period_date": {
+      "type": "date",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "formats": [
+        "YYYY-MM-DD",
+        "DD/MM/YYYY",
+        "DD-MM-YYYY",
+        "DD.MM.YYYY"
+      ],
+      "year_range": [
+        1900,
+        2100
+      ],
+      "ambiguous_two_digit_year": "review"
+    },
+    "expected_delivery_date": {
+      "type": "date",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "formats": [
+        "YYYY-MM-DD",
+        "DD/MM/YYYY",
+        "DD-MM-YYYY",
+        "DD.MM.YYYY"
+      ],
+      "year_range": [
+        1900,
+        2100
+      ],
+      "ambiguous_two_digit_year": "review"
+    },
+    "post_term_date": {
+      "type": "date",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "formats": [
+        "YYYY-MM-DD",
+        "DD/MM/YYYY",
+        "DD-MM-YYYY",
+        "DD.MM.YYYY"
+      ],
+      "year_range": [
+        1900,
+        2100
+      ],
+      "ambiguous_two_digit_year": "review"
+    },
+    "height_cm": {
+      "type": "double",
+      "unit": "cm",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        90,
+        230
+      ],
+      "unit_aliases": {
+        "cm": 1,
+        "سم": 1,
+        "m": 100,
+        "م": 100,
+        "mm": 0.1
+      },
+      "unit_policy": {
+        "expected_unit": "cm",
+        "unitless_field": false,
+        "missing_unit": "Use declared schema unit; source=SCHEMA, not an observed OCR unit.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {
+          "crn": "cm",
+          "rnrn": "mm"
+        },
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    },
+    "blood_group": {
+      "type": "enum",
+      "values": [
+        "A",
+        "B",
+        "O",
+        "AB"
+      ],
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "rhesus_factor": {
+      "type": "enum",
+      "values": [
+        "POSITIVE",
+        "NEGATIVE"
+      ],
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "visits[].period": {
+      "type": "enum",
+      "values": [
+        "TRIMESTER_1_VISIT_1",
+        "TRIMESTER_1_VISIT_2",
+        "TRIMESTER_1_VISIT_3",
+        "TRIMESTER_2_VISIT_1",
+        "TRIMESTER_2_VISIT_2",
+        "TRIMESTER_2_VISIT_3",
+        "MONTH_7",
+        "MONTH_8",
+        "MONTH_9"
+      ],
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "visits[].appointment_date": {
+      "type": "date",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "formats": [
+        "YYYY-MM-DD",
+        "DD/MM/YYYY",
+        "DD-MM-YYYY",
+        "DD.MM.YYYY"
+      ],
+      "year_range": [
+        1900,
+        2100
+      ],
+      "ambiguous_two_digit_year": "review"
+    },
+    "visits[].attendance_date": {
+      "type": "date",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "formats": [
+        "YYYY-MM-DD",
+        "DD/MM/YYYY",
+        "DD-MM-YYYY",
+        "DD.MM.YYYY"
+      ],
+      "year_range": [
+        1900,
+        2100
+      ],
+      "ambiguous_two_digit_year": "review"
+    },
+    "visits[].follow_up_contacted": {
+      "type": "boolean",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "allowed_text": [
+        "0",
+        "1",
+        "checked",
+        "false",
+        "no",
+        "non",
+        "oui",
+        "true",
+        "unchecked",
+        "x",
+        "yes",
+        "لا",
+        "نعم"
+      ]
+    },
+    "visits[].gestational_age_weeks": {
+      "type": "double",
+      "unit": "weeks",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        0,
+        46
+      ],
+      "unit_aliases": {
+        "week": 1,
+        "weeks": 1,
+        "sem": 1,
+        "sem.": 1,
+        "semaine": 1,
+        "semaines": 1,
+        "sa": 1,
+        "أسبوع": 1,
+        "أسابيع": 1
+      },
+      "unit_policy": {
+        "expected_unit": "weeks",
+        "unitless_field": false,
+        "missing_unit": "Use declared schema unit; source=SCHEMA, not an observed OCR unit.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {
+          "sern": "sem",
+          "sema1nes": "semaines",
+          "week5": "weeks"
+        },
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    },
+    "visits[].weight_kg": {
+      "type": "double",
+      "unit": "kg",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        20,
+        300
+      ],
+      "unit_aliases": {
+        "kg": 1,
+        "كغ": 1,
+        "كجم": 1,
+        "g": 0.001,
+        "غ": 0.001
+      },
+      "unit_policy": {
+        "expected_unit": "kg",
+        "unitless_field": false,
+        "missing_unit": "Use declared schema unit; source=SCHEMA, not an observed OCR unit.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {
+          "k9": "kg",
+          "kq": "kg",
+          "9": "g",
+          "q": "g"
+        },
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    },
+    "visits[].systolic_bp_mmhg": {
+      "type": "double",
+      "unit": "mmHg",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        40,
+        300
+      ],
+      "unit_aliases": {
+        "mmhg": 1,
+        "mm hg": 1,
+        "cmhg": 10,
+        "سم زئبق": 10,
+        "ملم زئبق": 1
+      },
+      "unit_policy": {
+        "expected_unit": "mmHg",
+        "unitless_field": false,
+        "missing_unit": "Use declared schema unit; source=SCHEMA, not an observed OCR unit.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {
+          "mmh9": "mmhg",
+          "mmhq": "mmhg",
+          "mrnhg": "mmhg",
+          "cmh9": "cmhg"
+        },
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    },
+    "visits[].diastolic_bp_mmhg": {
+      "type": "double",
+      "unit": "mmHg",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        20,
+        200
+      ],
+      "unit_aliases": {
+        "mmhg": 1,
+        "mm hg": 1,
+        "cmhg": 10,
+        "سم زئبق": 10,
+        "ملم زئبق": 1
+      },
+      "unit_policy": {
+        "expected_unit": "mmHg",
+        "unitless_field": false,
+        "missing_unit": "Use declared schema unit; source=SCHEMA, not an observed OCR unit.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {
+          "mmh9": "mmhg",
+          "mmhq": "mmhg",
+          "mrnhg": "mmhg",
+          "cmh9": "cmhg"
+        },
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    },
+    "visits[].skeletal_abnormalities": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "visits[].conjunctiva_condition": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "visits[].breast_exam": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "visits[].edema": {
+      "type": "boolean",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "allowed_text": [
+        "0",
+        "1",
+        "checked",
+        "false",
+        "no",
+        "non",
+        "oui",
+        "true",
+        "unchecked",
+        "x",
+        "yes",
+        "لا",
+        "نعم"
+      ]
+    },
+    "visits[].active_fetal_movements": {
+      "type": "boolean",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "allowed_text": [
+        "0",
+        "1",
+        "checked",
+        "false",
+        "no",
+        "non",
+        "oui",
+        "true",
+        "unchecked",
+        "x",
+        "yes",
+        "لا",
+        "نعم"
+      ]
+    },
+    "visits[].fundal_height_cm": {
+      "type": "double",
+      "unit": "cm",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        0,
+        55
+      ],
+      "unit_aliases": {
+        "cm": 1,
+        "سم": 1,
+        "m": 100,
+        "م": 100,
+        "mm": 0.1
+      },
+      "unit_policy": {
+        "expected_unit": "cm",
+        "unitless_field": false,
+        "missing_unit": "Use declared schema unit; source=SCHEMA, not an observed OCR unit.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {
+          "crn": "cm",
+          "rnrn": "mm"
+        },
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    },
+    "visits[].fetal_heart_rate_bpm": {
+      "type": "double",
+      "unit": "bpm",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        40,
+        250
+      ],
+      "unit_aliases": {
+        "bpm": 1,
+        "/min": 1,
+        "b/min": 1
+      },
+      "unit_policy": {
+        "expected_unit": "bpm",
+        "unitless_field": false,
+        "missing_unit": "Use declared schema unit; source=SCHEMA, not an observed OCR unit.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {
+          "bprn": "bpm",
+          "b/rnin": "b/min",
+          "/rnin": "/min"
+        },
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    },
+    "visits[].speculum_exam": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "visits[].cervix_condition": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "visits[].fetal_presentation": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "visits[].pelvis_exam": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "visits[].glycosuria": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "May be a qualitative result, titre, numeric result, or narrative; do not force binary."
+    },
+    "visits[].albuminuria": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "May be a qualitative result, titre, numeric result, or narrative; do not force binary."
+    },
+    "visits[].rubella_result": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "May be a qualitative result, titre, numeric result, or narrative; do not force binary."
+    },
+    "visits[].toxoplasmosis_result": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "May be a qualitative result, titre, numeric result, or narrative; do not force binary."
+    },
+    "visits[].syphilis_result": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "May be a qualitative result, titre, numeric result, or narrative; do not force binary."
+    },
+    "visits[].hepatitis_b_surface_antigen_result": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "May be a qualitative result, titre, numeric result, or narrative; do not force binary."
+    },
+    "visits[].hiv_result": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "May be a qualitative result, titre, numeric result, or narrative; do not force binary."
+    },
+    "visits[].hemoglobin_g_dl": {
+      "type": "double",
+      "unit": "g/dL",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        2,
+        25
+      ],
+      "unit_aliases": {
+        "g/dl": 1,
+        "g/l": 0.1
+      },
+      "unit_policy": {
+        "expected_unit": "g/dL",
+        "unitless_field": false,
+        "missing_unit": "Use declared schema unit; source=SCHEMA, not an observed OCR unit.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {
+          "9/dl": "g/dl",
+          "q/dl": "g/dl",
+          "g/d1": "g/dl",
+          "g/d|": "g/dl",
+          "g/1": "g/l",
+          "g/|": "g/l"
+        },
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    },
+    "visits[].platelets_per_ul": {
+      "type": "double",
+      "unit": "per uL",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        1000,
+        1500000
+      ],
+      "unit_aliases": {
+        "/ul": 1,
+        "/µl": 1,
+        "per ul": 1,
+        "k": 1000,
+        "x10^3/ul": 1000,
+        "10^3/ul": 1000,
+        "10^9/l": 1000,
+        "x10^9/l": 1000
+      },
+      "unit_policy": {
+        "expected_unit": "per uL",
+        "unitless_field": false,
+        "missing_unit": "Use declared schema unit; source=SCHEMA, not an observed OCR unit.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {
+          "/u1": "/ul",
+          "/u|": "/ul",
+          "x10^3/u1": "x10^3/ul",
+          "10^9/1": "10^9/l"
+        },
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    },
+    "visits[].blood_glucose_g_l": {
+      "type": "double",
+      "unit": "g/L",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        0.1,
+        10
+      ],
+      "unit_aliases": {
+        "g/l": 1,
+        "mg/dl": 0.01,
+        "mmol/l": 0.18016
+      },
+      "unit_policy": {
+        "expected_unit": "g/L",
+        "unitless_field": false,
+        "missing_unit": "Use declared schema unit; source=SCHEMA, not an observed OCR unit.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {
+          "9/l": "g/l",
+          "q/l": "g/l",
+          "g/1": "g/l",
+          "g/|": "g/l",
+          "mg/d1": "mg/dl",
+          "mg/d|": "mg/dl",
+          "mmol/1": "mmol/l",
+          "mmol/|": "mmol/l"
+        },
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    },
+    "visits[].irregular_antibody_screen_result": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "May be a qualitative result, titre, numeric result, or narrative; do not force binary."
+    },
+    "visits[].iron_given": {
+      "type": "boolean",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "allowed_text": [
+        "0",
+        "1",
+        "checked",
+        "false",
+        "no",
+        "non",
+        "oui",
+        "true",
+        "unchecked",
+        "x",
+        "yes",
+        "لا",
+        "نعم"
+      ]
+    },
+    "visits[].examiner_role": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 120,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    }
+  },
+  "04_labor_and_delivery": {
+    "delivery_setting": {
+      "type": "enum",
+      "values": [
+        "SUPERVISED",
+        "HOME"
+      ],
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "facility_type": {
+      "type": "enum",
+      "values": [
+        "BIRTH_CENTER",
+        "MATERNITY_UNIT",
+        "PRIVATE_CLINIC",
+        "OTHER",
+        "NOT_APPLICABLE"
+      ],
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "other_facility_type": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "qualified_attendant_present": {
+      "type": "boolean",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "allowed_text": [
+        "0",
+        "1",
+        "checked",
+        "false",
+        "no",
+        "non",
+        "oui",
+        "true",
+        "unchecked",
+        "x",
+        "yes",
+        "لا",
+        "نعم"
+      ]
+    },
+    "other_attendant": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "delivery_date": {
+      "type": "date",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "formats": [
+        "YYYY-MM-DD",
+        "DD/MM/YYYY",
+        "DD-MM-YYYY",
+        "DD.MM.YYYY"
+      ],
+      "year_range": [
+        1900,
+        2100
+      ],
+      "ambiguous_two_digit_year": "review"
+    },
+    "delivery_mode": {
+      "type": "enum",
+      "values": [
+        "NON_INSTRUMENTAL_VAGINAL",
+        "INSTRUMENTAL_VAGINAL",
+        "PLANNED_CESAREAN",
+        "EMERGENCY_CESAREAN"
+      ],
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "instrument": {
+      "type": "enum",
+      "values": [
+        "FORCEPS",
+        "VACUUM",
+        "NONE"
+      ],
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "episiotomy": {
+      "type": "boolean",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "allowed_text": [
+        "0",
+        "1",
+        "checked",
+        "false",
+        "no",
+        "non",
+        "oui",
+        "true",
+        "unchecked",
+        "x",
+        "yes",
+        "لا",
+        "نعم"
+      ]
+    },
+    "cesarean_indication": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "complications_present": {
+      "type": "boolean",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "allowed_text": [
+        "0",
+        "1",
+        "checked",
+        "false",
+        "no",
+        "non",
+        "oui",
+        "true",
+        "unchecked",
+        "x",
+        "yes",
+        "لا",
+        "نعم"
+      ]
+    },
+    "complication_timing": {
+      "type": "array",
+      "items": {
+        "type": "enum",
+        "values": [
+          "DURING_DELIVERY",
+          "POSTPARTUM"
+        ]
+      },
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "complication_types": {
+      "type": "array",
+      "items": {
+        "type": "enum",
+        "values": [
+          "PREECLAMPSIA",
+          "ECLAMPSIA",
+          "HEMORRHAGE",
+          "INFECTION",
+          "OTHER"
+        ]
+      },
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "other_complication": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "newborn_status": {
+      "type": "enum",
+      "values": [
+        "ALIVE",
+        "STILLBORN",
+        "DIED_WITHIN_24_HOURS"
+      ],
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "newborn_sex": {
+      "type": "enum",
+      "values": [
+        "FEMALE",
+        "MALE",
+        "INDETERMINATE"
+      ],
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "birth_weight_g": {
+      "type": "double",
+      "unit": "g",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        200,
+        10000
+      ],
+      "unit_aliases": {
+        "g": 1,
+        "gr": 1,
+        "gram": 1,
+        "grams": 1,
+        "gramme": 1,
+        "grammes": 1,
+        "غ": 1,
+        "غرام": 1,
+        "جم": 1,
+        "kg": 1000,
+        "كغ": 1000,
+        "كجم": 1000
+      },
+      "unit_policy": {
+        "expected_unit": "g",
+        "unitless_field": false,
+        "missing_unit": "Use declared schema unit; source=SCHEMA, not an observed OCR unit.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {
+          "9": "g",
+          "q": "g",
+          "k9": "kg",
+          "kq": "kg"
+        },
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    },
+    "head_circumference_cm": {
+      "type": "double",
+      "unit": "cm",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        15,
+        70
+      ],
+      "unit_aliases": {
+        "cm": 1,
+        "سم": 1,
+        "m": 100,
+        "م": 100,
+        "mm": 0.1
+      },
+      "unit_policy": {
+        "expected_unit": "cm",
+        "unitless_field": false,
+        "missing_unit": "Use declared schema unit; source=SCHEMA, not an observed OCR unit.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {
+          "crn": "cm",
+          "rnrn": "mm"
+        },
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    },
+    "newborn_abnormality": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "gestational_age_weeks": {
+      "type": "double",
+      "unit": "weeks",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        0,
+        46
+      ],
+      "unit_aliases": {
+        "week": 1,
+        "weeks": 1,
+        "sem": 1,
+        "sem.": 1,
+        "semaine": 1,
+        "semaines": 1,
+        "sa": 1,
+        "أسبوع": 1,
+        "أسابيع": 1
+      },
+      "unit_policy": {
+        "expected_unit": "weeks",
+        "unitless_field": false,
+        "missing_unit": "Use declared schema unit; source=SCHEMA, not an observed OCR unit.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {
+          "sern": "sem",
+          "sema1nes": "semaines",
+          "week5": "weeks"
+        },
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    }
+  },
+  "05_early_postpartum_mother": {
+    "visit_timing": {
+      "type": "enum",
+      "values": [
+        "DAY_7_TO_8",
+        "AFTER_DAY_8"
+      ],
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "consultation_date": {
+      "type": "date",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "formats": [
+        "YYYY-MM-DD",
+        "DD/MM/YYYY",
+        "DD-MM-YYYY",
+        "DD.MM.YYYY"
+      ],
+      "year_range": [
+        1900,
+        2100
+      ],
+      "ambiguous_two_digit_year": "review"
+    },
+    "temperature_c": {
+      "type": "double",
+      "unit": "°C",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        25,
+        45
+      ],
+      "unit_aliases": {
+        "°c": 1,
+        "c": 1,
+        "℃": 1,
+        "celsius": 1,
+        "degc": 1,
+        "درجة": 1
+      },
+      "unit_policy": {
+        "expected_unit": "°C",
+        "unitless_field": false,
+        "missing_unit": "Use declared schema unit; source=SCHEMA, not an observed OCR unit.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {
+          "°l": "°c",
+          "°|": "°c",
+          "°0": "°c",
+          "°o": "°c",
+          "0c": "°c",
+          "oc": "°c"
+        },
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    },
+    "systolic_bp_mmhg": {
+      "type": "double",
+      "unit": "mmHg",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        40,
+        300
+      ],
+      "unit_aliases": {
+        "mmhg": 1,
+        "mm hg": 1,
+        "cmhg": 10,
+        "سم زئبق": 10,
+        "ملم زئبق": 1
+      },
+      "unit_policy": {
+        "expected_unit": "mmHg",
+        "unitless_field": false,
+        "missing_unit": "Use declared schema unit; source=SCHEMA, not an observed OCR unit.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {
+          "mmh9": "mmhg",
+          "mmhq": "mmhg",
+          "mrnhg": "mmhg",
+          "cmh9": "cmhg"
+        },
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    },
+    "diastolic_bp_mmhg": {
+      "type": "double",
+      "unit": "mmHg",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        20,
+        200
+      ],
+      "unit_aliases": {
+        "mmhg": 1,
+        "mm hg": 1,
+        "cmhg": 10,
+        "سم زئبق": 10,
+        "ملم زئبق": 1
+      },
+      "unit_policy": {
+        "expected_unit": "mmHg",
+        "unitless_field": false,
+        "missing_unit": "Use declared schema unit; source=SCHEMA, not an observed OCR unit.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {
+          "mmh9": "mmhg",
+          "mmhq": "mmhg",
+          "mrnhg": "mmhg",
+          "cmh9": "cmhg"
+        },
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    },
+    "pulse_bpm": {
+      "type": "double",
+      "unit": "bpm",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        20,
+        250
+      ],
+      "unit_aliases": {
+        "bpm": 1,
+        "/min": 1,
+        "b/min": 1
+      },
+      "unit_policy": {
+        "expected_unit": "bpm",
+        "unitless_field": false,
+        "missing_unit": "Use declared schema unit; source=SCHEMA, not an observed OCR unit.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {
+          "bprn": "bpm",
+          "b/rnin": "b/min",
+          "/rnin": "/min"
+        },
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    },
+    "weight_kg": {
+      "type": "double",
+      "unit": "kg",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        20,
+        300
+      ],
+      "unit_aliases": {
+        "kg": 1,
+        "كغ": 1,
+        "كجم": 1,
+        "g": 0.001,
+        "غ": 0.001
+      },
+      "unit_policy": {
+        "expected_unit": "kg",
+        "unitless_field": false,
+        "missing_unit": "Use declared schema unit; source=SCHEMA, not an observed OCR unit.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {
+          "k9": "kg",
+          "kq": "kg",
+          "9": "g",
+          "q": "g"
+        },
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    },
+    "conjunctiva_condition": {
+      "type": "enum",
+      "values": [
+        "NORMAL",
+        "PALE"
+      ],
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "uterine_globe_present": {
+      "type": "boolean",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "allowed_text": [
+        "0",
+        "1",
+        "checked",
+        "false",
+        "no",
+        "non",
+        "oui",
+        "true",
+        "unchecked",
+        "x",
+        "yes",
+        "لا",
+        "نعم"
+      ]
+    },
+    "lochia": {
+      "type": "array",
+      "items": {
+        "type": "enum",
+        "values": [
+          "ODORLESS",
+          "FOUL_SMELLING",
+          "CLEAR",
+          "BLOODY",
+          "YELLOWISH"
+        ]
+      },
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "perineum_condition": {
+      "type": "enum",
+      "values": [
+        "NORMAL",
+        "EPISIOTOMY",
+        "REPAIRED",
+        "TEAR"
+      ],
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "sphincter_condition": {
+      "type": "enum",
+      "values": [
+        "NORMAL",
+        "ABNORMAL"
+      ],
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "cesarean_performed": {
+      "type": "boolean",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "allowed_text": [
+        "0",
+        "1",
+        "checked",
+        "false",
+        "no",
+        "non",
+        "oui",
+        "true",
+        "unchecked",
+        "x",
+        "yes",
+        "لا",
+        "نعم"
+      ]
+    },
+    "cesarean_scar_condition": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "breast_condition": {
+      "type": "enum",
+      "values": [
+        "NORMAL",
+        "LYMPHANGITIS",
+        "MASTITIS_OR_ABSCESS"
+      ],
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "calf_findings": {
+      "type": "array",
+      "items": {
+        "type": "enum",
+        "values": [
+          "NORMAL",
+          "RED",
+          "WARM",
+          "PAINFUL_DORSIFLEXION"
+        ]
+      },
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "complications": {
+      "type": "array",
+      "items": {
+        "type": "enum",
+        "values": [
+          "HEMORRHAGE",
+          "INFECTION",
+          "ECLAMPSIA",
+          "PHLEBITIS",
+          "BREAST_COMPLICATION",
+          "ANEMIA",
+          "OTHER"
+        ]
+      },
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "medications_taken": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "iron_prescribed": {
+      "type": "boolean",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "allowed_text": [
+        "0",
+        "1",
+        "checked",
+        "false",
+        "no",
+        "non",
+        "oui",
+        "true",
+        "unchecked",
+        "x",
+        "yes",
+        "لا",
+        "نعم"
+      ]
+    },
+    "vitamin_a_prescribed": {
+      "type": "boolean",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "allowed_text": [
+        "0",
+        "1",
+        "checked",
+        "false",
+        "no",
+        "non",
+        "oui",
+        "true",
+        "unchecked",
+        "x",
+        "yes",
+        "لا",
+        "نعم"
+      ]
+    },
+    "other_treatment": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "next_appointment_date": {
+      "type": "date",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "formats": [
+        "YYYY-MM-DD",
+        "DD/MM/YYYY",
+        "DD-MM-YYYY",
+        "DD.MM.YYYY"
+      ],
+      "year_range": [
+        1900,
+        2100
+      ],
+      "ambiguous_two_digit_year": "review"
+    },
+    "wants_family_planning": {
+      "type": "boolean",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "allowed_text": [
+        "0",
+        "1",
+        "checked",
+        "false",
+        "no",
+        "non",
+        "oui",
+        "true",
+        "unchecked",
+        "x",
+        "yes",
+        "لا",
+        "نعم"
+      ]
+    },
+    "family_planning_method": {
+      "type": "enum",
+      "values": [
+        "PILL",
+        "IUD",
+        "OTHER",
+        "NONE"
+      ],
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "other_family_planning_method": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "contraception_prescribed": {
+      "type": "boolean",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "allowed_text": [
+        "0",
+        "1",
+        "checked",
+        "false",
+        "no",
+        "non",
+        "oui",
+        "true",
+        "unchecked",
+        "x",
+        "yes",
+        "لا",
+        "نعم"
+      ]
+    },
+    "family_planning_referral": {
+      "type": "boolean",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "allowed_text": [
+        "0",
+        "1",
+        "checked",
+        "false",
+        "no",
+        "non",
+        "oui",
+        "true",
+        "unchecked",
+        "x",
+        "yes",
+        "لا",
+        "نعم"
+      ]
+    },
+    "reason_declined_family_planning": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    }
+  },
+  "06_early_postnatal_newborn": {
+    "consultation_date": {
+      "type": "date",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "formats": [
+        "YYYY-MM-DD",
+        "DD/MM/YYYY",
+        "DD-MM-YYYY",
+        "DD.MM.YYYY"
+      ],
+      "year_range": [
+        1900,
+        2100
+      ],
+      "ambiguous_two_digit_year": "review"
+    },
+    "age_days": {
+      "type": "double",
+      "unit": "days",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        0,
+        730
+      ],
+      "unit_aliases": {
+        "day": 1,
+        "days": 1,
+        "jour": 1,
+        "jours": 1,
+        "j": 1,
+        "يوم": 1,
+        "أيام": 1
+      },
+      "unit_policy": {
+        "expected_unit": "days",
+        "unitless_field": false,
+        "missing_unit": "Use declared schema unit; source=SCHEMA, not an observed OCR unit.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {
+          "jour5": "jours",
+          "iour": "jour",
+          "iours": "jours",
+          "day5": "days"
+        },
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    },
+    "temperature_c": {
+      "type": "double",
+      "unit": "°C",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        25,
+        45
+      ],
+      "unit_aliases": {
+        "°c": 1,
+        "c": 1,
+        "℃": 1,
+        "celsius": 1,
+        "degc": 1,
+        "درجة": 1
+      },
+      "unit_policy": {
+        "expected_unit": "°C",
+        "unitless_field": false,
+        "missing_unit": "Use declared schema unit; source=SCHEMA, not an observed OCR unit.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {
+          "°l": "°c",
+          "°|": "°c",
+          "°0": "°c",
+          "°o": "°c",
+          "0c": "°c",
+          "oc": "°c"
+        },
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    },
+    "weight_g": {
+      "type": "double",
+      "unit": "g",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        200,
+        20000
+      ],
+      "unit_aliases": {
+        "g": 1,
+        "gr": 1,
+        "gram": 1,
+        "grams": 1,
+        "gramme": 1,
+        "grammes": 1,
+        "غ": 1,
+        "غرام": 1,
+        "جم": 1,
+        "kg": 1000,
+        "كغ": 1000,
+        "كجم": 1000
+      },
+      "unit_policy": {
+        "expected_unit": "g",
+        "unitless_field": false,
+        "missing_unit": "Use declared schema unit; source=SCHEMA, not an observed OCR unit.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {
+          "9": "g",
+          "q": "g",
+          "k9": "kg",
+          "kq": "kg"
+        },
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    },
+    "length_cm": {
+      "type": "double",
+      "unit": "cm",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        20,
+        110
+      ],
+      "unit_aliases": {
+        "cm": 1,
+        "سم": 1,
+        "m": 100,
+        "م": 100,
+        "mm": 0.1
+      },
+      "unit_policy": {
+        "expected_unit": "cm",
+        "unitless_field": false,
+        "missing_unit": "Use declared schema unit; source=SCHEMA, not an observed OCR unit.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {
+          "crn": "cm",
+          "rnrn": "mm"
+        },
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    },
+    "head_circumference_cm": {
+      "type": "double",
+      "unit": "cm",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        15,
+        70
+      ],
+      "unit_aliases": {
+        "cm": 1,
+        "سم": 1,
+        "m": 100,
+        "م": 100,
+        "mm": 0.1
+      },
+      "unit_policy": {
+        "expected_unit": "cm",
+        "unitless_field": false,
+        "missing_unit": "Use declared schema unit; source=SCHEMA, not an observed OCR unit.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {
+          "crn": "cm",
+          "rnrn": "mm"
+        },
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    },
+    "premature": {
+      "type": "boolean",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "allowed_text": [
+        "0",
+        "1",
+        "checked",
+        "false",
+        "no",
+        "non",
+        "oui",
+        "true",
+        "unchecked",
+        "x",
+        "yes",
+        "لا",
+        "نعم"
+      ]
+    },
+    "small_for_gestational_age": {
+      "type": "boolean",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "allowed_text": [
+        "0",
+        "1",
+        "checked",
+        "false",
+        "no",
+        "non",
+        "oui",
+        "true",
+        "unchecked",
+        "x",
+        "yes",
+        "لا",
+        "نعم"
+      ]
+    },
+    "feeding_method": {
+      "type": "enum",
+      "values": [
+        "EXCLUSIVE_BREASTFEEDING",
+        "FORMULA",
+        "MIXED"
+      ],
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "danger_signs": {
+      "type": "array",
+      "items": {
+        "type": "enum",
+        "values": [
+          "CONVULSIONS",
+          "REFUSAL_TO_FEED",
+          "HEMATEMESIS",
+          "MELENA",
+          "DIARRHEA",
+          "JAUNDICE",
+          "SUBCOSTAL_RETRACTIONS",
+          "COUGH",
+          "ABNORMAL_RESPIRATORY_RATE",
+          "FEVER",
+          "HYPOTHERMIA",
+          "OTHER"
+        ]
+      },
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "other_danger_sign": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "trauma_or_malformations": {
+      "type": "array",
+      "items": {
+        "type": "enum",
+        "values": [
+          "CAPUT_OR_CEPHALOHEMATOMA",
+          "CONGENITAL_HIP_DISLOCATION",
+          "REDUCED_LIMB_MOBILITY",
+          "OTHER"
+        ]
+      },
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "other_trauma_or_malformation": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "breastfeeding_evaluation": {
+      "type": "enum",
+      "values": [
+        "NORMAL",
+        "PROBLEMS"
+      ],
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "vaccination_status": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "vaccines_given_today": {
+      "type": "array",
+      "items": {
+        "type": "enum",
+        "values": [
+          "BCG",
+          "HEPATITIS_B",
+          "OTHER"
+        ]
+      },
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "vitamin_d_supplementation": {
+      "type": "boolean",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "allowed_text": [
+        "0",
+        "1",
+        "checked",
+        "false",
+        "no",
+        "non",
+        "oui",
+        "true",
+        "unchecked",
+        "x",
+        "yes",
+        "لا",
+        "نعم"
+      ]
+    },
+    "complications_or_malformations": {
+      "type": "array",
+      "items": {
+        "type": "enum",
+        "values": [
+          "JAUNDICE",
+          "INFECTION",
+          "CONJUNCTIVITIS",
+          "TRAUMA",
+          "MALFORMATION",
+          "OTHER"
+        ]
+      },
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "examiner_role": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 120,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "decision": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "treatment": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "transferred": {
+      "type": "boolean",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "allowed_text": [
+        "0",
+        "1",
+        "checked",
+        "false",
+        "no",
+        "non",
+        "oui",
+        "true",
+        "unchecked",
+        "x",
+        "yes",
+        "لا",
+        "نعم"
+      ]
+    },
+    "referral_facility": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "exclusive_breastfeeding_advice_given": {
+      "type": "boolean",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "allowed_text": [
+        "0",
+        "1",
+        "checked",
+        "false",
+        "no",
+        "non",
+        "oui",
+        "true",
+        "unchecked",
+        "x",
+        "yes",
+        "لا",
+        "نعم"
+      ]
+    },
+    "keep_warm_advice_given": {
+      "type": "boolean",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "allowed_text": [
+        "0",
+        "1",
+        "checked",
+        "false",
+        "no",
+        "non",
+        "oui",
+        "true",
+        "unchecked",
+        "x",
+        "yes",
+        "لا",
+        "نعم"
+      ]
+    },
+    "return_warning_signs_advice_given": {
+      "type": "boolean",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "allowed_text": [
+        "0",
+        "1",
+        "checked",
+        "false",
+        "no",
+        "non",
+        "oui",
+        "true",
+        "unchecked",
+        "x",
+        "yes",
+        "لا",
+        "نعم"
+      ]
+    },
+    "follow_up_date": {
+      "type": "date",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "formats": [
+        "YYYY-MM-DD",
+        "DD/MM/YYYY",
+        "DD-MM-YYYY",
+        "DD.MM.YYYY"
+      ],
+      "year_range": [
+        1900,
+        2100
+      ],
+      "ambiguous_two_digit_year": "review"
+    }
+  },
+  "07_late_postpartum_mother": {
+    "visit_timing": {
+      "type": "enum",
+      "values": [
+        "DAY_40_TO_50",
+        "AFTER_DAY_50"
+      ],
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "consultation_date": {
+      "type": "date",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "formats": [
+        "YYYY-MM-DD",
+        "DD/MM/YYYY",
+        "DD-MM-YYYY",
+        "DD.MM.YYYY"
+      ],
+      "year_range": [
+        1900,
+        2100
+      ],
+      "ambiguous_two_digit_year": "review"
+    },
+    "temperature_c": {
+      "type": "double",
+      "unit": "°C",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        25,
+        45
+      ],
+      "unit_aliases": {
+        "°c": 1,
+        "c": 1,
+        "℃": 1,
+        "celsius": 1,
+        "degc": 1,
+        "درجة": 1
+      },
+      "unit_policy": {
+        "expected_unit": "°C",
+        "unitless_field": false,
+        "missing_unit": "Use declared schema unit; source=SCHEMA, not an observed OCR unit.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {
+          "°l": "°c",
+          "°|": "°c",
+          "°0": "°c",
+          "°o": "°c",
+          "0c": "°c",
+          "oc": "°c"
+        },
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    },
+    "systolic_bp_mmhg": {
+      "type": "double",
+      "unit": "mmHg",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        40,
+        300
+      ],
+      "unit_aliases": {
+        "mmhg": 1,
+        "mm hg": 1,
+        "cmhg": 10,
+        "سم زئبق": 10,
+        "ملم زئبق": 1
+      },
+      "unit_policy": {
+        "expected_unit": "mmHg",
+        "unitless_field": false,
+        "missing_unit": "Use declared schema unit; source=SCHEMA, not an observed OCR unit.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {
+          "mmh9": "mmhg",
+          "mmhq": "mmhg",
+          "mrnhg": "mmhg",
+          "cmh9": "cmhg"
+        },
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    },
+    "diastolic_bp_mmhg": {
+      "type": "double",
+      "unit": "mmHg",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        20,
+        200
+      ],
+      "unit_aliases": {
+        "mmhg": 1,
+        "mm hg": 1,
+        "cmhg": 10,
+        "سم زئبق": 10,
+        "ملم زئبق": 1
+      },
+      "unit_policy": {
+        "expected_unit": "mmHg",
+        "unitless_field": false,
+        "missing_unit": "Use declared schema unit; source=SCHEMA, not an observed OCR unit.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {
+          "mmh9": "mmhg",
+          "mmhq": "mmhg",
+          "mrnhg": "mmhg",
+          "cmh9": "cmhg"
+        },
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    },
+    "pulse_bpm": {
+      "type": "double",
+      "unit": "bpm",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        20,
+        250
+      ],
+      "unit_aliases": {
+        "bpm": 1,
+        "/min": 1,
+        "b/min": 1
+      },
+      "unit_policy": {
+        "expected_unit": "bpm",
+        "unitless_field": false,
+        "missing_unit": "Use declared schema unit; source=SCHEMA, not an observed OCR unit.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {
+          "bprn": "bpm",
+          "b/rnin": "b/min",
+          "/rnin": "/min"
+        },
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    },
+    "weight_kg": {
+      "type": "double",
+      "unit": "kg",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        20,
+        300
+      ],
+      "unit_aliases": {
+        "kg": 1,
+        "كغ": 1,
+        "كجم": 1,
+        "g": 0.001,
+        "غ": 0.001
+      },
+      "unit_policy": {
+        "expected_unit": "kg",
+        "unitless_field": false,
+        "missing_unit": "Use declared schema unit; source=SCHEMA, not an observed OCR unit.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {
+          "k9": "kg",
+          "kq": "kg",
+          "9": "g",
+          "q": "g"
+        },
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    },
+    "conjunctiva_condition": {
+      "type": "enum",
+      "values": [
+        "NORMAL",
+        "PALE"
+      ],
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "uterine_globe_present": {
+      "type": "boolean",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "allowed_text": [
+        "0",
+        "1",
+        "checked",
+        "false",
+        "no",
+        "non",
+        "oui",
+        "true",
+        "unchecked",
+        "x",
+        "yes",
+        "لا",
+        "نعم"
+      ]
+    },
+    "lochia": {
+      "type": "array",
+      "items": {
+        "type": "enum",
+        "values": [
+          "ODORLESS",
+          "FOUL_SMELLING",
+          "CLEAR",
+          "BLOODY",
+          "YELLOWISH"
+        ]
+      },
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "perineum_condition": {
+      "type": "enum",
+      "values": [
+        "NORMAL",
+        "EPISIOTOMY",
+        "REPAIRED",
+        "TEAR"
+      ],
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "sphincter_condition": {
+      "type": "enum",
+      "values": [
+        "NORMAL",
+        "ABNORMAL"
+      ],
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "cesarean_performed": {
+      "type": "boolean",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "allowed_text": [
+        "0",
+        "1",
+        "checked",
+        "false",
+        "no",
+        "non",
+        "oui",
+        "true",
+        "unchecked",
+        "x",
+        "yes",
+        "لا",
+        "نعم"
+      ]
+    },
+    "cesarean_scar_condition": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "breast_condition": {
+      "type": "enum",
+      "values": [
+        "NORMAL",
+        "LYMPHANGITIS",
+        "MASTITIS_OR_ABSCESS"
+      ],
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "calf_findings": {
+      "type": "array",
+      "items": {
+        "type": "enum",
+        "values": [
+          "NORMAL",
+          "RED",
+          "WARM",
+          "PAINFUL_DORSIFLEXION"
+        ]
+      },
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "complications": {
+      "type": "array",
+      "items": {
+        "type": "enum",
+        "values": [
+          "HEMORRHAGE",
+          "INFECTION",
+          "ECLAMPSIA",
+          "PHLEBITIS",
+          "BREAST_COMPLICATION",
+          "ANEMIA",
+          "OTHER"
+        ]
+      },
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "medications_taken": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "iron_prescribed": {
+      "type": "boolean",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "allowed_text": [
+        "0",
+        "1",
+        "checked",
+        "false",
+        "no",
+        "non",
+        "oui",
+        "true",
+        "unchecked",
+        "x",
+        "yes",
+        "لا",
+        "نعم"
+      ]
+    },
+    "vitamin_a_prescribed": {
+      "type": "boolean",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "allowed_text": [
+        "0",
+        "1",
+        "checked",
+        "false",
+        "no",
+        "non",
+        "oui",
+        "true",
+        "unchecked",
+        "x",
+        "yes",
+        "لا",
+        "نعم"
+      ]
+    },
+    "other_treatment": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "next_appointment_date": {
+      "type": "date",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "formats": [
+        "YYYY-MM-DD",
+        "DD/MM/YYYY",
+        "DD-MM-YYYY",
+        "DD.MM.YYYY"
+      ],
+      "year_range": [
+        1900,
+        2100
+      ],
+      "ambiguous_two_digit_year": "review"
+    },
+    "wants_family_planning": {
+      "type": "boolean",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "allowed_text": [
+        "0",
+        "1",
+        "checked",
+        "false",
+        "no",
+        "non",
+        "oui",
+        "true",
+        "unchecked",
+        "x",
+        "yes",
+        "لا",
+        "نعم"
+      ]
+    },
+    "family_planning_method": {
+      "type": "enum",
+      "values": [
+        "PILL",
+        "IUD",
+        "OTHER",
+        "NONE"
+      ],
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "other_family_planning_method": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "contraception_prescribed": {
+      "type": "boolean",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "allowed_text": [
+        "0",
+        "1",
+        "checked",
+        "false",
+        "no",
+        "non",
+        "oui",
+        "true",
+        "unchecked",
+        "x",
+        "yes",
+        "لا",
+        "نعم"
+      ]
+    },
+    "family_planning_referral": {
+      "type": "boolean",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "allowed_text": [
+        "0",
+        "1",
+        "checked",
+        "false",
+        "no",
+        "non",
+        "oui",
+        "true",
+        "unchecked",
+        "x",
+        "yes",
+        "لا",
+        "نعم"
+      ]
+    },
+    "reason_declined_family_planning": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    }
+  },
+  "08_late_postnatal_newborn": {
+    "consultation_date": {
+      "type": "date",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "formats": [
+        "YYYY-MM-DD",
+        "DD/MM/YYYY",
+        "DD-MM-YYYY",
+        "DD.MM.YYYY"
+      ],
+      "year_range": [
+        1900,
+        2100
+      ],
+      "ambiguous_two_digit_year": "review"
+    },
+    "age_days": {
+      "type": "double",
+      "unit": "days",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        0,
+        730
+      ],
+      "unit_aliases": {
+        "day": 1,
+        "days": 1,
+        "jour": 1,
+        "jours": 1,
+        "j": 1,
+        "يوم": 1,
+        "أيام": 1
+      },
+      "unit_policy": {
+        "expected_unit": "days",
+        "unitless_field": false,
+        "missing_unit": "Use declared schema unit; source=SCHEMA, not an observed OCR unit.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {
+          "jour5": "jours",
+          "iour": "jour",
+          "iours": "jours",
+          "day5": "days"
+        },
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    },
+    "temperature_c": {
+      "type": "double",
+      "unit": "°C",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        25,
+        45
+      ],
+      "unit_aliases": {
+        "°c": 1,
+        "c": 1,
+        "℃": 1,
+        "celsius": 1,
+        "degc": 1,
+        "درجة": 1
+      },
+      "unit_policy": {
+        "expected_unit": "°C",
+        "unitless_field": false,
+        "missing_unit": "Use declared schema unit; source=SCHEMA, not an observed OCR unit.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {
+          "°l": "°c",
+          "°|": "°c",
+          "°0": "°c",
+          "°o": "°c",
+          "0c": "°c",
+          "oc": "°c"
+        },
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    },
+    "weight_g": {
+      "type": "double",
+      "unit": "g",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        200,
+        20000
+      ],
+      "unit_aliases": {
+        "g": 1,
+        "gr": 1,
+        "gram": 1,
+        "grams": 1,
+        "gramme": 1,
+        "grammes": 1,
+        "غ": 1,
+        "غرام": 1,
+        "جم": 1,
+        "kg": 1000,
+        "كغ": 1000,
+        "كجم": 1000
+      },
+      "unit_policy": {
+        "expected_unit": "g",
+        "unitless_field": false,
+        "missing_unit": "Use declared schema unit; source=SCHEMA, not an observed OCR unit.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {
+          "9": "g",
+          "q": "g",
+          "k9": "kg",
+          "kq": "kg"
+        },
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    },
+    "length_cm": {
+      "type": "double",
+      "unit": "cm",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        20,
+        110
+      ],
+      "unit_aliases": {
+        "cm": 1,
+        "سم": 1,
+        "m": 100,
+        "م": 100,
+        "mm": 0.1
+      },
+      "unit_policy": {
+        "expected_unit": "cm",
+        "unitless_field": false,
+        "missing_unit": "Use declared schema unit; source=SCHEMA, not an observed OCR unit.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {
+          "crn": "cm",
+          "rnrn": "mm"
+        },
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    },
+    "head_circumference_cm": {
+      "type": "double",
+      "unit": "cm",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits and typography; explicit unit conversions; schema-scoped OCR unit corrections require review.",
+      "ocr_sanity_range": [
+        15,
+        70
+      ],
+      "unit_aliases": {
+        "cm": 1,
+        "سم": 1,
+        "m": 100,
+        "م": 100,
+        "mm": 0.1
+      },
+      "unit_policy": {
+        "expected_unit": "cm",
+        "unitless_field": false,
+        "missing_unit": "Use declared schema unit; source=SCHEMA, not an observed OCR unit.",
+        "typography": "Case, whitespace, micro-sign variants and multiplication-sign variants.",
+        "ocr_substitutions": {
+          "crn": "cm",
+          "rnrn": "mm"
+        },
+        "substitution_action": "Record correction and NEEDS_REVIEW; never silently accept.",
+        "fused_digit_policy": "A trailing 9 in an out-of-range bare mass may suggest g; preserve original value and require manual confirmation.",
+        "incompatible_units": "Reject unknown/incompatible units; no unrestricted edit-distance matching.",
+        "numeric_edits": "Never drop or substitute numeric digits automatically.",
+        "version": "field-units-v1"
+      }
+    },
+    "premature": {
+      "type": "boolean",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "allowed_text": [
+        "0",
+        "1",
+        "checked",
+        "false",
+        "no",
+        "non",
+        "oui",
+        "true",
+        "unchecked",
+        "x",
+        "yes",
+        "لا",
+        "نعم"
+      ]
+    },
+    "small_for_gestational_age": {
+      "type": "boolean",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "allowed_text": [
+        "0",
+        "1",
+        "checked",
+        "false",
+        "no",
+        "non",
+        "oui",
+        "true",
+        "unchecked",
+        "x",
+        "yes",
+        "لا",
+        "نعم"
+      ]
+    },
+    "feeding_method": {
+      "type": "enum",
+      "values": [
+        "EXCLUSIVE_BREASTFEEDING",
+        "FORMULA",
+        "MIXED"
+      ],
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "danger_signs": {
+      "type": "array",
+      "items": {
+        "type": "enum",
+        "values": [
+          "CONVULSIONS",
+          "REFUSAL_TO_FEED",
+          "HEMATEMESIS",
+          "MELENA",
+          "DIARRHEA",
+          "JAUNDICE",
+          "SUBCOSTAL_RETRACTIONS",
+          "COUGH",
+          "ABNORMAL_RESPIRATORY_RATE",
+          "FEVER",
+          "HYPOTHERMIA",
+          "OTHER"
+        ]
+      },
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "other_danger_sign": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "trauma_or_malformations": {
+      "type": "array",
+      "items": {
+        "type": "enum",
+        "values": [
+          "CAPUT_OR_CEPHALOHEMATOMA",
+          "CONGENITAL_HIP_DISLOCATION",
+          "REDUCED_LIMB_MOBILITY",
+          "OTHER"
+        ]
+      },
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "other_trauma_or_malformation": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "breastfeeding_evaluation": {
+      "type": "enum",
+      "values": [
+        "NORMAL",
+        "PROBLEMS"
+      ],
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "vaccination_status": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "vaccines_given_today": {
+      "type": "array",
+      "items": {
+        "type": "enum",
+        "values": [
+          "BCG",
+          "HEPATITIS_B",
+          "OTHER"
+        ]
+      },
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "vitamin_d_supplementation": {
+      "type": "boolean",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "allowed_text": [
+        "0",
+        "1",
+        "checked",
+        "false",
+        "no",
+        "non",
+        "oui",
+        "true",
+        "unchecked",
+        "x",
+        "yes",
+        "لا",
+        "نعم"
+      ]
+    },
+    "complications_or_malformations": {
+      "type": "array",
+      "items": {
+        "type": "enum",
+        "values": [
+          "JAUNDICE",
+          "INFECTION",
+          "CONJUNCTIVITIS",
+          "TRAUMA",
+          "MALFORMATION",
+          "OTHER"
+        ]
+      },
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "matching": "Exact schema values or explicit aliases; fuzzy suggestions require review."
+    },
+    "examiner_role": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 120,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "decision": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "treatment": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "transferred": {
+      "type": "boolean",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "allowed_text": [
+        "0",
+        "1",
+        "checked",
+        "false",
+        "no",
+        "non",
+        "oui",
+        "true",
+        "unchecked",
+        "x",
+        "yes",
+        "لا",
+        "نعم"
+      ]
+    },
+    "referral_facility": {
+      "type": "string",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "max_length": 500,
+      "allow_multiline": true,
+      "semantic_note": "Preserve narrative, negation, accents and Arabic; no medical autocorrection."
+    },
+    "exclusive_breastfeeding_advice_given": {
+      "type": "boolean",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "allowed_text": [
+        "0",
+        "1",
+        "checked",
+        "false",
+        "no",
+        "non",
+        "oui",
+        "true",
+        "unchecked",
+        "x",
+        "yes",
+        "لا",
+        "نعم"
+      ]
+    },
+    "keep_warm_advice_given": {
+      "type": "boolean",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "allowed_text": [
+        "0",
+        "1",
+        "checked",
+        "false",
+        "no",
+        "non",
+        "oui",
+        "true",
+        "unchecked",
+        "x",
+        "yes",
+        "لا",
+        "نعم"
+      ]
+    },
+    "return_warning_signs_advice_given": {
+      "type": "boolean",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "allowed_text": [
+        "0",
+        "1",
+        "checked",
+        "false",
+        "no",
+        "non",
+        "oui",
+        "true",
+        "unchecked",
+        "x",
+        "yes",
+        "لا",
+        "نعم"
+      ]
+    },
+    "follow_up_date": {
+      "type": "date",
+      "allow_blank": true,
+      "raw_text_preserved": true,
+      "invalid_action": "NEEDS_REVIEW; never silently repair",
+      "normalization": "Unicode digits, whitespace; explicit units only",
+      "formats": [
+        "YYYY-MM-DD",
+        "DD/MM/YYYY",
+        "DD-MM-YYYY",
+        "DD.MM.YYYY"
+      ],
+      "year_range": [
+        1900,
+        2100
+      ],
+      "ambiguous_two_digit_year": "review"
+    }
+  }
+}

@@ -1,0 +1,331 @@
+{
+  "route": "date",
+  "precision": "mixed",
+  "n": 20,
+  "raw_equal": 20,
+  "results": [
+    {
+      "source": "outputs/unit_grammar/page_06/relative/ocr/consultation_date/date/ocr_output.json",
+      "reference_raw": "10/02/2026",
+      "export_raw": "10/02/2026",
+      "raw_equal": true,
+      "seconds": 0.9769261150067905,
+      "token_ids": [
+        698,
+        73,
+        4197,
+        73,
+        844,
+        2481,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_06/relative/ocr/follow_up_date/date/ocr_output.json",
+      "reference_raw": "12/03/2026",
+      "export_raw": "12/03/2026",
+      "raw_equal": true,
+      "seconds": 0.9758913639961975,
+      "token_ids": [
+        1092,
+        73,
+        3933,
+        73,
+        844,
+        2481,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_14/relative/ocr/consultation_date/date/ocr_output.json",
+      "reference_raw": "30/05/2026",
+      "export_raw": "30/05/2026",
+      "raw_equal": true,
+      "seconds": 1.0339194440020947,
+      "token_ids": [
+        541,
+        73,
+        2546,
+        73,
+        844,
+        2481,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_14/relative/ocr/follow_up_date/date/ocr_output.json",
+      "reference_raw": "29/06/2026",
+      "export_raw": "29/06/2026",
+      "raw_equal": true,
+      "seconds": 1.0719839859957574,
+      "token_ids": [
+        2890,
+        73,
+        4124,
+        73,
+        844,
+        2481,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_22/relative/ocr/consultation_date/date/ocr_output.json",
+      "reference_raw": "30/01/2026",
+      "export_raw": "30/01/2026",
+      "raw_equal": true,
+      "seconds": 1.0601919859909685,
+      "token_ids": [
+        541,
+        73,
+        2663,
+        73,
+        844,
+        2481,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_22/relative/ocr/follow_up_date/date/ocr_output.json",
+      "reference_raw": "01/03/2026",
+      "export_raw": "01/03/2026",
+      "raw_equal": true,
+      "seconds": 0.951664806008921,
+      "token_ids": [
+        2663,
+        73,
+        3933,
+        73,
+        844,
+        2481,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_30/relative/ocr/consultation_date/date/ocr_output.json",
+      "reference_raw": "05/07/2026",
+      "export_raw": "05/07/2026",
+      "raw_equal": true,
+      "seconds": 0.955034248996526,
+      "token_ids": [
+        2546,
+        73,
+        3570,
+        73,
+        844,
+        2481,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_30/relative/ocr/follow_up_date/date/ocr_output.json",
+      "reference_raw": "04/08/2026",
+      "export_raw": "04/08/2026",
+      "raw_equal": true,
+      "seconds": 1.0903652160050115,
+      "token_ids": [
+        3387,
+        73,
+        3669,
+        73,
+        844,
+        2481,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_38/relative/ocr/consultation_date/date/ocr_output.json",
+      "reference_raw": "16/05/2026",
+      "export_raw": "16/05/2026",
+      "raw_equal": true,
+      "seconds": 0.9880130469973665,
+      "token_ids": [
+        1549,
+        73,
+        2546,
+        73,
+        844,
+        2481,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_38/relative/ocr/follow_up_date/date/ocr_output.json",
+      "reference_raw": "15/06/2026",
+      "export_raw": "15/06/2026",
+      "raw_equal": true,
+      "seconds": 1.0522914540051715,
+      "token_ids": [
+        996,
+        73,
+        4124,
+        73,
+        844,
+        2481,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_46/relative/ocr/consultation_date/date/ocr_output.json",
+      "reference_raw": "03/08/2026",
+      "export_raw": "03/08/2026",
+      "raw_equal": true,
+      "seconds": 0.8975218349951319,
+      "token_ids": [
+        3933,
+        73,
+        3669,
+        73,
+        844,
+        2481,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_46/relative/ocr/follow_up_date/date/ocr_output.json",
+      "reference_raw": "02/09/2026",
+      "export_raw": "02/09/2026",
+      "raw_equal": true,
+      "seconds": 0.8508528649981599,
+      "token_ids": [
+        4197,
+        73,
+        3546,
+        73,
+        844,
+        2481,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_54/relative/ocr/consultation_date/date/ocr_output.json",
+      "reference_raw": "04/09/2026",
+      "export_raw": "04/09/2026",
+      "raw_equal": true,
+      "seconds": 0.8658483670005808,
+      "token_ids": [
+        3387,
+        73,
+        3546,
+        73,
+        844,
+        2481,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_54/relative/ocr/follow_up_date/date/ocr_output.json",
+      "reference_raw": "04/10/2026",
+      "export_raw": "04/10/2026",
+      "raw_equal": true,
+      "seconds": 0.8999016919988208,
+      "token_ids": [
+        3387,
+        73,
+        698,
+        73,
+        844,
+        2481,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_62/relative/ocr/consultation_date/date/ocr_output.json",
+      "reference_raw": "02/10/2026",
+      "export_raw": "02/10/2026",
+      "raw_equal": true,
+      "seconds": 0.8241744260012638,
+      "token_ids": [
+        4197,
+        73,
+        698,
+        73,
+        844,
+        2481,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_62/relative/ocr/follow_up_date/date/ocr_output.json",
+      "reference_raw": "01/11/2026",
+      "export_raw": "01/11/2026",
+      "raw_equal": true,
+      "seconds": 0.7867199739994248,
+      "token_ids": [
+        2663,
+        73,
+        1225,
+        73,
+        844,
+        2481,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_70/relative/ocr/consultation_date/date/ocr_output.json",
+      "reference_raw": "06/02/2026",
+      "export_raw": "06/02/2026",
+      "raw_equal": true,
+      "seconds": 0.9200164229987422,
+      "token_ids": [
+        4124,
+        73,
+        4197,
+        73,
+        844,
+        2481,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_70/relative/ocr/follow_up_date/date/ocr_output.json",
+      "reference_raw": "08/03/2026",
+      "export_raw": "08/03/2026",
+      "raw_equal": true,
+      "seconds": 0.9020635499909986,
+      "token_ids": [
+        3669,
+        73,
+        3933,
+        73,
+        844,
+        2481,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_78/relative/ocr/consultation_date/date/ocr_output.json",
+      "reference_raw": "15/07/2026",
+      "export_raw": "15/07/2026",
+      "raw_equal": true,
+      "seconds": 0.8808156769955531,
+      "token_ids": [
+        996,
+        73,
+        3570,
+        73,
+        844,
+        2481,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_78/relative/ocr/follow_up_date/date/ocr_output.json",
+      "reference_raw": "14/08/2026",
+      "export_raw": "14/08/2026",
+      "raw_equal": true,
+      "seconds": 0.8826835829968331,
+      "token_ids": [
+        1570,
+        73,
+        3669,
+        73,
+        844,
+        2481,
+        2
+      ]
+    }
+  ],
+  "peak_process_rss_gb": 1.978056704,
+  "scope": "Desktop ONNX CPU on saved normalized tensors; not Android preprocessing, not organizer ground-truth accuracy. Agreement is with original FP16 outputs.",
+  "model_bytes": 801722564
+}

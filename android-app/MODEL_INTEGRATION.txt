@@ -1,0 +1,59 @@
+SANAD MODEL INTEGRATION
+
+Runtime: native Java, ONNX Runtime Android CPU, two threads. Eight-class
+MobileNetV3 selects a form-specific YOLO11n OBB anchor detector. A shared YOLO
+finds handwriting. Relative label/row/column geometry and Hungarian assignment
+produce local oriented crops. No fixed page coordinates or global registration.
+
+Date fields use date TrOCR. Numbers and record_code use numeric TrOCR (record
+codes remain strings). Other text routes through Latin/Arabic classification
+to Latin TrOCR or Arabic Nougat. Only one OCR reader is loaded at a time.
+TrOCR: FP32 encoder/embeddings, INT8 decoder linear weights. Arabic: INT8 linear
+weights. Model pack ~2.94 GB, installed separately, not included in the APK.
+
+Values retain status, confidence, raw OCR, candidate readers, issues and crops.
+Valid fields at >=0.70 pass; unresolved issues require review regardless of
+score. Scores are uncalibrated. No handwriting match alone proves a blank.
+See docs/CONFIDENCE_POLICY.txt for conditional fields and dual-reader routing.
+
+Judges can install the signed APK and select Sanad-models-v1.zip using
+Import model pack on the welcome screen or in Settings. No ADB or computer is
+needed. Import streams into staging, checks a manifest pinned by the APK and
+every file size/SHA-256, then activates the pack. Invalid imports preserve the
+previous models and user records. Keep the app open during import; interrupted
+imports can be retried. Download + installed pack need roughly 6 GB free.
+
+Developer USB installation from repository root:
+  python android-app/tools/install_model_pack.py --serial DEVICE_SERIAL
+Requires a debug build, authorized USB debugging, and the locally exported pack
+at vision_pipeline/mobile_install_all_forms. The installer checks file sizes
+and SHA-256 hashes. Models are installed privately; existing records are kept.
+
+Rebuild exports in the existing CUDA/Python environment (checkpoints read-only):
+  python -m vision_pipeline.mobile.export small
+  python -m vision_pipeline.mobile.export latin --int8
+  python -m vision_pipeline.mobile.export date --int8
+  python -m vision_pipeline.mobile.export numeric --int8
+  python -m vision_pipeline.mobile.export arabic --int8
+  python -m vision_pipeline.mobile.export package --mixed
+  python -m vision_pipeline.all_forms.mobile
+Dependencies: vision_pipeline/requirements.txt; install compatible PyTorch and
+torchvision separately. Export folders are ignored by Git. Package files may
+be hardlinked: never edit ONNX weights in place.
+
+Device evidence: DOOGEE S200 Plus / Android 15. Selected organizer specimen
+extracted in 37.016 seconds, with no manual changes before submission. Reader
+PSS snapshots reached 888905 KB (~0.91 GB); this is not continuous peak RAM or
+a minimum phone requirement. Eight forms are implemented; aggregate Android
+accuracy has not been measured. Use specimen data, not real patient records.
+
+Tests:
+  cd android-app
+  ./gradlew --no-daemon --max-workers=2 :app:testDebugUnitTest :app:lintDebug
+Real-model instrumentation needs an installed pack and fixtures. Build/install
+:app:assembleDebugAndroidTest; tools/install_model_pack.py --fixtures installs
+the eight organizer-page fixtures and a numeric crop. Run MobileInferenceTest
+methods individually; they write plaintext specimen diagnostics, not app data.
+
+The normal app blocks screenshots. Demo capture builds only disable that flag;
+they do not change OCR, confidence or validation. Reinstall debug after filming.

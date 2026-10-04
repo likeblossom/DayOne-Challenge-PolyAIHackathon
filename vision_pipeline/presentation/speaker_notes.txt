@@ -1,0 +1,17 @@
+1. Sanad
+Android prototype for eight maternal/newborn forms. Records and original images use AES-GCM with Android Keystore. Data extraction, not diagnosis. Actual phone screenshot, not a mock UI.
+
+2. We generated the training data
+Removed /F3 handwriting text objects and blue vector mark paths from an in-memory copy of the supplied PDF; retained printed artwork. This is not raster inpainting. Schema values are drawn using 18 handwriting fonts, including cursive and Arabic shaping. Panels are verified renderer replay. 4,800 base pages; extra long-line and specialist date/numeric crops are separate. CSV/JSONL labels store values, statuses and boxes. Rotation, blur, noise and JPEG degradation transform image and geometry together.
+
+3. On-device architecture
+Java + ONNX Runtime CPU. YOLO11n OBB detects form-specific printed anchors and shared handwriting lines. Relative regions and Hungarian assignment produce oriented crops. Dates and numbers route by schema; other text uses the script classifier. One transformer reader is loaded at a time. Checkboxes bypass OCR. No fixed page coordinates or global page alignment. Confidence is heuristic, not calibrated.
+
+4. Models trained for the app
+Synthetic training: MobileNetV3 form/script classifiers, eight YOLO anchor detectors and shared handwriting detector. Date/numeric TrOCR specialists fine-tuned for three epochs; Arabic Nougat is pretrained. Bars show synthetic validation accuracy, not Android accuracy. Mixed TrOCR exports use FP32 encoders/embeddings and INT8 decoder linear weights. Model storage is not peak RAM.
+
+5. Three problems we addressed
+Detected anchors replace fixed-coordinate crops. Cursive/Arabic fonts, longer lines and augmentation diversify training. Schema grammar checks units, numeric ranges, real dates and cross-field logic. Ambiguous digit/unit changes stay flagged. Valid fields at >=0.70 pass; genuine issues require review regardless of score. Missing handwriting alone is not proof of blank. Conditional non-applicability requires an accepted parent field.
+
+6. Running on an Android phone
+DOOGEE S200 Plus, Android 15. Organizer specimen page 41, form type 1, record 2026-987-006. Live extraction 37.016 seconds; no manual field edits, zero review flags under current policy. Preflight process PSS snapshots reached 888905 KB (~0.91 GB decimal): sampled, not continuous peak or minimum RAM. Pack storage ~2.94 GB. USB SQLite commit bd91745a-9116-409e-9d56-7514b055e577. Curated demo, not aggregate phone accuracy. All eight forms are wired into Android. Screenshot protection restored after capture.

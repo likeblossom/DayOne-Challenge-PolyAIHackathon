@@ -1,0 +1,24 @@
+{
+  "numeric_images_verified": 10800,
+  "font_and_value_group_disjoint": true,
+  "cross_split_duplicate_images": 0,
+  "within_split_duplicates": [],
+  "checkpoint_hashes_verified": true,
+  "date_checkpoint_unchanged": true,
+  "original_latin_checkpoint_sha256": "25a40cddc7e6120140a3d5b9e3dd3878a92ada7b4f312953ab22edc19c2a5acc",
+  "original_images_unchanged": 10,
+  "numeric_tensors_replayed_exactly": {
+    "numeric_ocr": 50,
+    "long_handwriting": 50
+  },
+  "mixed_detector_pages_verified": 1320,
+  "pitch_slides": 24,
+  "previewed_slides": [
+    3,
+    10,
+    15,
+    16,
+    17,
+    18
+  ]
+}

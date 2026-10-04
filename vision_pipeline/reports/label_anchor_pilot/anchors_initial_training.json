@@ -1,0 +1,22 @@
+{
+  "task": "anchors",
+  "metrics": {
+    "metrics/precision(B)": 0.6455300498773361,
+    "metrics/recall(B)": 0.4955626064820593,
+    "metrics/mAP50(B)": 0.5235921040591723,
+    "metrics/mAP50-95(B)": 0.4669802991564644,
+    "fitness": 0.4669802991564644
+  },
+  "epochs": 12,
+  "image_size": 1280,
+  "seconds": 120,
+  "training_source": "data/forms/06_early_postnatal_newborn",
+  "external_test_not_used_for_training_or_checkpoint_selection": true,
+  "synthetic_test_metrics": {
+    "metrics/precision(B)": 0.6607399266399124,
+    "metrics/recall(B)": 0.515971094372678,
+    "metrics/mAP50(B)": 0.5741936431815058,
+    "metrics/mAP50-95(B)": 0.5158423729566126,
+    "fitness": 0.5158423729566126
+  }
+}

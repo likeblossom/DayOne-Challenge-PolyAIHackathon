@@ -1,0 +1,36 @@
+Android review policy — 2026-10-04
+
+Acceptance threshold: 0.70 inclusive, provided the field has a value (or an
+evidence-backed missing-data state) and no unresolved validation issues.
+Scores are model/heuristic evidence, not calibrated correctness probabilities.
+Removed the artificial 0.84 score ceiling, 0.49 issue cap, and blanket
+MOBILE_VALIDATION_REQUIRED flags. Grammar and relation failures still require
+review regardless of score. Missing handwriting alone is not proof of blank.
+
+An empty checkbox array is accepted only if every option was observed clearly.
+A conditional empty text field is NOT_APPLICABLE only when the accepted parent
+excludes it, with the parent field recorded as evidence. Existing OCR text is
+not discarded by that rule.
+
+Uncertain script routing tries both readers. The fallback can resolve routing
+only when the chosen reader has no grammar issues, its text matches its script,
+its token confidence is >=0.70, its competitor is <0.70, and the gap is >=0.20.
+This is an uncalibrated heuristic; reader scores are retained without inflation.
+Both raw candidates and the original script classifier prediction remain saved.
+
+Regression tests: 10 MobileRules tests and 2 MobileRouting tests passed.
+Demo candidate: organizer specimen page 41, form type 1, record 2026-987-006.
+Phone preflight extracted the record ID and facility correctly without edits;
+province includes a trailing period and region lacks accents. Neither was edited.
+This is a curated demonstration, not a replacement for aggregate test metrics.
+No checkpoint changes or retraining.
+
+Completed live demo: demo/form01/Sanad-form-1-demo.mp4 (87.533 seconds).
+Recording starts at the image picker. No field editor was opened, no OCR output
+was replaced, and no field was marked human_reviewed. Live extraction took
+37.016 seconds; zero fields required review under the above policy.
+PC SQLite committed record bd91745a-9116-409e-9d56-7514b055e577 at
+2026-10-04T12:26:58.145248+00:00. Dashboard showed 0 then 1 new record.
+Existing records were preserved and excluded by the dashboard start timestamp.
+Dashboard and phone mirror closed after capture. Normal secure debug APK
+reinstalled successfully, restoring screenshot protection.
