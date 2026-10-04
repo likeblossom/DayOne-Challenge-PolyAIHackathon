@@ -1,0 +1,13 @@
+{
+  "metrics": {
+    "metrics/precision(B)": 0.9858123113208164,
+    "metrics/recall(B)": 0.9890663166042574,
+    "metrics/mAP50(B)": 0.9940055875765049,
+    "metrics/mAP50-95(B)": 0.8749093131175548,
+    "fitness": 0.8749093131175548
+  },
+  "training_source": "data/forms",
+  "external_test_not_used": true,
+  "epochs": 6,
+  "image_size": 960
+}

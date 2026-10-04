@@ -1,0 +1,449 @@
+{
+  "before": {
+    "n": 600,
+    "correct": 62,
+    "exact_accuracy": 0.10333333333333333,
+    "cer": 0.46844771994472595,
+    "groups": {
+      "missing_year": {
+        "n": 39,
+        "correct": 8
+      },
+      "en": {
+        "n": 258,
+        "correct": 44
+      },
+      "numeric": {
+        "n": 309,
+        "correct": 1
+      },
+      "fr": {
+        "n": 216,
+        "correct": 18
+      },
+      "ar": {
+        "n": 126,
+        "correct": 0
+      },
+      "two_digit_year": {
+        "n": 39,
+        "correct": 0
+      },
+      "written_month": {
+        "n": 198,
+        "correct": 53
+      },
+      "blank": {
+        "n": 15,
+        "correct": 0
+      }
+    },
+    "examples": [
+      {
+        "expected": "24th December",
+        "predicted": "24th December .",
+        "format": "missing_year",
+        "language": "en"
+      },
+      {
+        "expected": "22/09/2008",
+        "predicted": "2210912008",
+        "format": "numeric",
+        "language": "en"
+      },
+      {
+        "expected": "15/06/1964",
+        "predicted": "1570601964",
+        "format": "numeric",
+        "language": "en"
+      },
+      {
+        "expected": "10/02/1978",
+        "predicted": "101021978",
+        "format": "numeric",
+        "language": "en"
+      },
+      {
+        "expected": "29/02/2044",
+        "predicted": "29102120th",
+        "format": "numeric",
+        "language": "en"
+      },
+      {
+        "expected": "19 octobre",
+        "predicted": "19 octobre",
+        "format": "missing_year",
+        "language": "fr"
+      },
+      {
+        "expected": "06/11/1986",
+        "predicted": "obiling to",
+        "format": "numeric",
+        "language": "fr"
+      },
+      {
+        "expected": "02/6/1974",
+        "predicted": "021611974",
+        "format": "numeric",
+        "language": "en"
+      },
+      {
+        "expected": "07/10/2023",
+        "predicted": "071012023",
+        "format": "numeric",
+        "language": "fr"
+      },
+      {
+        "expected": "١٤/٠٤/٢٠١٦",
+        "predicted": "jeltermit",
+        "format": "numeric",
+        "language": "ar"
+      },
+      {
+        "expected": "28/06/81",
+        "predicted": "28106181",
+        "format": "two_digit_year",
+        "language": "en"
+      },
+      {
+        "expected": "30 avril 2002",
+        "predicted": "30 April 2002",
+        "format": "written_month",
+        "language": "fr"
+      },
+      {
+        "expected": "20/03/2000",
+        "predicted": "2010312000",
+        "format": "numeric",
+        "language": "en"
+      },
+      {
+        "expected": "14/01/1965",
+        "predicted": "141011905",
+        "format": "numeric",
+        "language": "fr"
+      },
+      {
+        "expected": "١٩٥٧-٠٧-١٨",
+        "predicted": "m-whigs .",
+        "format": "numeric",
+        "language": "ar"
+      },
+      {
+        "expected": "17/07/2027",
+        "predicted": "1710712027",
+        "format": "numeric",
+        "language": "en"
+      },
+      {
+        "expected": "8 September 1992",
+        "predicted": "8 September 1992",
+        "format": "written_month",
+        "language": "en"
+      },
+      {
+        "expected": "25/09/2000",
+        "predicted": "251091200",
+        "format": "numeric",
+        "language": "en"
+      },
+      {
+        "expected": "٠٨-٠٦-٢٠٣٢",
+        "predicted": "rump-th.",
+        "format": "numeric",
+        "language": "ar"
+      },
+      {
+        "expected": "27th May 1960",
+        "predicted": "27th May 1960",
+        "format": "written_month",
+        "language": "en"
+      },
+      {
+        "expected": "26.12.1983",
+        "predicted": "26.121983",
+        "format": "numeric",
+        "language": "fr"
+      },
+      {
+        "expected": "17 juillet 2003",
+        "predicted": "17juillet 2003",
+        "format": "written_month",
+        "language": "fr"
+      },
+      {
+        "expected": "٢٧/١٠/٥٨",
+        "predicted": "rynington .",
+        "format": "two_digit_year",
+        "language": "ar"
+      },
+      {
+        "expected": "31/12/1984",
+        "predicted": "3/11211984",
+        "format": "numeric",
+        "language": "fr"
+      },
+      {
+        "expected": "23 juin 2015",
+        "predicted": "25, passengers .",
+        "format": "written_month",
+        "language": "fr"
+      },
+      {
+        "expected": "02/10/2046",
+        "predicted": "0211012040",
+        "format": "numeric",
+        "language": "en"
+      },
+      {
+        "expected": "27.10.2013",
+        "predicted": "27.110.2013",
+        "format": "numeric",
+        "language": "fr"
+      },
+      {
+        "expected": "7.03.2024",
+        "predicted": "#",
+        "format": "numeric",
+        "language": "fr"
+      },
+      {
+        "expected": "٢٧.٠٢.١٩٨٦",
+        "predicted": "over-working",
+        "format": "numeric",
+        "language": "ar"
+      },
+      {
+        "expected": "",
+        "predicted": "0 0",
+        "format": "blank",
+        "language": "fr"
+      }
+    ]
+  },
+  "after": {
+    "n": 600,
+    "correct": 569,
+    "exact_accuracy": 0.9483333333333334,
+    "cer": 0.010287118071549209,
+    "groups": {
+      "missing_year": {
+        "n": 39,
+        "correct": 38
+      },
+      "en": {
+        "n": 258,
+        "correct": 243
+      },
+      "numeric": {
+        "n": 309,
+        "correct": 288
+      },
+      "fr": {
+        "n": 216,
+        "correct": 209
+      },
+      "ar": {
+        "n": 126,
+        "correct": 117
+      },
+      "two_digit_year": {
+        "n": 39,
+        "correct": 35
+      },
+      "written_month": {
+        "n": 198,
+        "correct": 193
+      },
+      "blank": {
+        "n": 15,
+        "correct": 15
+      }
+    },
+    "examples": [
+      {
+        "expected": "24th December",
+        "predicted": "24th December",
+        "format": "missing_year",
+        "language": "en"
+      },
+      {
+        "expected": "22/09/2008",
+        "predicted": "22/09/2008",
+        "format": "numeric",
+        "language": "en"
+      },
+      {
+        "expected": "15/06/1964",
+        "predicted": "15/06/1964",
+        "format": "numeric",
+        "language": "en"
+      },
+      {
+        "expected": "10/02/1978",
+        "predicted": "10/09/1978",
+        "format": "numeric",
+        "language": "en"
+      },
+      {
+        "expected": "29/02/2044",
+        "predicted": "29/02/2044",
+        "format": "numeric",
+        "language": "en"
+      },
+      {
+        "expected": "19 octobre",
+        "predicted": "19 octobre",
+        "format": "missing_year",
+        "language": "fr"
+      },
+      {
+        "expected": "06/11/1986",
+        "predicted": "06/11/1986",
+        "format": "numeric",
+        "language": "fr"
+      },
+      {
+        "expected": "02/6/1974",
+        "predicted": "02/6/1974",
+        "format": "numeric",
+        "language": "en"
+      },
+      {
+        "expected": "07/10/2023",
+        "predicted": "07/10/2023",
+        "format": "numeric",
+        "language": "fr"
+      },
+      {
+        "expected": "١٤/٠٤/٢٠١٦",
+        "predicted": "١٤/٠٤/٢٠١٦",
+        "format": "numeric",
+        "language": "ar"
+      },
+      {
+        "expected": "28/06/81",
+        "predicted": "28/06/81",
+        "format": "two_digit_year",
+        "language": "en"
+      },
+      {
+        "expected": "30 avril 2002",
+        "predicted": "30 avril 2002",
+        "format": "written_month",
+        "language": "fr"
+      },
+      {
+        "expected": "20/03/2000",
+        "predicted": "20/03/2000",
+        "format": "numeric",
+        "language": "en"
+      },
+      {
+        "expected": "14/01/1965",
+        "predicted": "14/01/1965",
+        "format": "numeric",
+        "language": "fr"
+      },
+      {
+        "expected": "١٩٥٧-٠٧-١٨",
+        "predicted": "١٨-٠٧-١٩٥٧",
+        "format": "numeric",
+        "language": "ar"
+      },
+      {
+        "expected": "17/07/2027",
+        "predicted": "17/07/2027",
+        "format": "numeric",
+        "language": "en"
+      },
+      {
+        "expected": "8 September 1992",
+        "predicted": "8 September 1992",
+        "format": "written_month",
+        "language": "en"
+      },
+      {
+        "expected": "25/09/2000",
+        "predicted": "25/09/2000",
+        "format": "numeric",
+        "language": "en"
+      },
+      {
+        "expected": "٠٨-٠٦-٢٠٣٢",
+        "predicted": "٠٨-٠٦-٢٠٣٢",
+        "format": "numeric",
+        "language": "ar"
+      },
+      {
+        "expected": "27th May 1960",
+        "predicted": "27th May 1960",
+        "format": "written_month",
+        "language": "en"
+      },
+      {
+        "expected": "26.12.1983",
+        "predicted": "26.12.1983",
+        "format": "numeric",
+        "language": "fr"
+      },
+      {
+        "expected": "17 juillet 2003",
+        "predicted": "17 juillet 2003",
+        "format": "written_month",
+        "language": "fr"
+      },
+      {
+        "expected": "٢٧/١٠/٥٨",
+        "predicted": "٢٧/١٠/٥٨",
+        "format": "two_digit_year",
+        "language": "ar"
+      },
+      {
+        "expected": "31/12/1984",
+        "predicted": "31/12/1984",
+        "format": "numeric",
+        "language": "fr"
+      },
+      {
+        "expected": "23 juin 2015",
+        "predicted": "23 juin 2015",
+        "format": "written_month",
+        "language": "fr"
+      },
+      {
+        "expected": "02/10/2046",
+        "predicted": "02/10/2046",
+        "format": "numeric",
+        "language": "en"
+      },
+      {
+        "expected": "27.10.2013",
+        "predicted": "27.10.2013",
+        "format": "numeric",
+        "language": "fr"
+      },
+      {
+        "expected": "7.03.2024",
+        "predicted": "7.03.2024",
+        "format": "numeric",
+        "language": "fr"
+      },
+      {
+        "expected": "٢٧.٠٢.١٩٨٦",
+        "predicted": "٢٧.٠٢.١٩٨٦",
+        "format": "numeric",
+        "language": "ar"
+      },
+      {
+        "expected": "",
+        "predicted": "",
+        "format": "blank",
+        "language": "fr"
+      }
+    ]
+  },
+  "same_samples": 600,
+  "precision": "BF16 autocast for both",
+  "note": "Checkpoint already selected from synthetic validation. Both use identical processor, greedy generation and literal exact-match scoring."
+}

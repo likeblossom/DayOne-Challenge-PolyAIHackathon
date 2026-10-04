@@ -1,0 +1,695 @@
+{
+  "route": "latin",
+  "precision": "mixed",
+  "n": 46,
+  "raw_equal": 40,
+  "results": [
+    {
+      "source": "outputs/unit_grammar/page_06/relative/ocr/decision/latin/ocr_output.json",
+      "reference_raw": "Poursuivre l'allaitement exclusif .",
+      "export_raw": "Poursuivre l'allaitement exclusif .",
+      "raw_equal": true,
+      "seconds": 1.0360523859999375,
+      "token_ids": [
+        510,
+        5634,
+        257,
+        1879,
+        241,
+        784,
+        108,
+        1250,
+        5236,
+        6285,
+        25948,
+        1594,
+        479,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_06/relative/ocr/examiner_role/latin/ocr_output.json",
+      "reference_raw": "infi Zahra",
+      "export_raw": "Inflation",
+      "raw_equal": false,
+      "seconds": 0.5863028239982668,
+      "token_ids": [
+        1121,
+        18613,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_06/relative/ocr/other_danger_sign/latin/ocr_output.json",
+      "reference_raw": "neiant",
+      "export_raw": "neiant",
+      "raw_equal": true,
+      "seconds": 0.5745855349960038,
+      "token_ids": [
+        858,
+        9488,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_06/relative/ocr/other_trauma_or_malformation/latin/ocr_output.json",
+      "reference_raw": "ras .",
+      "export_raw": "ras .",
+      "raw_equal": true,
+      "seconds": 0.5698246489919256,
+      "token_ids": [
+        5079,
+        479,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_06/relative/ocr/treatment/latin/ocr_output.json",
+      "reference_raw": "neiant",
+      "export_raw": "neiant",
+      "raw_equal": true,
+      "seconds": 0.5983619580074446,
+      "token_ids": [
+        858,
+        9488,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_06/relative/ocr/vaccines_given_today/latin/ocr_output.json",
+      "reference_raw": "12th.",
+      "export_raw": "12th.",
+      "raw_equal": true,
+      "seconds": 0.6397270200104686,
+      "token_ids": [
+        1092,
+        212,
+        4,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_14/relative/ocr/decision/latin/ocr_output.json",
+      "reference_raw": "Poursuince l'allaitement exclusif",
+      "export_raw": "Poursuince l'allaitement exclusif",
+      "raw_equal": true,
+      "seconds": 0.9968344910012092,
+      "token_ids": [
+        510,
+        5634,
+        257,
+        15062,
+        784,
+        108,
+        1250,
+        5236,
+        6285,
+        25948,
+        1594,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_14/relative/ocr/examiner_role/latin/ocr_output.json",
+      "reference_raw": "Dr. Benjelloun",
+      "export_raw": "Dr. Benjelloun",
+      "raw_equal": true,
+      "seconds": 0.7648004179936834,
+      "token_ids": [
+        14043,
+        4,
+        1664,
+        267,
+        1641,
+        7928,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_14/relative/ocr/other_danger_sign/latin/ocr_output.json",
+      "reference_raw": "neant",
+      "export_raw": "neant",
+      "raw_equal": true,
+      "seconds": 0.605855778005207,
+      "token_ids": [
+        858,
+        927,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_14/relative/ocr/other_trauma_or_malformation/latin/ocr_output.json",
+      "reference_raw": "ras .",
+      "export_raw": "ras .",
+      "raw_equal": true,
+      "seconds": 0.5852262260013958,
+      "token_ids": [
+        5079,
+        479,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_14/relative/ocr/treatment/latin/ocr_output.json",
+      "reference_raw": "neant",
+      "export_raw": "neant",
+      "raw_equal": true,
+      "seconds": 0.5834854939894285,
+      "token_ids": [
+        858,
+        927,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_22/relative/ocr/decision/latin/ocr_output.json",
+      "reference_raw": "Poursuivre l'allaitement exclusif",
+      "export_raw": "Poursuivre l'allaitement exclusif",
+      "raw_equal": true,
+      "seconds": 0.9954384629963897,
+      "token_ids": [
+        510,
+        5634,
+        257,
+        1879,
+        241,
+        784,
+        108,
+        1250,
+        5236,
+        6285,
+        25948,
+        1594,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_22/relative/ocr/examiner_role/latin/ocr_output.json",
+      "reference_raw": "Sage-femme Salima",
+      "export_raw": "Sage-femme Salima",
+      "raw_equal": true,
+      "seconds": 0.8701206700061448,
+      "token_ids": [
+        104,
+        1580,
+        12,
+        506,
+        991,
+        1794,
+        2575,
+        4261,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_22/relative/ocr/other_trauma_or_malformation/latin/ocr_output.json",
+      "reference_raw": "ras .",
+      "export_raw": "ras",
+      "raw_equal": false,
+      "seconds": 0.5477178839937551,
+      "token_ids": [
+        5079,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_30/relative/ocr/decision/latin/ocr_output.json",
+      "reference_raw": "\" poursuvire I'll allaitement exclusif",
+      "export_raw": "\" poursuvire I'll allaitement exclusif",
+      "raw_equal": true,
+      "seconds": 0.9993938830011757,
+      "token_ids": [
+        113,
+        181,
+        5634,
+        13996,
+        1885,
+        38,
+        581,
+        70,
+        102,
+        33144,
+        25948,
+        1594,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_30/relative/ocr/examiner_role/latin/ocr_output.json",
+      "reference_raw": "Sage-femme Hajar .",
+      "export_raw": "Sage-femme Hajar .",
+      "raw_equal": true,
+      "seconds": 0.8722284600080457,
+      "token_ids": [
+        104,
+        1580,
+        12,
+        506,
+        991,
+        1794,
+        19708,
+        271,
+        479,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_30/relative/ocr/other_danger_sign/latin/ocr_output.json",
+      "reference_raw": "niant",
+      "export_raw": "nant",
+      "raw_equal": false,
+      "seconds": 0.5958538220002083,
+      "token_ids": [
+        282,
+        927,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_30/relative/ocr/other_trauma_or_malformation/latin/ocr_output.json",
+      "reference_raw": "ras",
+      "export_raw": "ras",
+      "raw_equal": true,
+      "seconds": 0.5514692830038257,
+      "token_ids": [
+        5079,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_30/relative/ocr/vaccines_given_today/latin/ocr_output.json",
+      "reference_raw": "effrib .",
+      "export_raw": "effrib .",
+      "raw_equal": true,
+      "seconds": 0.6238653390028048,
+      "token_ids": [
+        29678,
+        8643,
+        479,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_38/relative/ocr/decision/latin/ocr_output.json",
+      "reference_raw": "Poursuivre l'allaitement ex",
+      "export_raw": "Poursuivre l'allaitement ex",
+      "raw_equal": true,
+      "seconds": 0.9607903050055029,
+      "token_ids": [
+        510,
+        5634,
+        257,
+        1879,
+        241,
+        784,
+        108,
+        1250,
+        5236,
+        6285,
+        1931,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_38/relative/ocr/other_danger_sign/latin/ocr_output.json",
+      "reference_raw": "neant",
+      "export_raw": "neant",
+      "raw_equal": true,
+      "seconds": 0.5854690050036879,
+      "token_ids": [
+        858,
+        927,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_38/relative/ocr/other_trauma_or_malformation/latin/ocr_output.json",
+      "reference_raw": "ras .",
+      "export_raw": "ras",
+      "raw_equal": false,
+      "seconds": 0.5490881239966257,
+      "token_ids": [
+        5079,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_38/relative/ocr/treatment/latin/ocr_output.json",
+      "reference_raw": "neant",
+      "export_raw": "neant",
+      "raw_equal": true,
+      "seconds": 0.5855673589976504,
+      "token_ids": [
+        858,
+        927,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_38/relative/ocr/vaccines_given_today/latin/ocr_output.json",
+      "reference_raw": "10/ MB.",
+      "export_raw": "10/ MB.",
+      "raw_equal": true,
+      "seconds": 0.644605153996963,
+      "token_ids": [
+        698,
+        73,
+        17025,
+        4,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_46/relative/ocr/examiner_role/latin/ocr_output.json",
+      "reference_raw": "Dr Benjelloun",
+      "export_raw": "Dr Benjelloun",
+      "raw_equal": true,
+      "seconds": 0.6963632279948797,
+      "token_ids": [
+        14043,
+        1664,
+        267,
+        1641,
+        7928,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_46/relative/ocr/other_danger_sign/latin/ocr_output.json",
+      "reference_raw": "neiant",
+      "export_raw": "neiant",
+      "raw_equal": true,
+      "seconds": 0.5803779030102305,
+      "token_ids": [
+        858,
+        9488,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_46/relative/ocr/other_trauma_or_malformation/latin/ocr_output.json",
+      "reference_raw": "ras .",
+      "export_raw": "ras .",
+      "raw_equal": true,
+      "seconds": 0.5781968439987395,
+      "token_ids": [
+        5079,
+        479,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_46/relative/ocr/treatment/latin/ocr_output.json",
+      "reference_raw": "Vit.D 400 VI )",
+      "export_raw": "Vit.D 400 VI )",
+      "raw_equal": true,
+      "seconds": 0.7811374680022709,
+      "token_ids": [
+        846,
+        405,
+        4,
+        495,
+        3675,
+        11663,
+        4839,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_46/relative/ocr/vaccines_given_today/latin/ocr_output.json",
+      "reference_raw": "exhib-",
+      "export_raw": "exhib-",
+      "raw_equal": true,
+      "seconds": 0.6125391350069549,
+      "token_ids": [
+        3463,
+        25068,
+        12,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_54/relative/ocr/decision/latin/ocr_output.json",
+      "reference_raw": "Poursuivre l'allaitement exclusif",
+      "export_raw": "Poursuivrellallanement exclusif",
+      "raw_equal": false,
+      "seconds": 0.9216358589910669,
+      "token_ids": [
+        510,
+        5634,
+        257,
+        1879,
+        241,
+        5104,
+        30351,
+        6285,
+        25948,
+        1594,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_54/relative/ocr/examiner_role/latin/ocr_output.json",
+      "reference_raw": "Sage-femme Salima",
+      "export_raw": "Sage-femme Salima",
+      "raw_equal": true,
+      "seconds": 0.837555357007659,
+      "token_ids": [
+        104,
+        1580,
+        12,
+        506,
+        991,
+        1794,
+        2575,
+        4261,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_54/relative/ocr/other_danger_sign/latin/ocr_output.json",
+      "reference_raw": "neant",
+      "export_raw": "neant",
+      "raw_equal": true,
+      "seconds": 0.5812143020011717,
+      "token_ids": [
+        858,
+        927,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_54/relative/ocr/other_trauma_or_malformation/latin/ocr_output.json",
+      "reference_raw": "ras",
+      "export_raw": "ras",
+      "raw_equal": true,
+      "seconds": 0.5451649390015518,
+      "token_ids": [
+        5079,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_54/relative/ocr/treatment/latin/ocr_output.json",
+      "reference_raw": "neant",
+      "export_raw": "neant",
+      "raw_equal": true,
+      "seconds": 0.5782871580013307,
+      "token_ids": [
+        858,
+        927,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_62/relative/ocr/decision/latin/ocr_output.json",
+      "reference_raw": "Poursuvire l'allaitement exclusif",
+      "export_raw": "Poursuvire l'allaitement exclusif",
+      "raw_equal": true,
+      "seconds": 0.9678857260005316,
+      "token_ids": [
+        510,
+        5634,
+        13996,
+        1885,
+        784,
+        108,
+        1250,
+        5236,
+        6285,
+        25948,
+        1594,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_62/relative/ocr/examiner_role/latin/ocr_output.json",
+      "reference_raw": "Sage-femme Hajar",
+      "export_raw": "Sage-femme Hajar",
+      "raw_equal": true,
+      "seconds": 0.8568976480019046,
+      "token_ids": [
+        104,
+        1580,
+        12,
+        506,
+        991,
+        1794,
+        19708,
+        271,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_62/relative/ocr/other_trauma_or_malformation/latin/ocr_output.json",
+      "reference_raw": "ras",
+      "export_raw": "ras",
+      "raw_equal": true,
+      "seconds": 0.5401558790035779,
+      "token_ids": [
+        5079,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_70/relative/ocr/decision/latin/ocr_output.json",
+      "reference_raw": "Poursuivre l'allaitement exclusif .",
+      "export_raw": "Poursuivre l'allaitement exclusif .",
+      "raw_equal": true,
+      "seconds": 1.052104374000919,
+      "token_ids": [
+        510,
+        5634,
+        257,
+        1879,
+        241,
+        784,
+        108,
+        1250,
+        5236,
+        6285,
+        25948,
+        1594,
+        479,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_70/relative/ocr/examiner_role/latin/ocr_output.json",
+      "reference_raw": "inf. Zahra",
+      "export_raw": "inf. Zahra",
+      "raw_equal": true,
+      "seconds": 0.6609228910092497,
+      "token_ids": [
+        9433,
+        4,
+        21008,
+        763,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_70/relative/ocr/other_trauma_or_malformation/latin/ocr_output.json",
+      "reference_raw": "ras",
+      "export_raw": "ras",
+      "raw_equal": true,
+      "seconds": 0.551186028009397,
+      "token_ids": [
+        5079,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_70/relative/ocr/vaccines_given_today/latin/ocr_output.json",
+      "reference_raw": "2thb.",
+      "export_raw": "2thb.",
+      "raw_equal": true,
+      "seconds": 0.6830557469947962,
+      "token_ids": [
+        176,
+        212,
+        428,
+        4,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_78/relative/ocr/decision/latin/ocr_output.json",
+      "reference_raw": "Poursuivre l'allaitement exclu",
+      "export_raw": "Poursuivre l'allaitement exclu",
+      "raw_equal": true,
+      "seconds": 1.0642826589901233,
+      "token_ids": [
+        510,
+        5634,
+        257,
+        1879,
+        241,
+        784,
+        108,
+        1250,
+        5236,
+        6285,
+        1931,
+        3998,
+        257,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_78/relative/ocr/examiner_role/latin/ocr_output.json",
+      "reference_raw": "ir Benjelloun .",
+      "export_raw": "r Benjelloun .",
+      "raw_equal": false,
+      "seconds": 0.7399698429944692,
+      "token_ids": [
+        338,
+        1664,
+        267,
+        1641,
+        7928,
+        479,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_78/relative/ocr/other_danger_sign/latin/ocr_output.json",
+      "reference_raw": "neant",
+      "export_raw": "neant",
+      "raw_equal": true,
+      "seconds": 0.5742556599871023,
+      "token_ids": [
+        858,
+        927,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_78/relative/ocr/other_trauma_or_malformation/latin/ocr_output.json",
+      "reference_raw": "ras .",
+      "export_raw": "ras .",
+      "raw_equal": true,
+      "seconds": 0.5941795029939385,
+      "token_ids": [
+        5079,
+        479,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_78/relative/ocr/treatment/latin/ocr_output.json",
+      "reference_raw": "neant",
+      "export_raw": "neant",
+      "raw_equal": true,
+      "seconds": 0.5765069650078658,
+      "token_ids": [
+        858,
+        927,
+        2
+      ]
+    }
+  ],
+  "peak_process_rss_gb": 1.94557952,
+  "scope": "Desktop ONNX CPU on saved normalized tensors; not Android preprocessing, not organizer ground-truth accuracy. Agreement is with original FP16 outputs.",
+  "model_bytes": 801722564
+}

@@ -1,0 +1,16 @@
+{
+  "form": "02_identification_and_history",
+  "epochs": 24,
+  "seconds": 198,
+  "initial_weights": "/home/anon/Documents/Projects/DayOne-Challenge-PolyAIHackathon/vision_pipeline/models/all_forms/02_identification_and_history/weights/best.pt",
+  "best_checkpoint": "/home/anon/Documents/Projects/DayOne-Challenge-PolyAIHackathon/vision_pipeline/models/all_forms_final/02_identification_and_history/weights/best.pt",
+  "validation_metrics": {
+    "metrics/precision(B)": 0.9807504886193235,
+    "metrics/recall(B)": 0.9824969424683577,
+    "metrics/mAP50(B)": 0.990806824467726,
+    "metrics/mAP50-95(B)": 0.9388703962553473,
+    "fitness": 0.9388703962553473
+  },
+  "training_source": "data/forms only",
+  "organizer_test_used_for_training": false
+}

@@ -1,61 +1,13 @@
-# Online Midwife
+# Sanad
 
-This project converts a photographed maternal form into validated JSON.
+Android app that reads eight maternal/newborn paper forms offline and saves structured records with the original image, field status and confidence.
 
-## How prediction works
+![Android architecture](vision_pipeline/presentation/architecture.png)
 
-```text
-Form image
-  → crop each field
-  → read text with OCR and detect checkboxes
-  → convert values to numbers, dates, booleans, or categories
-  → validate the values
-  → save the JSON and original image together
-```
+We removed handwriting objects from the supplied PDF, rendered new English/French/Arabic values in 18 handwriting fonts, and added rotation, blur, noise and JPEG degradation. Labels are saved as CSV/JSONL.
 
-## Confidence
+We trained form/script classifiers and YOLO label/handwriting detectors, fine-tuned TrOCR for dates and numbers, and exported the models to ONNX. Android runs one OCR reader at a time. Field rules validate units, dates, ranges and consistency. Records are encrypted locally and can sync over USB.
 
-Each field receives a score from 0 to 1:
+[Build/install](android-app/README.md) · [Slides](vision_pipeline/presentation/Sanad_pitch.pptx) · [Demo](demo/form01/Sanad-form-1-demo-with-form.mp4)
 
-```text
-40% OCR confidence
-15% image quality
-15% parsing success
-10% allowed-value match
-10% agreement between models
-10% gap between the best and second prediction
-```
-
-A validation error subtracts `0.40`; a warning subtracts `0.20`.
-
-- Score `≥ 0.85` and valid → `KNOWN`
-- Invalid or lower confidence → `NEEDS_REVIEW`
-- Blank → `NOT_PROVIDED`
-- Unreadable image → `ILLEGIBLE`
-
-## Validation
-
-Validation checks simple rules:
-
-- Correct type: number, date, boolean, or category
-- Plausible range: for example, temperature cannot be `87°C`
-- Relationships: systolic pressure must exceed diastolic pressure
-- Dates: a postpartum visit cannot occur before delivery
-- Form logic: a cesarean indication requires a cesarean delivery
-
-Validation does not diagnose patients. It only detects likely extraction mistakes.
-
-## Run
-
-```bash
-uv sync --extra ocr --extra dev
-uv run pytest -q
-
-uv run python -m midwife_extractor image \
-  dayone-participants/data/Paper\ Registry/dossiers_specimen_10_patientes-08.png \
-  templates/08_late_postnatal_newborn.template.json \
-  --lang fr \
-  --output output/patient_01_page_08.json
-```
-
-The command saves the JSON and an unchanged copy of the form image side by side.
+All datasets are in `data/`: `forms`, `dates`, `numbers`, `organizer`, `processed`, `handwriting_fonts` and `image_label_audit`. Data, checkpoints and model packs stay local and Git-ignored. Hackathon prototype; not a diagnostic tool.

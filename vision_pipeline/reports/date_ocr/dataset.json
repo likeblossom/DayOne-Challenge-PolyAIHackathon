@@ -1,0 +1,60 @@
+{
+  "samples": 7200,
+  "splits": {
+    "train": 6000,
+    "val": 600,
+    "test": 600
+  },
+  "formats": {
+    "numeric": 3920,
+    "missing_year": 447,
+    "written_month": 2194,
+    "two_digit_year": 440,
+    "blank": 199
+  },
+  "languages": {
+    "en": 2898,
+    "fr": 2831,
+    "ar": 1471
+  },
+  "fonts": {
+    "handlee": 491,
+    "caveat": 439,
+    "lateef": 317,
+    "scheherazadenew": 294,
+    "marckscript": 485,
+    "dancingscript": 483,
+    "shadowsintolight": 490,
+    "allura": 485,
+    "patrickhand": 456,
+    "kalam": 463,
+    "badscript": 468,
+    "arefruqaa": 313,
+    "sacramento": 505,
+    "amiri": 311,
+    "reemkufi": 110,
+    "satisfy": 490,
+    "parisienne": 474,
+    "mirza": 126
+  },
+  "profiles": {
+    "shadow": 871,
+    "noisy": 1138,
+    "low_resolution": 1102,
+    "clean": 3089,
+    "blur": 1000
+  },
+  "date_range": [
+    "1950-01-01",
+    "2050-12-31"
+  ],
+  "organizer_data_used": false,
+  "split_policy": "Disjoint font families and disjoint underlying dates across train/val/test.",
+  "label_policy": "Exact visible transcription; missing year stays missing; numeric date order/century are not inferred by OCR.",
+  "limitations": [
+    "Font-based handwriting is not independent real writers.",
+    "Some numeric date orders and two-digit years are intrinsically ambiguous.",
+    "Arabic font rendering includes calligraphic/print-like styles, not only handwriting."
+  ],
+  "label_sha256": "c0f8fb85f9b37a40f9cabcba53be8bbadb333926fe99b3261a36fd5b9a7a7d62"
+}

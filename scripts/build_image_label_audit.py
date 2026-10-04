@@ -10,9 +10,9 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE_DIR = ROOT / "dayone-participants" / "data" / "Paper Registry"
-CSV_PATH = ROOT / "dayone-participants" / "data" / "maternal_registry_synthetic.csv"
-OUTPUT_DIR = ROOT / "derived_image_label_dataset"
+SOURCE_DIR = ROOT / "data/organizer" / "data" / "Paper Registry"
+CSV_PATH = ROOT / "data/organizer" / "data" / "maternal_registry_synthetic.csv"
+OUTPUT_DIR = ROOT / "data/image_label_audit"
 IMAGE_DIR = OUTPUT_DIR / "images"
 
 # Labels verified from pages 2 and 4 of each eight-page synthetic patient file.

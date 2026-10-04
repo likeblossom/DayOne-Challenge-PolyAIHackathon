@@ -1,0 +1,7 @@
+{
+  "images": 5,
+  "form_labels_visually_reviewed": 5,
+  "score_eligible_value_fields": 1,
+  "pending_fields": 728,
+  "caveat": "Five real camera photos are separate alternate-layout stress cases. Full reliable field ground truth is not yet available."
+}

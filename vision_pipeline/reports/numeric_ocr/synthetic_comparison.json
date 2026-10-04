@@ -1,0 +1,489 @@
+{
+  "before": {
+    "n": 900,
+    "correct": 56,
+    "exact_accuracy": 0.06222222222222222,
+    "cer": 0.6976827094474153,
+    "groups": {
+      "decimal": {
+        "n": 105,
+        "correct": 2
+      },
+      "ar": {
+        "n": 168,
+        "correct": 3
+      },
+      "mass": {
+        "n": 148,
+        "correct": 20
+      },
+      "en": {
+        "n": 360,
+        "correct": 31
+      },
+      "alphanumeric": {
+        "n": 62,
+        "correct": 0
+      },
+      "fr": {
+        "n": 372,
+        "correct": 22
+      },
+      "length": {
+        "n": 86,
+        "correct": 1
+      },
+      "age": {
+        "n": 57,
+        "correct": 3
+      },
+      "blank": {
+        "n": 88,
+        "correct": 0
+      },
+      "character": {
+        "n": 60,
+        "correct": 18
+      },
+      "temperature": {
+        "n": 149,
+        "correct": 0
+      },
+      "pressure": {
+        "n": 75,
+        "correct": 0
+      },
+      "integer": {
+        "n": 70,
+        "correct": 12
+      }
+    },
+    "examples": [
+      {
+        "expected": "٢٢٥٢٫٩ mmol/L",
+        "predicted": "programmolly .",
+        "format": "decimal",
+        "language": "ar"
+      },
+      {
+        "expected": "10811  g",
+        "predicted": "10841 g",
+        "format": "mass",
+        "language": "en"
+      },
+      {
+        "expected": "8lUXssa",
+        "predicted": "plucknessa",
+        "format": "alphanumeric",
+        "language": "fr"
+      },
+      {
+        "expected": "51.976kg",
+        "predicted": "5, 970th.",
+        "format": "mass",
+        "language": "en"
+      },
+      {
+        "expected": "9351 g",
+        "predicted": "9351.",
+        "format": "mass",
+        "language": "fr"
+      },
+      {
+        "expected": "95.8cm",
+        "predicted": "gentification",
+        "format": "length",
+        "language": "fr"
+      },
+      {
+        "expected": "2636,9  %",
+        "predicted": "20309th",
+        "format": "decimal",
+        "language": "fr"
+      },
+      {
+        "expected": "73 days",
+        "predicted": "73 days",
+        "format": "age",
+        "language": "en"
+      },
+      {
+        "expected": "١٤٨.٣٢ mmol/L",
+        "predicted": "environmental",
+        "format": "decimal",
+        "language": "ar"
+      },
+      {
+        "expected": "",
+        "predicted": "0 0",
+        "format": "blank",
+        "language": "ar"
+      },
+      {
+        "expected": "١٤٫١٠٤ mmol/L",
+        "predicted": "rejuvenously .",
+        "format": "decimal",
+        "language": "ar"
+      },
+      {
+        "expected": "10994  g",
+        "predicted": "10994 g",
+        "format": "mass",
+        "language": "en"
+      },
+      {
+        "expected": "971 g",
+        "predicted": "9719",
+        "format": "mass",
+        "language": "fr"
+      },
+      {
+        "expected": "2101 g",
+        "predicted": "2101g.",
+        "format": "mass",
+        "language": "en"
+      },
+      {
+        "expected": "٣٩ سم",
+        "predicted": "powering",
+        "format": "length",
+        "language": "ar"
+      },
+      {
+        "expected": "vJtfI993",
+        "predicted": "gipping 3",
+        "format": "alphanumeric",
+        "language": "en"
+      },
+      {
+        "expected": "e",
+        "predicted": "e",
+        "format": "character",
+        "language": "en"
+      },
+      {
+        "expected": "R",
+        "predicted": "topping",
+        "format": "character",
+        "language": "en"
+      },
+      {
+        "expected": "24.0 °C",
+        "predicted": "24.40.c.",
+        "format": "temperature",
+        "language": "fr"
+      },
+      {
+        "expected": "20.3 °C",
+        "predicted": "203c.",
+        "format": "temperature",
+        "language": "en"
+      },
+      {
+        "expected": "٥١٠٫٦٣bpm",
+        "predicted": "politification",
+        "format": "decimal",
+        "language": "ar"
+      },
+      {
+        "expected": "R",
+        "predicted": "or",
+        "format": "character",
+        "language": "en"
+      },
+      {
+        "expected": "74/79mmHg",
+        "predicted": "# #",
+        "format": "pressure",
+        "language": "fr"
+      },
+      {
+        "expected": "34.144 %",
+        "predicted": "34.1440",
+        "format": "decimal",
+        "language": "en"
+      },
+      {
+        "expected": "38,4 °C",
+        "predicted": "38.4.c.",
+        "format": "temperature",
+        "language": "fr"
+      },
+      {
+        "expected": "",
+        "predicted": "0 0",
+        "format": "blank",
+        "language": "en"
+      },
+      {
+        "expected": "7489 g",
+        "predicted": "\" 7th.",
+        "format": "mass",
+        "language": "fr"
+      },
+      {
+        "expected": "149.6  cm",
+        "predicted": "149.0cm.",
+        "format": "length",
+        "language": "fr"
+      },
+      {
+        "expected": "٣٣.٢ °C",
+        "predicted": "xxx-working",
+        "format": "temperature",
+        "language": "ar"
+      },
+      {
+        "expected": "ZJZw",
+        "predicted": "zizw.",
+        "format": "alphanumeric",
+        "language": "ar"
+      }
+    ]
+  },
+  "after": {
+    "n": 900,
+    "correct": 706,
+    "exact_accuracy": 0.7844444444444445,
+    "cer": 0.047415329768270946,
+    "groups": {
+      "decimal": {
+        "n": 105,
+        "correct": 60
+      },
+      "ar": {
+        "n": 168,
+        "correct": 109
+      },
+      "mass": {
+        "n": 148,
+        "correct": 120
+      },
+      "en": {
+        "n": 360,
+        "correct": 304
+      },
+      "alphanumeric": {
+        "n": 62,
+        "correct": 32
+      },
+      "fr": {
+        "n": 372,
+        "correct": 293
+      },
+      "length": {
+        "n": 86,
+        "correct": 77
+      },
+      "age": {
+        "n": 57,
+        "correct": 53
+      },
+      "blank": {
+        "n": 88,
+        "correct": 88
+      },
+      "character": {
+        "n": 60,
+        "correct": 39
+      },
+      "temperature": {
+        "n": 149,
+        "correct": 121
+      },
+      "pressure": {
+        "n": 75,
+        "correct": 61
+      },
+      "integer": {
+        "n": 70,
+        "correct": 55
+      }
+    },
+    "examples": [
+      {
+        "expected": "٢٢٥٢٫٩ mmol/L",
+        "predicted": "٢٢٥٢٫٩  mmol/L",
+        "format": "decimal",
+        "language": "ar"
+      },
+      {
+        "expected": "10811  g",
+        "predicted": "1081  g",
+        "format": "mass",
+        "language": "en"
+      },
+      {
+        "expected": "8lUXssa",
+        "predicted": "8lU9qssa",
+        "format": "alphanumeric",
+        "language": "fr"
+      },
+      {
+        "expected": "51.976kg",
+        "predicted": "51.976kg",
+        "format": "mass",
+        "language": "en"
+      },
+      {
+        "expected": "9351 g",
+        "predicted": "9351 g",
+        "format": "mass",
+        "language": "fr"
+      },
+      {
+        "expected": "95.8cm",
+        "predicted": "95.8cm",
+        "format": "length",
+        "language": "fr"
+      },
+      {
+        "expected": "2636,9  %",
+        "predicted": "2636.9  %",
+        "format": "decimal",
+        "language": "fr"
+      },
+      {
+        "expected": "73 days",
+        "predicted": "73 days",
+        "format": "age",
+        "language": "en"
+      },
+      {
+        "expected": "١٤٨.٣٢ mmol/L",
+        "predicted": "١٤٨.٣٢  mmol/L",
+        "format": "decimal",
+        "language": "ar"
+      },
+      {
+        "expected": "",
+        "predicted": "",
+        "format": "blank",
+        "language": "ar"
+      },
+      {
+        "expected": "١٤٫١٠٤ mmol/L",
+        "predicted": "١٤٫١٤  mmol/L",
+        "format": "decimal",
+        "language": "ar"
+      },
+      {
+        "expected": "10994  g",
+        "predicted": "10994  g",
+        "format": "mass",
+        "language": "en"
+      },
+      {
+        "expected": "971 g",
+        "predicted": "971 g",
+        "format": "mass",
+        "language": "fr"
+      },
+      {
+        "expected": "2101 g",
+        "predicted": "2101 g",
+        "format": "mass",
+        "language": "en"
+      },
+      {
+        "expected": "٣٩ سم",
+        "predicted": "٣٩ سم",
+        "format": "length",
+        "language": "ar"
+      },
+      {
+        "expected": "vJtfI993",
+        "predicted": "4Jtf993",
+        "format": "alphanumeric",
+        "language": "en"
+      },
+      {
+        "expected": "e",
+        "predicted": "e",
+        "format": "character",
+        "language": "en"
+      },
+      {
+        "expected": "R",
+        "predicted": "R",
+        "format": "character",
+        "language": "en"
+      },
+      {
+        "expected": "24.0 °C",
+        "predicted": "24.0 °C",
+        "format": "temperature",
+        "language": "fr"
+      },
+      {
+        "expected": "20.3 °C",
+        "predicted": "20.3 °C",
+        "format": "temperature",
+        "language": "en"
+      },
+      {
+        "expected": "٥١٠٫٦٣bpm",
+        "predicted": "٥١٠٫٦٣bpm",
+        "format": "decimal",
+        "language": "ar"
+      },
+      {
+        "expected": "R",
+        "predicted": "R",
+        "format": "character",
+        "language": "en"
+      },
+      {
+        "expected": "74/79mmHg",
+        "predicted": "74/79mmHg",
+        "format": "pressure",
+        "language": "fr"
+      },
+      {
+        "expected": "34.144 %",
+        "predicted": "34.144 %",
+        "format": "decimal",
+        "language": "en"
+      },
+      {
+        "expected": "38,4 °C",
+        "predicted": "38,4 °C",
+        "format": "temperature",
+        "language": "fr"
+      },
+      {
+        "expected": "",
+        "predicted": "",
+        "format": "blank",
+        "language": "en"
+      },
+      {
+        "expected": "7489 g",
+        "predicted": "7489 g",
+        "format": "mass",
+        "language": "fr"
+      },
+      {
+        "expected": "149.6  cm",
+        "predicted": "149.6  cm",
+        "format": "length",
+        "language": "fr"
+      },
+      {
+        "expected": "٣٣.٢ °C",
+        "predicted": "٣٣.٢ °C",
+        "format": "temperature",
+        "language": "ar"
+      },
+      {
+        "expected": "ZJZw",
+        "predicted": "ZIZw",
+        "format": "alphanumeric",
+        "language": "ar"
+      }
+    ]
+  },
+  "same_samples": 900,
+  "precision": "BF16 autocast for both",
+  "note": "Checkpoint selected beforehand using synthetic validation only. Same processor, greedy decoding and literal exact-match scoring. Baseline is original TrOCR; the specialist was initialized from a separate date fine-tune."
+}

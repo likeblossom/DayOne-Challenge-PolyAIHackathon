@@ -1,0 +1,12 @@
+{
+  "source_sha256": "cbda11c79a27e90591b01f3709c70c26b6d4cd514222e7e1768780779feccc82",
+  "checkpoint_unchanged": true,
+  "files": {
+    "encoder.int8.onnx": 90121933,
+    "decoder.int8.onnx": 457353413,
+    "encoder.onnx": 344369151,
+    "reader.int8.json": 760086,
+    "reader.json": 760048,
+    "decoder.onnx": 1195472287
+  }
+}

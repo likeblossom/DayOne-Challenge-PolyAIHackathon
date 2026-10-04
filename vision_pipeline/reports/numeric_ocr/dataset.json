@@ -1,0 +1,64 @@
+{
+  "samples": 10800,
+  "splits": {
+    "train": 9000,
+    "val": 900,
+    "test": 900
+  },
+  "formats": {
+    "mass": 1695,
+    "integer": 745,
+    "temperature": 2045,
+    "length": 1494,
+    "alphanumeric": 874,
+    "decimal": 1227,
+    "age": 1053,
+    "pressure": 786,
+    "character": 575,
+    "blank": 306
+  },
+  "languages": {
+    "en": 4351,
+    "fr": 4336,
+    "ar": 2113
+  },
+  "fonts": {
+    "dancingscript": 741,
+    "allura": 722,
+    "amiri": 444,
+    "badscript": 676,
+    "arefruqaa": 428,
+    "kalam": 735,
+    "patrickhand": 749,
+    "lateef": 458,
+    "scheherazadenew": 437,
+    "handlee": 718,
+    "caveat": 748,
+    "marckscript": 723,
+    "shadowsintolight": 716,
+    "sacramento": 705,
+    "satisfy": 722,
+    "reemkufi": 178,
+    "mirza": 168,
+    "parisienne": 732
+  },
+  "profiles": {
+    "clean": 4481,
+    "low_resolution": 1698,
+    "noisy": 1804,
+    "blur": 1555,
+    "shadow": 1262
+  },
+  "degree_symbol_samples": 1921,
+  "glyph_coverage_checked": true,
+  "unsupported_glyph_candidates_rejected": 264,
+  "organizer_data_used": false,
+  "split_policy": "Disjoint font families and value/unit grouping keys. Blank controls grouped by split.",
+  "label_policy": "Exact visible transcription; no stripping units, punctuation, signs or decimal separators.",
+  "label_sha256": "119f912914371136aa2b8f66f40b67137898815488a1b1773fc53b7d3dd7b44c",
+  "limitations": [
+    "Font-based handwriting, not independent real writers.",
+    "Broad numeric examples are OCR training, not clinical guidance.",
+    "Character/alphanumeric samples do not establish general prose recognition quality."
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "form": "02_identification_and_history",
+  "epochs": 8,
+  "seconds": 76,
+  "initial_weights": "/home/anon/Documents/Projects/DayOne-Challenge-PolyAIHackathon/vision_pipeline/models/yolo11n-obb.pt",
+  "best_checkpoint": "/home/anon/Documents/Projects/DayOne-Challenge-PolyAIHackathon/vision_pipeline/models/all_forms/02_identification_and_history/weights/best.pt",
+  "validation_metrics": {
+    "metrics/precision(B)": 0.5265138619789741,
+    "metrics/recall(B)": 0.21835025387005955,
+    "metrics/mAP50(B)": 0.23070525916260573,
+    "metrics/mAP50-95(B)": 0.19565558524743693,
+    "fitness": 0.19565558524743693
+  },
+  "training_source": "data/forms only",
+  "organizer_test_used_for_training": false
+}

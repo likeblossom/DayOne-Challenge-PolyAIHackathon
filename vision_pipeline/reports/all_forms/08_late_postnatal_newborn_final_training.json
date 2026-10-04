@@ -1,0 +1,16 @@
+{
+  "form": "08_late_postnatal_newborn",
+  "epochs": 24,
+  "seconds": 190,
+  "initial_weights": "/home/anon/Documents/Projects/DayOne-Challenge-PolyAIHackathon/vision_pipeline/models/yolo11n-obb.pt",
+  "best_checkpoint": "/home/anon/Documents/Projects/DayOne-Challenge-PolyAIHackathon/vision_pipeline/models/all_forms_final/08_late_postnatal_newborn/weights/best.pt",
+  "validation_metrics": {
+    "metrics/precision(B)": 0.980218418370787,
+    "metrics/recall(B)": 0.9729585104349875,
+    "metrics/mAP50(B)": 0.9906748489104369,
+    "metrics/mAP50-95(B)": 0.9494117235320416,
+    "fitness": 0.9494117235320416
+  },
+  "training_source": "data/forms only",
+  "organizer_test_used_for_training": false
+}

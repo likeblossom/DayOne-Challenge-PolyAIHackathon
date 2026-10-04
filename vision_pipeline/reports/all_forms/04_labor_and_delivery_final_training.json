@@ -1,0 +1,16 @@
+{
+  "form": "04_labor_and_delivery",
+  "epochs": 24,
+  "seconds": 189,
+  "initial_weights": "/home/anon/Documents/Projects/DayOne-Challenge-PolyAIHackathon/vision_pipeline/models/all_forms/04_labor_and_delivery/weights/best.pt",
+  "best_checkpoint": "/home/anon/Documents/Projects/DayOne-Challenge-PolyAIHackathon/vision_pipeline/models/all_forms_final/04_labor_and_delivery/weights/best.pt",
+  "validation_metrics": {
+    "metrics/precision(B)": 0.9928413204554111,
+    "metrics/recall(B)": 0.9953490222970678,
+    "metrics/mAP50(B)": 0.9949814783868092,
+    "metrics/mAP50-95(B)": 0.9755874232895725,
+    "fitness": 0.9755874232895725
+  },
+  "training_source": "data/forms only",
+  "organizer_test_used_for_training": false
+}

@@ -1,0 +1,60 @@
+{
+  "form_id": "current_pregnancy",
+  "title_fr": "Grossesse actuelle",
+  "title_en": "Current Pregnancy",
+  "fields": {
+    "last_menstrual_period_date": {"type": "date"},
+    "expected_delivery_date": {"type": "date"},
+    "post_term_date": {"type": "date"},
+    "height_cm": {"type": "double", "unit": "cm"},
+    "blood_group": {"type": "enum", "values": ["A", "B", "O", "AB"]},
+    "rhesus_factor": {"type": "enum", "values": ["POSITIVE", "NEGATIVE"]},
+    "visits": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "fields": {
+          "period": {
+            "type": "enum",
+            "values": [
+              "TRIMESTER_1_VISIT_1", "TRIMESTER_1_VISIT_2", "TRIMESTER_1_VISIT_3",
+              "TRIMESTER_2_VISIT_1", "TRIMESTER_2_VISIT_2", "TRIMESTER_2_VISIT_3",
+              "MONTH_7", "MONTH_8", "MONTH_9"
+            ]
+          },
+          "appointment_date": {"type": "date"},
+          "attendance_date": {"type": "date"},
+          "follow_up_contacted": {"type": "boolean"},
+          "gestational_age_weeks": {"type": "double", "unit": "weeks"},
+          "weight_kg": {"type": "double", "unit": "kg"},
+          "systolic_bp_mmhg": {"type": "double", "unit": "mmHg"},
+          "diastolic_bp_mmhg": {"type": "double", "unit": "mmHg"},
+          "skeletal_abnormalities": {"type": "string"},
+          "conjunctiva_condition": {"type": "string"},
+          "breast_exam": {"type": "string"},
+          "edema": {"type": "boolean"},
+          "active_fetal_movements": {"type": "boolean"},
+          "fundal_height_cm": {"type": "double", "unit": "cm"},
+          "fetal_heart_rate_bpm": {"type": "double", "unit": "bpm"},
+          "speculum_exam": {"type": "string"},
+          "cervix_condition": {"type": "string"},
+          "fetal_presentation": {"type": "string"},
+          "pelvis_exam": {"type": "string"},
+          "glycosuria": {"type": "string"},
+          "albuminuria": {"type": "string"},
+          "rubella_result": {"type": "string"},
+          "toxoplasmosis_result": {"type": "string"},
+          "syphilis_result": {"type": "string"},
+          "hepatitis_b_surface_antigen_result": {"type": "string"},
+          "hiv_result": {"type": "string"},
+          "hemoglobin_g_dl": {"type": "double", "unit": "g/dL"},
+          "platelets_per_ul": {"type": "double", "unit": "per uL"},
+          "blood_glucose_g_l": {"type": "double", "unit": "g/L"},
+          "irregular_antibody_screen_result": {"type": "string"},
+          "iron_given": {"type": "boolean"},
+          "examiner_role": {"type": "string"}
+        }
+      }
+    }
+  }
+}

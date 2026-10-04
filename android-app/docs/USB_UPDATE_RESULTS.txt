@@ -1,0 +1,35 @@
+Verified on S200 Plus (S200PLUS20000105738), 2026-10-04
+
+Installed debug APK in place; existing encrypted records and model pack retained.
+Record IDs now route to numeric OCR in Android and desktop. Storage stays string
+to retain hyphens and leading zeroes. No checkpoints changed.
+Actual phone numeric reader on the existing form-01 Android crop returned
+2026-823-001 (testNumericRecordId, 8.527s including model-pack verification).
+This is a single-crop result, not a new all-form accuracy benchmark.
+
+Results have a tappable original-image attachment. Full-screen viewer supports
+pinch zoom, drag and double tap. ImageViewerTest opened the existing specimen
+attachment, verified the viewer and closed it without changing saved fields.
+
+PC SQLite service binds 127.0.0.1:8765; phone uses an authenticated Unix-domain
+socket via adb reverse localabstract:sanad-usb-db tcp:8765. No Android INTERNET
+permission, Wi-Fi or cellular connection. Phone network restrictions unchanged.
+Actual USB upload committed synthetic test record sanad-usb-smoke-v1; a repeated
+upload produced only one database row. Removing reverse produced offline status;
+reverse restored afterwards. Existing real drafts were not auto-submitted.
+
+Checks passed:
+  Android assembleDebug, lintDebug, 9 JVM unit tests.
+  8 on-device workflow tests (encrypted persistence, retry, queue and review).
+  1 on-device image viewer test.
+  USB commit/idempotency and disconnected-status tests.
+  1 on-device numeric record-ID test.
+  7 PC database tests (auth, validation, commit, duplicate and conflict handling).
+  4 desktop numeric tests, including record-ID routing.
+
+PC database contains the explicitly labelled USB smoke-test record.
+Drafts, images and results remain local; only reviewed submitted records sync.
+Existing OCR results are not silently rewritten by the update; re-upload a page
+to run new routing. PC original-image upload is not implemented or claimed.
+Old simulated database data is retained; the unused LocalFileSink code was removed.
+Launch/reconnect instructions: android-app/USB_SYNC.txt.

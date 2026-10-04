@@ -1,0 +1,681 @@
+{
+  "route": "numeric",
+  "precision": "mixed",
+  "n": 50,
+  "raw_equal": 50,
+  "results": [
+    {
+      "source": "outputs/unit_grammar/page_06/relative/ocr/age_days/numeric/ocr_output.json",
+      "reference_raw": "7  jours",
+      "export_raw": "7  jours",
+      "raw_equal": true,
+      "seconds": 0.7976486099942122,
+      "token_ids": [
+        406,
+        1437,
+        1236,
+        5634,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_06/relative/ocr/head_circumference_cm/numeric/ocr_output.json",
+      "reference_raw": "34 cm",
+      "export_raw": "34 cm",
+      "raw_equal": true,
+      "seconds": 0.7427173140022205,
+      "token_ids": [
+        3079,
+        25434,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_06/relative/ocr/length_cm/numeric/ocr_output.json",
+      "reference_raw": "48 cm",
+      "export_raw": "48 cm",
+      "raw_equal": true,
+      "seconds": 0.7343784219992813,
+      "token_ids": [
+        3818,
+        25434,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_06/relative/ocr/temperature_c/numeric/ocr_output.json",
+      "reference_raw": "37.1 °C",
+      "export_raw": "37.1 °C",
+      "raw_equal": true,
+      "seconds": 1.0369222039880697,
+      "token_ids": [
+        3272,
+        4,
+        134,
+        33397,
+        347,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_06/relative/ocr/weight_g/numeric/ocr_output.json",
+      "reference_raw": "3485 g",
+      "export_raw": "3485 g",
+      "raw_equal": true,
+      "seconds": 0.9473350640037097,
+      "token_ids": [
+        3079,
+        4531,
+        821,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_14/relative/ocr/age_days/numeric/ocr_output.json",
+      "reference_raw": "7 jours",
+      "export_raw": "7 jours",
+      "raw_equal": true,
+      "seconds": 0.9902948770031799,
+      "token_ids": [
+        406,
+        1236,
+        5634,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_14/relative/ocr/head_circumference_cm/numeric/ocr_output.json",
+      "reference_raw": "34 cm",
+      "export_raw": "34 cm",
+      "raw_equal": true,
+      "seconds": 0.9425071159930667,
+      "token_ids": [
+        3079,
+        25434,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_14/relative/ocr/length_cm/numeric/ocr_output.json",
+      "reference_raw": "50 cm",
+      "export_raw": "50 cm",
+      "raw_equal": true,
+      "seconds": 0.8084517209936166,
+      "token_ids": [
+        1096,
+        25434,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_14/relative/ocr/temperature_c/numeric/ocr_output.json",
+      "reference_raw": "37.0 °C",
+      "export_raw": "37.0 °C",
+      "raw_equal": true,
+      "seconds": 1.033845949001261,
+      "token_ids": [
+        3272,
+        4,
+        288,
+        33397,
+        347,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_14/relative/ocr/weight_g/numeric/ocr_output.json",
+      "reference_raw": "3564  g",
+      "export_raw": "3564  g",
+      "raw_equal": true,
+      "seconds": 0.8823141550092259,
+      "token_ids": [
+        2022,
+        4027,
+        1437,
+        821,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_22/relative/ocr/age_days/numeric/ocr_output.json",
+      "reference_raw": "7 jours",
+      "export_raw": "7 jours",
+      "raw_equal": true,
+      "seconds": 0.9860252240032423,
+      "token_ids": [
+        406,
+        1236,
+        5634,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_22/relative/ocr/head_circumference_cm/numeric/ocr_output.json",
+      "reference_raw": "36  cm",
+      "export_raw": "36  cm",
+      "raw_equal": true,
+      "seconds": 0.8260136960016098,
+      "token_ids": [
+        3367,
+        1437,
+        25434,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_22/relative/ocr/length_cm/numeric/ocr_output.json",
+      "reference_raw": "51 cm",
+      "export_raw": "51 cm",
+      "raw_equal": true,
+      "seconds": 0.8933888759929687,
+      "token_ids": [
+        4708,
+        25434,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_22/relative/ocr/temperature_c/numeric/ocr_output.json",
+      "reference_raw": "36.8  ° C",
+      "export_raw": "36.8  ° C",
+      "raw_equal": true,
+      "seconds": 0.8743517120019533,
+      "token_ids": [
+        3367,
+        4,
+        398,
+        1437,
+        33397,
+        230,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_22/relative/ocr/weight_g/numeric/ocr_output.json",
+      "reference_raw": "3538 g",
+      "export_raw": "3538 g",
+      "raw_equal": true,
+      "seconds": 0.7824573830002919,
+      "token_ids": [
+        2022,
+        3170,
+        821,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_30/relative/ocr/age_days/numeric/ocr_output.json",
+      "reference_raw": "7  jours",
+      "export_raw": "7  jours",
+      "raw_equal": true,
+      "seconds": 0.7920878489967436,
+      "token_ids": [
+        406,
+        1437,
+        1236,
+        5634,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_30/relative/ocr/head_circumference_cm/numeric/ocr_output.json",
+      "reference_raw": "36  cm",
+      "export_raw": "36  cm",
+      "raw_equal": true,
+      "seconds": 0.7301729259925196,
+      "token_ids": [
+        3367,
+        1437,
+        25434,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_30/relative/ocr/length_cm/numeric/ocr_output.json",
+      "reference_raw": "49  cm",
+      "export_raw": "49  cm",
+      "raw_equal": true,
+      "seconds": 0.7350771429919405,
+      "token_ids": [
+        3414,
+        1437,
+        25434,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_30/relative/ocr/temperature_c/numeric/ocr_output.json",
+      "reference_raw": "37.2",
+      "export_raw": "37.2",
+      "raw_equal": true,
+      "seconds": 0.7356661090016132,
+      "token_ids": [
+        3272,
+        4,
+        176,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_30/relative/ocr/weight_g/numeric/ocr_output.json",
+      "reference_raw": "2927  g",
+      "export_raw": "2927  g",
+      "raw_equal": true,
+      "seconds": 0.8425268680002773,
+      "token_ids": [
+        2890,
+        2518,
+        1437,
+        821,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_38/relative/ocr/age_days/numeric/ocr_output.json",
+      "reference_raw": "8 jours",
+      "export_raw": "8 jours",
+      "raw_equal": true,
+      "seconds": 0.7480412570002954,
+      "token_ids": [
+        398,
+        1236,
+        5634,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_38/relative/ocr/head_circumference_cm/numeric/ocr_output.json",
+      "reference_raw": "35 cm",
+      "export_raw": "35 cm",
+      "raw_equal": true,
+      "seconds": 0.7079492899938487,
+      "token_ids": [
+        2022,
+        25434,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_38/relative/ocr/length_cm/numeric/ocr_output.json",
+      "reference_raw": "49  cm",
+      "export_raw": "49  cm",
+      "raw_equal": true,
+      "seconds": 0.7124439610051923,
+      "token_ids": [
+        3414,
+        1437,
+        25434,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_38/relative/ocr/temperature_c/numeric/ocr_output.json",
+      "reference_raw": "37.2  °L",
+      "export_raw": "37.2  °L",
+      "raw_equal": true,
+      "seconds": 0.8282576899946434,
+      "token_ids": [
+        3272,
+        4,
+        176,
+        1437,
+        33397,
+        574,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_38/relative/ocr/weight_g/numeric/ocr_output.json",
+      "reference_raw": "3709  g",
+      "export_raw": "3709  g",
+      "raw_equal": true,
+      "seconds": 0.6815428770059953,
+      "token_ids": [
+        21713,
+        466,
+        1437,
+        821,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_46/relative/ocr/age_days/numeric/ocr_output.json",
+      "reference_raw": "8 jours",
+      "export_raw": "8 jours",
+      "raw_equal": true,
+      "seconds": 0.6007156029954785,
+      "token_ids": [
+        398,
+        1236,
+        5634,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_46/relative/ocr/head_circumference_cm/numeric/ocr_output.json",
+      "reference_raw": "31 cm",
+      "export_raw": "31 cm",
+      "raw_equal": true,
+      "seconds": 0.5748224039998604,
+      "token_ids": [
+        2983,
+        25434,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_46/relative/ocr/length_cm/numeric/ocr_output.json",
+      "reference_raw": "50 cm",
+      "export_raw": "50 cm",
+      "raw_equal": true,
+      "seconds": 0.5847709619993111,
+      "token_ids": [
+        1096,
+        25434,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_46/relative/ocr/temperature_c/numeric/ocr_output.json",
+      "reference_raw": "36.8 °C",
+      "export_raw": "36.8 °C",
+      "raw_equal": true,
+      "seconds": 0.7394000689964741,
+      "token_ids": [
+        3367,
+        4,
+        398,
+        33397,
+        347,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_46/relative/ocr/weight_g/numeric/ocr_output.json",
+      "reference_raw": "2233 g",
+      "export_raw": "2233 g",
+      "raw_equal": true,
+      "seconds": 0.6367493850120809,
+      "token_ids": [
+        2036,
+        3103,
+        821,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_54/relative/ocr/age_days/numeric/ocr_output.json",
+      "reference_raw": "7  jours",
+      "export_raw": "7  jours",
+      "raw_equal": true,
+      "seconds": 0.6740874920069473,
+      "token_ids": [
+        406,
+        1437,
+        1236,
+        5634,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_54/relative/ocr/head_circumference_cm/numeric/ocr_output.json",
+      "reference_raw": "35 cm",
+      "export_raw": "35 cm",
+      "raw_equal": true,
+      "seconds": 0.588641751994146,
+      "token_ids": [
+        2022,
+        25434,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_54/relative/ocr/length_cm/numeric/ocr_output.json",
+      "reference_raw": "48 cm",
+      "export_raw": "48 cm",
+      "raw_equal": true,
+      "seconds": 0.5874597429938149,
+      "token_ids": [
+        3818,
+        25434,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_54/relative/ocr/temperature_c/numeric/ocr_output.json",
+      "reference_raw": "37.2 °C",
+      "export_raw": "37.2 °C",
+      "raw_equal": true,
+      "seconds": 0.6889408509887289,
+      "token_ids": [
+        3272,
+        4,
+        176,
+        33397,
+        347,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_54/relative/ocr/weight_g/numeric/ocr_output.json",
+      "reference_raw": "3382  g",
+      "export_raw": "3382  g",
+      "raw_equal": true,
+      "seconds": 0.6487767200014787,
+      "token_ids": [
+        3103,
+        6551,
+        1437,
+        821,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_62/relative/ocr/age_days/numeric/ocr_output.json",
+      "reference_raw": "7 jours",
+      "export_raw": "7 jours",
+      "raw_equal": true,
+      "seconds": 0.6169481029937742,
+      "token_ids": [
+        406,
+        1236,
+        5634,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_62/relative/ocr/head_circumference_cm/numeric/ocr_output.json",
+      "reference_raw": "35  cm",
+      "export_raw": "35  cm",
+      "raw_equal": true,
+      "seconds": 0.6301576450059656,
+      "token_ids": [
+        2022,
+        1437,
+        25434,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_62/relative/ocr/length_cm/numeric/ocr_output.json",
+      "reference_raw": "48 cm",
+      "export_raw": "48 cm",
+      "raw_equal": true,
+      "seconds": 0.5944650500023272,
+      "token_ids": [
+        3818,
+        25434,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_62/relative/ocr/temperature_c/numeric/ocr_output.json",
+      "reference_raw": "37.1  °C",
+      "export_raw": "37.1  °C",
+      "raw_equal": true,
+      "seconds": 0.7405730610043975,
+      "token_ids": [
+        3272,
+        4,
+        134,
+        1437,
+        33397,
+        347,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_62/relative/ocr/weight_g/numeric/ocr_output.json",
+      "reference_raw": "3343  g",
+      "export_raw": "3343  g",
+      "raw_equal": true,
+      "seconds": 0.6728007049969165,
+      "token_ids": [
+        3103,
+        3897,
+        1437,
+        821,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_70/relative/ocr/age_days/numeric/ocr_output.json",
+      "reference_raw": "7  jours",
+      "export_raw": "7  jours",
+      "raw_equal": true,
+      "seconds": 0.6684955980017548,
+      "token_ids": [
+        406,
+        1437,
+        1236,
+        5634,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_70/relative/ocr/head_circumference_cm/numeric/ocr_output.json",
+      "reference_raw": "33  cm",
+      "export_raw": "33  cm",
+      "raw_equal": true,
+      "seconds": 0.5933705409988761,
+      "token_ids": [
+        3103,
+        1437,
+        25434,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_70/relative/ocr/length_cm/numeric/ocr_output.json",
+      "reference_raw": "48  cm",
+      "export_raw": "48  cm",
+      "raw_equal": true,
+      "seconds": 0.6096818469959544,
+      "token_ids": [
+        3818,
+        1437,
+        25434,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_70/relative/ocr/temperature_c/numeric/ocr_output.json",
+      "reference_raw": "37.1",
+      "export_raw": "37.1",
+      "raw_equal": true,
+      "seconds": 0.6130493419914274,
+      "token_ids": [
+        3272,
+        4,
+        134,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_70/relative/ocr/weight_g/numeric/ocr_output.json",
+      "reference_raw": "3511  g",
+      "export_raw": "3511  g",
+      "raw_equal": true,
+      "seconds": 0.6583384359983029,
+      "token_ids": [
+        2022,
+        1225,
+        1437,
+        821,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_78/relative/ocr/age_days/numeric/ocr_output.json",
+      "reference_raw": "8  jours",
+      "export_raw": "8  jours",
+      "raw_equal": true,
+      "seconds": 0.6390667300001951,
+      "token_ids": [
+        398,
+        1437,
+        1236,
+        5634,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_78/relative/ocr/head_circumference_cm/numeric/ocr_output.json",
+      "reference_raw": "35 cm",
+      "export_raw": "35 cm",
+      "raw_equal": true,
+      "seconds": 0.5551342709950404,
+      "token_ids": [
+        2022,
+        25434,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_78/relative/ocr/length_cm/numeric/ocr_output.json",
+      "reference_raw": "49  cm",
+      "export_raw": "49  cm",
+      "raw_equal": true,
+      "seconds": 0.6001111789955758,
+      "token_ids": [
+        3414,
+        1437,
+        25434,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_78/relative/ocr/temperature_c/numeric/ocr_output.json",
+      "reference_raw": "36.8  °L",
+      "export_raw": "36.8  °L",
+      "raw_equal": true,
+      "seconds": 0.7247655510000186,
+      "token_ids": [
+        3367,
+        4,
+        398,
+        1437,
+        33397,
+        574,
+        2
+      ]
+    },
+    {
+      "source": "outputs/unit_grammar/page_78/relative/ocr/weight_g/numeric/ocr_output.json",
+      "reference_raw": "3016  g",
+      "export_raw": "3016  g",
+      "raw_equal": true,
+      "seconds": 0.6331004640087485,
+      "token_ids": [
+        28167,
+        401,
+        1437,
+        821,
+        2
+      ]
+    }
+  ],
+  "peak_process_rss_gb": 1.985277952,
+  "scope": "Desktop ONNX CPU on saved normalized tensors; not Android preprocessing, not organizer ground-truth accuracy. Agreement is with original FP16 outputs.",
+  "model_bytes": 801722564
+}
