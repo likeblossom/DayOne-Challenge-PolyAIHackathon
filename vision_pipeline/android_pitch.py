@@ -56,7 +56,7 @@ class Deck:
         if self.titles:self.pdf.showPage()
         self.slide=self.p.slides.add_slide(self.p.slide_layouts[6]);self.svg=[];self.titles.append(title);self.notes.append(note);self.slide.notes_slide.notes_text_frame.text=note
         self.text(.55,.3,10,.25,'SANAD / ANDROID',10,True,TEAL);self.text(.55,.85,12.1,.7,title,30,True)
-        self.text(.55,7.1,11.8,.2,'Sanad | Hackathon prototype',9,color=MUTED);self.text(12.3,7.1,.5,.2,str(len(self.titles)),9,color=MUTED)
+        self.text(.55,7.1,11.8,.2,'Sanad | CodeML prototype',9,color=MUTED);self.text(12.3,7.1,.5,.2,str(len(self.titles)),9,color=MUTED)
     def node(self,x,y,w,title,body):
         self.box(x,y,w,1.0);self.text(x+.12,y+.13,w-.24,.3,title,15,True);self.text(x+.12,y+.53,w-.24,.43,body,11,color=MUTED)
     def save(self):
@@ -95,7 +95,6 @@ def main():
         for i,row in enumerate(r['history']):
             y=3.5+i*.65;score=row['validation']['exact_accuracy'];d.text(x,y,1.05,.3,'Epoch '+str(row['epoch']),13,color=MUTED);d.box(x+1.15,y+.02,score*3.3,.24,color);d.text(x+4.65,y,.9,.3,f'{score:.0%}',14,True)
         d.text(x,5.65,5.7,.45,f"Synthetic test: {r['synthetic_test']['exact_accuracy']:.1%} exact",19)
-    d.text(.6,6.4,12,.35,'Android: mixed-precision ONNX / 2 CPU threads / one reader loaded at a time',16,color=MUTED)
     d.start('Three problems we addressed','Detected anchors replace fixed-coordinate crops. Cursive/Arabic fonts, longer lines and augmentation diversify training. Schema grammar checks units, numeric ranges, real dates and cross-field logic. Ambiguous digit/unit changes stay flagged. Valid fields at >=0.70 pass; genuine issues require review regardless of score. Missing handwriting alone is not proof of blank. Conditional non-applicability requires an accepted parent field.')
     for i,(problem,solution) in enumerate([('Cropping coordinates','Detect labels and handwriting; pair by relative position.'),('Handwriting','Cursive fonts, longer lines, augmentation and OCR fine-tuning.'),('Character context','Field-specific units, dates, ranges and consistency checks.')]):
         y=2.1+i*1.25;d.box(.6,y,12.1,1.05);d.text(.85,y+.2,3.15,.7,problem,20,True);d.text(4.2,y+.2,8.15,.7,solution,21)
