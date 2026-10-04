@@ -2,7 +2,7 @@
 
 **The APK alone is not enough. You must import the model pack.**
 
-1. [**Download Sanad: APK + model pack + README**](https://www.swisstransfer.com/dl/01a1072f-11f7-7266-b853-41dbbb1bc104) — about 3 GB. Available until **19 October 2026**, unless extended.
+1. [**Download Sanad: APK + model pack**](https://www.swisstransfer.com/dl/01a1072f-11f7-7266-b853-41dbbb1bc104) about 3 GB.
 2. Extract **this ZIP**. It contains `Sanad-v0.2.0.apk`, `Sanad-models-v1.zip`, and `README.txt`.
 3. On a **64-bit Android phone (Android 8 or newer)**, open the APK and allow installation from your file manager. Install Sanad.
 4. Copy `Sanad-models-v1.zip` to the phone's **Downloads** folder. Open **Sanad → Settings (top right) → Import model pack** and select that ZIP.
