@@ -21,8 +21,10 @@ def digest(path):
 class Encoder(nn.Module):
     def __init__(self,m):
         super().__init__();self.encoder=m.encoder;self.projection=getattr(m,'enc_to_dec_proj',None)
+        self.interpolate=getattr(m.encoder.config,'interpolate_pos_encoding',False)
     def forward(self,pixels):
-        h=self.encoder(pixel_values=pixels,return_dict=False)[0]
+        if self.interpolate:h=self.encoder(pixel_values=pixels,return_dict=False,interpolate_pos_encoding=True)[0]
+        else:h=self.encoder(pixel_values=pixels,return_dict=False)[0]
         return self.projection(h) if self.projection is not None else h
 
 class Decoder(nn.Module):
@@ -33,12 +35,16 @@ class Decoder(nn.Module):
         logits=self.decoder(input_ids=ids,encoder_hidden_states=hidden,use_cache=False,return_dict=False)[0]
         return logits[:,-1,:]
 
-def export_ocr(route,quantize=False):
+def export_ocr(route,quantize=False,source_override=None,target_root=None):
     from transformers import VisionEncoderDecoderModel,TrOCRProcessor,NougatProcessor
     folders={'latin':'trocr_latin','date':'trocr_dates','numeric':'trocr_numbers','arabic':'nougat_arabic'}
-    source=MODELS/folders[route];before=digest(source/'model.safetensors');target=OUT/route;target.mkdir(parents=True,exist_ok=True)
+    source=Path(source_override) if source_override else MODELS/folders[route]
+    before=digest(source/'model.safetensors');target=Path(target_root or OUT)/route
+    if target.exists() and any(target.glob('*.onnx')):raise FileExistsError('Export destination already contains models; choose a new --output')
+    target.mkdir(parents=True,exist_ok=True)
     model=VisionEncoderDecoderModel.from_pretrained(source,local_files_only=True,attn_implementation='eager').float().eval()
-    processor=(NougatProcessor if route=='arabic' else TrOCRProcessor).from_pretrained(source,local_files_only=True)
+    processor_type=read_json(source/'preprocessor_config.json').get('image_processor_type','')
+    processor=(NougatProcessor if processor_type=='NougatImageProcessor' else TrOCRProcessor).from_pretrained(source,local_files_only=True)
     from PIL import Image
     x=processor(images=Image.new('RGB',(320,48),'white'),return_tensors='pt').pixel_values
     encoder=Encoder(model).eval();decoder=Decoder(model).eval()
@@ -72,7 +78,8 @@ def export_ocr(route,quantize=False):
         metadata.update(encoder='encoder.int8.onnx',decoder='decoder.int8.onnx',precision='INT8 linear weights / mixed FP32')
         write_json(target/'reader.int8.json',metadata)
     assert digest(source/'model.safetensors')==before,'Original checkpoint changed!'
-    write_json(REPORTS/'mobile'/f'export_{route}.json',dict(source_sha256=before,checkpoint_unchanged=True,files={p.name:p.stat().st_size for p in target.iterdir()}))
+    report_path=Path(target_root)/f'export_{route}.json' if target_root else REPORTS/'mobile'/f'export_{route}.json'
+    write_json(report_path,dict(source_sha256=before,checkpoint_unchanged=True,files={p.name:p.stat().st_size for p in target.iterdir()}))
 
 def export_small():
     from ..train import classifier
@@ -117,8 +124,9 @@ def package(precision):
     print('Install bundle:',target,flush=True)
 
 def main():
-    ap=argparse.ArgumentParser();ap.add_argument('task',choices=['small','latin','date','numeric','arabic','package']);ap.add_argument('--int8',action='store_true');ap.add_argument('--mixed',action='store_true');a=ap.parse_args();torch.set_num_threads(4)
+    ap=argparse.ArgumentParser();ap.add_argument('task',choices=['small','latin','date','numeric','arabic','package']);ap.add_argument('--int8',action='store_true');ap.add_argument('--mixed',action='store_true');ap.add_argument('--checkpoint',type=Path);ap.add_argument('--output',type=Path);a=ap.parse_args();torch.set_num_threads(4)
+    if a.task in ('small','package') and (a.checkpoint or a.output):ap.error('--checkpoint and --output are for OCR exports')
     if a.task=='small':export_small()
     elif a.task=='package':package('mixed' if a.mixed else 'int8' if a.int8 else 'fp32')
-    else:export_ocr(a.task,a.int8)
+    else:export_ocr(a.task,a.int8,a.checkpoint,a.output)
 if __name__=='__main__':main()

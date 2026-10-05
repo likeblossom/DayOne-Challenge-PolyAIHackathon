@@ -26,4 +26,13 @@ public class ModelPackInstallerTest {
     @Test public void rejectsAbsolutePath()throws Exception{reject("/escaped",new byte[]{1,2,3},false);}
     @Test public void rejectsUnknownManifest()throws Exception{reject("reader/model.onnx",new byte[]{1,2,3},true);}
     @Test public void restoresInterruptedPromotion()throws Exception{File root=temp.newFolder();File old=new File(root,"sanad-models-backup");assertTrue(old.mkdir());Files.write(new File(old,"keep").toPath(),new byte[]{9});ModelPackInstaller.recover(root);assertTrue(new File(root,"sanad-models-v1/keep").exists());}
+    @Test public void installedManifestMustMatchExpectedAppVersion()throws Exception {
+        File root=temp.newFolder();byte[] contents=manifest(new byte[]{1,2,3});
+        assertFalse(ModelPackInstaller.manifestMatches(root,hash(contents)));
+        Files.write(new File(root,"manifest.json").toPath(),contents);
+        assertTrue(ModelPackInstaller.manifestMatches(root,hash(contents)));
+        assertFalse(ModelPackInstaller.manifestMatches(root,"outdated"));
+        Files.write(new File(root,"manifest.json").toPath(),new byte[1024*1024+1]);
+        assertFalse(ModelPackInstaller.manifestMatches(root,hash(contents)));
+    }
 }

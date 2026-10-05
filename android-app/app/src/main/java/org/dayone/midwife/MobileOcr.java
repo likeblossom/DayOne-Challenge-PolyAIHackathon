@@ -21,13 +21,14 @@ public final class MobileOcr implements AutoCloseable {
         OrtSession e=models.open(route+"/"+config.getString("encoder"));try{decoder=models.open(route+"/"+config.getString("decoder"));}catch(Exception ex){e.close();throw ex;}encoder=e;
     }
     public JSONObject read(Bitmap crop) throws Exception {
+        long started=android.os.SystemClock.elapsedRealtime(),encoderFinished=started;
         JSONObject proc=config.getJSONObject("processor");int height=config.getInt("height"),width=config.getInt("width");
-        Bitmap input=crop;
-        if(route.equals("arabic"))input=arabicInput(crop,width,height);
+        Bitmap input=prepareInput(crop,config);
         FloatBuffer pixels=MobileImages.tensor(input,width,height,MobileImages.vector(proc.getJSONArray("image_mean")),MobileImages.vector(proc.getJSONArray("image_std")));
         if(input!=crop)input.recycle();
         List<Integer> generated=new ArrayList<>();long[] sequence={config.getInt("start_id")};double logProbability=0;int count=0;boolean ended=false;
         try(OnnxTensor x=OnnxTensor.createTensor(models.environment,pixels,new long[]{1,3,height,width});OrtSession.Result encoded=encoder.run(Collections.singletonMap("pixels",x))) {
+            encoderFinished=android.os.SystemClock.elapsedRealtime();
             OnnxTensor hidden=(OnnxTensor)encoded.get(0);
             for(int step=0;step<config.getInt("max_new_tokens");step++) {
                 if(Thread.currentThread().isInterrupted())throw new InterruptedException("OCR cancelled");
@@ -47,7 +48,28 @@ public final class MobileOcr implements AutoCloseable {
         for(int token:generated)if(!special.contains(token)) {
             String piece=pieces.getString(token);for(int i=0;i<piece.length();) {int cp=piece.codePointAt(i);i+=Character.charCount(cp);Integer b=byteDecoder.get(cp);if(b!=null)out.write(b);else out.write(new String(Character.toChars(cp)).getBytes(StandardCharsets.UTF_8));}
         }
-        return new JSONObject().put("text",out.toString("UTF-8").trim()).put("token_confidence",Math.exp(logProbability/Math.max(1,count))).put("token_ids",new JSONArray(generated)).put("model",route).put("generation_limit",!ended).put("precision",config.getString("precision"));
+        String text=out.toString("UTF-8").trim();
+        return new JSONObject().put("text",text).put("token_confidence",Math.exp(logProbability/Math.max(1,count))).put("token_ids",new JSONArray(generated)).put("model",route).put("generation_limit",!ended).put("warnings",MobileRouting.outputWarnings(text,!ended,route)).put("precision",config.getString("precision"))
+                .put("edge_rule_trim",config.optBoolean("strip_edge_rules")).put("input_crop_bounds",new JSONArray(cleanupBounds(crop,config)))
+                .put("preprocess_and_encoder_ms",encoderFinished-started).put("decoder_ms",android.os.SystemClock.elapsedRealtime()-encoderFinished);
+    }
+    static Bitmap prepareInput(Bitmap crop,JSONObject config)throws JSONException {
+        int width=config.getInt("width"),height=config.getInt("height");
+        String type=config.getJSONObject("processor").getString("image_processor_type");
+        int[] bounds=cleanupBounds(crop,config);
+        Bitmap trimmed=Bitmap.createBitmap(crop,bounds[0],bounds[1],bounds[2]-bounds[0],bounds[3]-bounds[1]),prepared;
+        try {
+            if(type.equals("NougatImageProcessor"))prepared=arabicInput(trimmed,width,height);
+            else if(type.equals("ViTImageProcessor"))prepared=config.getJSONObject("processor").optBoolean("sanad_fit")?MobileImages.fitAntialiased(trimmed,width,height,Color.WHITE):MobileImages.resizeAntialiased(trimmed,width,height);
+            else throw new IllegalArgumentException("Unsupported OCR image processor: "+type);
+        } catch(RuntimeException error) {if(trimmed!=crop)trimmed.recycle();throw error;}
+        if(trimmed!=crop&&prepared!=trimmed)trimmed.recycle();return prepared;
+    }
+    private static int[] cleanupBounds(Bitmap crop,JSONObject config) {
+        int width=crop.getWidth(),height=crop.getHeight();
+        if(!config.optBoolean("strip_edge_rules"))return new int[]{0,0,width,height};
+        int[] pixels=new int[width*height];crop.getPixels(pixels,0,width,0,0,width,height);
+        return EdgeRuleCrop.bounds(pixels,width,height);
     }
     private static Bitmap arabicInput(Bitmap crop,int width,int height) {
         // Nougat crop-margin: threshold relative to image gray range, then fit/pad.

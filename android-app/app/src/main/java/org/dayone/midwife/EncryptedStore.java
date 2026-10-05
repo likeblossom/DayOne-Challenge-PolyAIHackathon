@@ -75,6 +75,20 @@ public final class EncryptedStore {
             JSONObject db=json("records.enc"); db.put(record.getString("id"),record); json("records.enc",db);
         }
     }
+    /** Removes the database entry first, then its now-unreferenced encrypted image. */
+    public boolean deleteRecord(String id) throws Exception {
+        synchronized(LOCK) {
+            JSONObject db=json("records.enc");
+            if(!db.has(id))return false;
+            JSONObject record=db.getJSONObject(id);String image=record.optString("image_file","");
+            db.remove(id);json("records.enc",db);
+            if(!image.isEmpty()){
+                if(image.contains("/")||image.contains("\\")||image.equals(".")||image.equals(".."))throw new IOException("Unsafe saved image name");
+                new AtomicFile(new File(directory,image)).delete();
+            }
+            return true;
+        }
+    }
     public JSONObject get(String id) throws Exception { synchronized (LOCK) { return json("records.enc").getJSONObject(id); } }
     public static void state(JSONObject record, String state) throws JSONException {
         JSONArray history=record.optJSONArray("lifecycle"); if(history==null) history=new JSONArray();

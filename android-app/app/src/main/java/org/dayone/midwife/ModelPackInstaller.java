@@ -10,10 +10,20 @@ import java.util.zip.*;
 /** Streaming, pinned-manifest ZIP import. Failed imports never replace installed models. */
 public final class ModelPackInstaller {
     public static final Object LOCK=new Object();
-    public static final String MANIFEST_SHA256="647b08a32d9e70af6e3d564f56d8c974345b1b0d321d37d9843fe7018c13d2bf";
+    public static final String MANIFEST_SHA256="ee8cbd2395d4e8aebf97c4360dd8fa0b4d2419036bb1e5d5b5fe0eda5d9f7688";
     private static final String LIVE="sanad-models-v1",STAGE="sanad-models-import",OLD="sanad-models-backup";
     public interface Progress {void update(long done,long total);}
     private ModelPackInstaller(){}
+    public static boolean isCurrentManifest(File files) {return manifestMatches(new File(files,LIVE),MANIFEST_SHA256);}
+    static boolean manifestMatches(File directory,String expected) {
+        File manifest=new File(directory,"manifest.json");
+        if(!manifest.isFile()||manifest.length()>1024*1024)return false;
+        try(InputStream input=new FileInputStream(manifest)) {
+            MessageDigest digest=MessageDigest.getInstance("SHA-256");byte[] buffer=new byte[8192];int n;
+            while((n=input.read(buffer))!=-1)digest.update(buffer,0,n);
+            return hex(digest.digest()).equals(expected);
+        } catch(Exception e) {return false;}
+    }
     static String hex(byte[] bytes){StringBuilder s=new StringBuilder();for(byte b:bytes)s.append(String.format(Locale.ROOT,"%02x",b&255));return s.toString();}
     static File safe(File root,String name)throws IOException {
         if(name.isEmpty()||name.startsWith("/")||name.contains("\\"))throw new IOException("Unsafe ZIP path");
@@ -45,7 +55,8 @@ public final class ModelPackInstaller {
                 JSONObject expected=manifest.getJSONObject("files");if(expected.length()>256)throw new IOException("Too many model files");long total=0,done=0;
                 for(Iterator<String> it=expected.keys();it.hasNext();){String name=it.next();safe(stage,name);long size=expected.getJSONObject(name).getLong("bytes");if(size<0||size>2L*1024*1024*1024)throw new IOException("Invalid model size");total+=size;}
                 if(total>4L*1024*1024*1024)throw new IOException("Model pack too large");
-                if(files.getUsableSpace()<total+64L*1024*1024)throw new IOException("Not enough storage. Free at least 3.1 GB, then try again.");
+                long required=total+64L*1024*1024;
+                if(files.getUsableSpace()<required)throw new IOException(String.format(Locale.ROOT,"Not enough storage. Free at least %.1f GB, then try again.",Math.ceil(required/1e8)/10.));
                 Set<String> seen=new HashSet<>();progress.update(0,total);ZipEntry entry;
                 while((entry=zip.getNextEntry())!=null){
                     String name=entry.getName();File dest=safe(stage,name);

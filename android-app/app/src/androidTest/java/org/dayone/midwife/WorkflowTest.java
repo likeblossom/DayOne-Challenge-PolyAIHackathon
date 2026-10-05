@@ -30,6 +30,25 @@ public final class WorkflowTest extends AndroidTestCase {
         }
         assertEquals(8,classes.size());
     }
+    public void testEveryFieldInAllEightFormsHasAClinicalReviewSection()throws Exception{
+        SchemaCatalog catalog=new SchemaCatalog(getContext());
+        for(String id:catalog.forms.keySet()){
+            JSONObject values=new MockFormParser(catalog).parse(new byte[0],id).toJson();
+            for(SchemaCatalog.Row row:SchemaCatalog.rows(catalog.schema(id).getJSONObject("fields"),values))
+                assertFalse(id+" / "+row.path,ReviewSections.title(id,row.path).equals("Additional information"));
+        }
+    }
+    public void testOversizedSectionsSplitIntoBoundedNamedSubsections()throws Exception{
+        SchemaCatalog catalog=new SchemaCatalog(getContext());
+        for(String id:catalog.forms.keySet()){
+            JSONObject values=new MockFormParser(catalog).parse(new byte[0],id).toJson();LinkedHashMap<String,List<SchemaCatalog.Row>> parents=new LinkedHashMap<>();
+            for(SchemaCatalog.Row row:SchemaCatalog.rows(catalog.schema(id).getJSONObject("fields"),values))parents.computeIfAbsent(ReviewSections.title(id,row.path),k->new ArrayList<>()).add(row);
+            for(Map.Entry<String,List<SchemaCatalog.Row>> parent:parents.entrySet())if(parent.getValue().size()>8){LinkedHashMap<String,List<SchemaCatalog.Row>> children=ReviewSections.subsections(id,parent.getKey(),parent.getValue());
+                assertTrue(children.size()>1);for(Map.Entry<String,List<SchemaCatalog.Row>> child:children.entrySet()){assertFalse(child.getKey().trim().isEmpty());assertTrue(child.getKey(),child.getValue().size()<=8);}
+                assertEquals(ReviewSections.minimumConfidencePercent(parent.getValue()),ReviewSections.minimumSubsectionConfidence(children));
+            }
+        }
+    }
     public void testTypedFieldsAndNestedArrays() throws Exception {
         SchemaCatalog catalog=new SchemaCatalog(getContext());
         CurrentPregnancyForm form=(CurrentPregnancyForm)new MockFormParser(catalog).parse(new byte[0],"current_pregnancy");
@@ -56,6 +75,13 @@ public final class WorkflowTest extends AndroidTestCase {
         EncryptedStore reopened=new EncryptedStore(getContext(),dir.getName()); assertTrue(Arrays.equals(secret,reopened.read("photo.enc")));
         disk[disk.length-1]^=1; Files.write(new File(dir,"photo.enc").toPath(),disk);
         try { reopened.read("photo.enc"); fail("Tampered ciphertext must fail closed"); } catch(javax.crypto.AEADBadTagException expected) {}
+    }
+    public void testRecordDeletionAlsoRemovesEncryptedImage()throws Exception{
+        String id=UUID.randomUUID().toString(),image=id+".image.enc";store.write(image,new byte[]{1,2,3});
+        JSONObject record=new JSONObject().put("id",id).put("image_file",image).put("captured_at",java.time.Instant.now().toString());store.save(record);
+        assertTrue(store.deleteRecord(id));assertFalse(store.deleteRecord(id));
+        try{store.get(id);fail("Deleted record remained");}catch(JSONException expected){}
+        try{store.read(image);fail("Deleted image remained");}catch(FileNotFoundException expected){}
     }
     public void testOfflineQueueRestartAndIdempotentSync() throws Exception {
         JSONObject r=record("REGISTERED");store.save(r);

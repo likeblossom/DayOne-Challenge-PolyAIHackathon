@@ -12,9 +12,18 @@ public final class MobileImages {
     public static Bitmap decode(byte[] bytes) throws Exception {
         BitmapFactory.Options opts=new BitmapFactory.Options();opts.inJustDecodeBounds=true;BitmapFactory.decodeByteArray(bytes,0,bytes.length,opts);
         if(opts.outWidth<=0||opts.outHeight<=0)throw new IOException("Image could not be decoded");
-        opts.inSampleSize=1;while(Math.max(opts.outWidth,opts.outHeight)/opts.inSampleSize>2600)opts.inSampleSize*=2;
+        // Decode near the target, then resize precisely. A page just above 2600px
+        // must not lose half its resolution merely because sampling is power-of-two.
+        opts.inSampleSize=1;
+        while(Math.max(opts.outWidth,opts.outHeight)/(opts.inSampleSize*2)>=2600
+                || (long)(opts.outWidth/opts.inSampleSize)*(opts.outHeight/opts.inSampleSize)>16_000_000L)opts.inSampleSize*=2;
         opts.inJustDecodeBounds=false;opts.inPreferredConfig=Bitmap.Config.ARGB_8888;
         Bitmap image=BitmapFactory.decodeByteArray(bytes,0,bytes.length,opts);if(image==null)throw new IOException("Image decode failed");
+        if(Math.max(image.getWidth(),image.getHeight())>2600) {
+            double scale=2600./Math.max(image.getWidth(),image.getHeight());
+            Bitmap reduced=resizeAntialiased(image,Math.max(1,(int)Math.rint(image.getWidth()*scale)),Math.max(1,(int)Math.rint(image.getHeight()*scale)));
+            if(reduced!=image)image.recycle();image=reduced;
+        }
         int orientation=new ExifInterface(new ByteArrayInputStream(bytes)).getAttributeInt(ExifInterface.TAG_ORIENTATION,ExifInterface.ORIENTATION_NORMAL);
         Matrix m=new Matrix();
         switch(orientation) {
@@ -30,6 +39,23 @@ public final class MobileImages {
         float scale=Math.min((float)width/source.getWidth(),(float)height/source.getHeight());
         int w=Math.round(source.getWidth()*scale),h=Math.round(source.getHeight()*scale);
         c.drawBitmap(source,null,new Rect((width-w)/2,(height-h)/2,(width-w)/2+w,(height-h)/2+h),new Paint(Paint.FILTER_BITMAP_FLAG));return out;
+    }
+    /** Training-compatible ImageOps.pad; intentionally separate from YOLO letterboxing. */
+    public static Bitmap fitAntialiased(Bitmap source,int width,int height,int color) {
+        double scale=Math.min((double)width/source.getWidth(),(double)height/source.getHeight());
+        int w=Math.max(1,(int)Math.rint(source.getWidth()*scale));
+        int h=Math.max(1,(int)Math.rint(source.getHeight()*scale));
+        Bitmap resized=resizeAntialiased(source,w,h);
+        Bitmap out=Bitmap.createBitmap(width,height,Bitmap.Config.ARGB_8888);
+        Canvas canvas=new Canvas(out);canvas.drawColor(color);
+        canvas.drawBitmap(resized,(int)Math.rint((width-w)/2.),(int)Math.rint((height-h)/2.),null);
+        if(resized!=source)resized.recycle();return out;
+    }
+    public static Bitmap resizeAntialiased(Bitmap source,int width,int height) {
+        if(source.getWidth()==width&&source.getHeight()==height)return source;
+        int[] pixels=new int[source.getWidth()*source.getHeight()];
+        source.getPixels(pixels,0,source.getWidth(),0,0,source.getWidth(),source.getHeight());
+        return Bitmap.createBitmap(BilinearResampler.resize(pixels,source.getWidth(),source.getHeight(),width,height),width,height,Bitmap.Config.ARGB_8888);
     }
     public static FloatBuffer tensor(Bitmap image,int width,int height,double[] mean,double[] std) {
         Bitmap scaled=Bitmap.createScaledBitmap(image,width,height,true);
@@ -53,15 +79,13 @@ public final class MobileImages {
         for(float[] p:points){double x=p[0]*f[4],y=p[1]*f[5];p[0]=(float)(f[0]+x*f[2]-y*f[3]);p[1]=(float)(f[1]+x*f[3]+y*f[2]);}return points;
     }
     public static Bitmap crop(Bitmap page,float[][] points,double pad) {
-        double[] f=frame(points);double w=f[4]+Math.max(4,f[5]*.15)*2,h=f[5]+Math.max(3,f[5]*pad)*2;
+        return crop(page,points,pad,.15);
+    }
+    public static Bitmap crop(Bitmap page,float[][] points,double pad,double horizontalPad) {
+        double[] f=frame(points);double w=f[4]+Math.max(4,f[5]*horizontalPad)*2,h=f[5]+Math.max(3,f[5]*pad)*2;
         int width=Math.max(8,Math.min((int)Math.round(w),page.getWidth()*2)),height=Math.max(8,Math.min((int)Math.round(h),page.getHeight()*2));
         float[] src=new float[8];int[] xs={-1,1,1,-1},ys={-1,-1,1,1};for(int i=0;i<4;i++){src[i*2]=(float)(f[0]+xs[i]*w/2*f[2]-ys[i]*h/2*f[3]);src[i*2+1]=(float)(f[1]+xs[i]*w/2*f[3]+ys[i]*h/2*f[2]);}
         Matrix matrix=new Matrix();matrix.setPolyToPoly(src,0,new float[]{0,0,width-1,0,width-1,height-1,0,height-1},0,4);
         Bitmap out=Bitmap.createBitmap(width,height,Bitmap.Config.ARGB_8888);Canvas canvas=new Canvas(out);canvas.drawColor(Color.WHITE);canvas.drawBitmap(page,matrix,new Paint(Paint.FILTER_BITMAP_FLAG));return out;
-    }
-    public static Boolean mark(Bitmap image) {
-        int count=0,total=0;for(int y=(int)(image.getHeight()*.3);y<Math.max((int)(image.getHeight()*.7),(int)(image.getHeight()*.3)+1);y++)for(int x=(int)(image.getWidth()*.3);x<Math.max((int)(image.getWidth()*.7),(int)(image.getWidth()*.3)+1);x++){
-            int c=image.getPixel(x,y);double gray=.299*(c>>16&255)+.587*(c>>8&255)+.114*(c&255);if(gray<140)count++;total++;
-        }double ink=(double)count/Math.max(1,total);return ink>.19?Boolean.TRUE:ink<.06?Boolean.FALSE:null;
     }
 }

@@ -10,7 +10,6 @@ import android.provider.MediaStore;
 import android.view.*;
 import android.widget.*;
 import org.json.*;
-import org.dayone.midwife.model.PresetForm;
 import java.io.*;
 import java.time.Instant;
 import java.util.*;
@@ -19,16 +18,17 @@ import java.util.concurrent.*;
 public final class MainActivity extends Activity {
     private static final int GREEN=0xFF075E54, TEAL=0xFF087F6B, INK=0xFF193C35, MUTED=0xFF6D7D76;
     private static final ExecutorService worker=Executors.newSingleThreadExecutor();
-    private static final Set<String> parsing=ConcurrentHashMap.newKeySet();
     private final Map<String,Bitmap> thumbnails=new HashMap<>();
     private EncryptedStore store;
     private SchemaCatalog catalog;
-    private FormParser parser;
-    private LinearLayout root, timeline;
+    private LinearLayout root, timeline, bottomActions;
     private ScrollView scroll;
     private TextView connection, sessionLabel;
     AlertDialog activeDialog;
     private String formId="late_postnatal_newborn", patientCode, documentId, retakeId;
+    private String reviewId, pendingReviewId;
+    private String sectionRecordId;
+    private final Set<String> expandedDays=new HashSet<>(), expandedSections=new HashSet<>(), expandedSubsections=new HashSet<>();
     private boolean importing, destroyed;
     private static final java.util.concurrent.atomic.AtomicBoolean modelImport=new java.util.concurrent.atomic.AtomicBoolean();
     private static volatile String modelImportStatus="";
@@ -44,16 +44,17 @@ public final class MainActivity extends Activity {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
         }
         try {
-            store=new EncryptedStore(this); catalog=new SchemaCatalog(this); parser=new OnDeviceFormParser(this,catalog);
+            store=new EncryptedStore(this); catalog=new SchemaCatalog(this);
             JSONObject session=store.json("session.enc");
             patientCode=session.optString("patient_code",""); documentId=session.optString("document_id","");
             if(patientCode.isEmpty()) newSession();
-            if(state!=null) { formId=state.getString("form_id",formId); retakeId=state.getString("retake_id"); }
+            if(state!=null) { formId=state.getString("form_id",formId); retakeId=state.getString("retake_id"); reviewId=state.getString("review_id"); pendingReviewId=state.getString("pending_review_id"); }
             build(); render(true); resumePending();
             sync(); handler.postDelayed(refresh,5000);
         } catch(Exception e) { fatal(e); }
     }
-    @Override protected void onSaveInstanceState(Bundle state) { super.onSaveInstanceState(state); state.putString("form_id",formId); state.putString("retake_id",retakeId); }
+    @Override protected void onSaveInstanceState(Bundle state) { super.onSaveInstanceState(state); state.putString("form_id",formId); state.putString("retake_id",retakeId); state.putString("review_id",reviewId); state.putString("pending_review_id",pendingReviewId); }
+    @Override public void onBackPressed(){if(reviewId!=null){reviewId=null;expandedSections.clear();lastRender="";render(false);}else super.onBackPressed();}
     @Override protected void onResume() { super.onResume(); if(store!=null && timeline!=null) { render(false); sync(); } }
     @Override protected void onDestroy() {
         destroyed=true; handler.removeCallbacksAndMessages(null);
@@ -80,21 +81,17 @@ public final class MainActivity extends Activity {
         Icon icon=new Icon(type,color); icon.setContentDescription(description); icon.setOnClickListener(v -> action.run()); icon.setLayoutParams(new LinearLayout.LayoutParams(dp(48),dp(48))); return icon;
     }
     private void build() {
-        root=vertical(); root.setBackgroundColor(0xFFEFEAE2); setContentView(root);
-        LinearLayout header=horizontal(); header.setPadding(dp(8),dp(6),dp(8),dp(6)); header.setBackgroundColor(GREEN);
-        TextView avatar=bold("d₁",24,Color.WHITE); avatar.setGravity(Gravity.CENTER); avatar.setBackground(bg(0xFF278277,26)); header.addView(avatar,new LinearLayout.LayoutParams(dp(46),dp(46)));
-        LinearLayout identity=vertical(); identity.setPadding(dp(12),0,0,0); identity.addView(bold("Sanad",21,Color.WHITE)); identity.addView(text("Your registry companion",12,0xFFCEE4DC)); header.addView(identity,new LinearLayout.LayoutParams(0,-2,1));
-        header.addView(iconButton("file","Saved records",Color.WHITE,this::showRecords)); header.addView(iconButton("more","Settings",Color.WHITE,this::settings)); root.addView(header);
-        LinearLayout strip=horizontal(); strip.setBackgroundColor(0xFFF9FAF6); strip.setPadding(dp(16),dp(8),dp(12),dp(8));
-        sessionLabel=bold("",12,INK); sessionLabel.setCompoundDrawablePadding(dp(4)); sessionLabel.setOnClickListener(v -> sessions()); strip.addView(sessionLabel,new LinearLayout.LayoutParams(0,dp(36),1)); sessionLabel.setGravity(Gravity.CENTER_VERTICAL);
-        connection=bold("",12,TEAL); pad(connection,9); connection.setBackground(bg(0xFFE4EEE5,20)); connection.setOnClickListener(v -> toggleOffline()); strip.addView(connection); root.addView(strip);
-        FrameLayout conversation=new FrameLayout(this); conversation.addView(new Wallpaper());
-        scroll=new ScrollView(this); scroll.setFillViewport(true); scroll.setClipToPadding(false); timeline=vertical(); timeline.setPadding(dp(14),dp(16),dp(14),dp(20)); scroll.addView(timeline); conversation.addView(scroll); root.addView(conversation,new LinearLayout.LayoutParams(-1,0,1));
-        LinearLayout composer=horizontal(); composer.setPadding(dp(10),dp(8),dp(10),dp(10)); composer.setBackgroundColor(0xFFF6F5F0);
-        LinearLayout input=horizontal(); input.setBackground(bg(Color.WHITE,28)); input.addView(iconButton("clip","Upload an image",MUTED,() -> gallery(null)));
-        TextView prompt=text("Add a registry page…",15,MUTED); prompt.setOnClickListener(v -> captureMenu(null)); input.addView(prompt,new LinearLayout.LayoutParams(0,dp(48),1));
-        input.addView(iconButton("file","Enter a form manually",MUTED,this::manual)); composer.addView(input,new LinearLayout.LayoutParams(0,dp(52),1));
-        View camera=iconButton("camera","Take a picture",Color.WHITE,() -> camera(null)); camera.setBackground(bg(TEAL,28)); LinearLayout.LayoutParams cp=new LinearLayout.LayoutParams(dp(52),dp(52)); cp.leftMargin=dp(8); composer.addView(camera,cp); root.addView(composer);
+        root=vertical(); root.setBackgroundColor(0xFFF5F7F4); setContentView(root);
+        LinearLayout header=horizontal(); header.setPadding(dp(16),dp(10),dp(10),dp(10)); header.setBackgroundColor(GREEN);
+        LinearLayout identity=vertical(); identity.addView(bold("Sanad",24,Color.WHITE)); identity.addView(text("Form reader",12,0xFFCEE4DC)); header.addView(identity,new LinearLayout.LayoutParams(0,-2,1));
+        header.addView(iconButton("more","Settings",Color.WHITE,this::settings)); root.addView(header);
+        LinearLayout strip=horizontal(); strip.setBackgroundColor(Color.WHITE); strip.setPadding(dp(16),dp(7),dp(12),dp(7));
+        sessionLabel=bold("Records",14,INK); strip.addView(sessionLabel,new LinearLayout.LayoutParams(0,dp(36),1)); sessionLabel.setGravity(Gravity.CENTER_VERTICAL);
+        connection=bold("",12,TEAL); pad(connection,8); connection.setBackground(bg(0xFFE4EEE5,18)); connection.setOnClickListener(v -> toggleOffline()); strip.addView(connection); root.addView(strip);
+        scroll=new ScrollView(this); scroll.setFillViewport(true); timeline=vertical(); timeline.setPadding(dp(14),dp(14),dp(14),dp(24)); scroll.addView(timeline); root.addView(scroll,new LinearLayout.LayoutParams(-1,0,1));
+        bottomActions=horizontal(); bottomActions.setPadding(dp(10),dp(8),dp(10),dp(10)); bottomActions.setBackgroundColor(Color.WHITE);
+        TextView upload=button("Upload",false,() -> gallery(null)); LinearLayout.LayoutParams small=new LinearLayout.LayoutParams(0,dp(52),1); small.rightMargin=dp(8); bottomActions.addView(upload,small);
+        TextView scan=button("Scan a form",true,() -> camera(null)); bottomActions.addView(scan,new LinearLayout.LayoutParams(0,dp(52),2)); root.addView(bottomActions);
     }
     private void center(String label,int color) {
         TextView t=text(label,11,color); t.setGravity(Gravity.CENTER); t.setPadding(dp(10),dp(6),dp(10),dp(6)); t.setBackground(bg(0xDDF8F7EF,8));
@@ -113,95 +110,77 @@ public final class MainActivity extends Activity {
             List<JSONObject> records=store.records();
             long queued=records.stream().filter(r -> SyncEngine.pending(r)).count();
             boolean online=SyncEngine.online(this);
-            connection.setText(online?"● USB connected":"○ Offline · saved locally");
-            sessionLabel.setText(patientCode + "  ▾" + (queued>0?"  ·  "+queued+" queued":""));
-            boolean modelsInstalled=new File(getFilesDir(),"sanad-models-v1/manifest.json").isFile();
-            String signature=records.toString()+patientCode+online+modelImportStatus+modelsInstalled;
+            connection.setText(online?"● PC database":"○ Offline");
+            sessionLabel.setText(reviewId==null?"Records"+(queued>0?" · "+queued+" queued":""):"Review result");
+            boolean modelsInstalled=ModelPackInstaller.isCurrentManifest(getFilesDir());
+            StringBuilder workStatus=new StringBuilder();for(JSONObject r:records)if(r.optString("state").equals("PENDING_AI"))workStatus.append(OcrService.progress(r.getString("id")));
+            if(pendingReviewId!=null){try{JSONObject pending=store.get(pendingReviewId);String state=pending.optString("state");if(pending.has("fields")&&!state.equals("PENDING_AI")&&!state.equals("CAPTURED")){reviewId=pendingReviewId;pendingReviewId=null;expandedSections.clear();}}catch(Exception ignored){pendingReviewId=null;}}
+            String signature=records.toString()+online+modelImportStatus+modelsInstalled+workStatus+reviewId+expandedDays+expandedSections;
             if(signature.equals(lastRender) && !bottom) return; lastRender=signature;
             int y=scroll.getScrollY(); timeline.removeAllViews();
-            center("DEMO WORKSPACE  ·  SYNTHETIC DATA ONLY",MUTED);
-            LinearLayout welcome=bubble(false);
-            if(!modelsInstalled||modelImport.get())welcome.addView(button(modelImport.get()?modelImportStatus:"Import model pack",true,this::chooseModelPack));
-            else if(!modelImportStatus.isEmpty())welcome.addView(text(modelImportStatus,13,TEAL));
-            welcome.addView(bold("Paper to record. One page at a time.",19,INK)); gap(welcome,7);
-            welcome.addView(text("Take a photo or attach a registry page. I’ll prepare the fields, then you check and submit them.",15,INK)); gap(welcome,10);
-            welcome.addView(text("Sanad offline OCR · eight-form model pack required\nSample button below uses synthetic demo values",12,TEAL)); gap(welcome,12);
-            welcome.addView(button("Try a sample page  →",false,this::demo)); stamp(welcome,"DayOne  ·  private on this device");
-            for(JSONObject record:records) if(record.optString("document_id").equals(documentId)) recordCard(record);
-            if(queued>0) center(online?"Syncing the local queue…":"Saved locally. Queued records sync when you’re online.",TEAL);
+            bottomActions.setVisibility(reviewId==null?View.VISIBLE:View.GONE);
+            if(reviewId==null)renderLibrary(records,modelsInstalled);else renderReview(store.get(reviewId));
             scroll.post(() -> { if(bottom) scroll.fullScroll(View.FOCUS_DOWN); else scroll.scrollTo(0,y); });
         } catch(Exception e) { error(e); }
     }
-    private void recordCard(JSONObject r) throws Exception {
+    private void renderLibrary(List<JSONObject> records,boolean modelsInstalled)throws Exception {
+        if(!modelsInstalled||modelImport.get()){LinearLayout notice=card();notice.addView(bold(modelImport.get()?modelImportStatus:"Model pack required",17,INK));notice.addView(button(modelImport.get()?modelImportStatus:"Import model pack",true,this::chooseModelPack));timeline.addView(notice,cardParams());}
+        timeline.addView(bold("Your records",26,INK));timeline.addView(text("Saved automatically by capture date",13,MUTED));gap(timeline,14);
+        if(records.isEmpty()){LinearLayout empty=card();empty.addView(bold("No forms yet",18,INK));empty.addView(text("Scan a paper form or upload an image to begin.",14,MUTED));empty.addView(button("Scan a form",true,() -> camera(null)));timeline.addView(empty,cardParams());return;}
+        records.sort((a,b)->RecordLibrary.captured(b).compareTo(RecordLibrary.captured(a)));
+        String week=null,day=null;LinearLayout dayBody=null;
+        for(JSONObject r:records){if(r.optString("state").equals("SUPERSEDED"))continue;
+            String wk=RecordLibrary.weekKey(r),dk=RecordLibrary.dayKey(r);
+            if(!wk.equals(week)){week=wk;day=null;TextView h=bold(RecordLibrary.weekLabel(r).toUpperCase(Locale.getDefault()),12,MUTED);h.setPadding(0,dp(18),0,dp(7));timeline.addView(h);}
+            if(!dk.equals(day)){day=dk;String key=dk;boolean open=expandedDays.contains(key)||dk.equals(java.time.LocalDate.now().toString());if(open)expandedDays.add(key);
+                LinearLayout folder=vertical();folder.setBackground(bg(Color.WHITE,12));folder.setElevation(dp(1));TextView label=bold((open?"▾  ":"▸  ")+RecordLibrary.dayLabel(r),16,INK);label.setPadding(dp(14),dp(13),dp(14),dp(13));folder.addView(label);dayBody=vertical();dayBody.setVisibility(open?View.VISIBLE:View.GONE);folder.addView(dayBody);LinearLayout body=dayBody;label.setOnClickListener(v->{if(expandedDays.contains(key))expandedDays.remove(key);else expandedDays.add(key);lastRender="";render(false);});timeline.addView(folder,cardParams());}
+            recordTile(dayBody,r);
+        }
+    }
+    private LinearLayout card(){LinearLayout box=vertical();box.setBackground(bg(Color.WHITE,12));box.setPadding(dp(14),dp(14),dp(14),dp(14));box.setElevation(dp(1));return box;}
+    private LinearLayout.LayoutParams cardParams(){LinearLayout.LayoutParams p=new LinearLayout.LayoutParams(-1,-2);p.bottomMargin=dp(10);return p;}
+    private void recordTile(LinearLayout parent,JSONObject r)throws Exception {
         String id=r.getString("id"), state=r.getString("state");
         if(state.equals("SYNCED")&&!r.has("pc_receipt"))state="REGISTERED";
-        LinearLayout sent=bubble(true);
-        if(r.has("image_file")) {
-            Bitmap image=thumbnails.get(id);
-            if(image==null) {
-                byte[] bytes=store.read(r.getString("image_file")); BitmapFactory.Options opts=new BitmapFactory.Options(); opts.inJustDecodeBounds=true; BitmapFactory.decodeByteArray(bytes,0,bytes.length,opts);
-                opts.inSampleSize=Math.max(1,Math.max(opts.outWidth,opts.outHeight)/800); opts.inJustDecodeBounds=false;
-                image=BitmapFactory.decodeByteArray(bytes,0,bytes.length,opts); thumbnails.put(id,image);
-            }
-            ImageView photo=new ImageView(this); photo.setImageBitmap(image); photo.setScaleType(ImageView.ScaleType.FIT_CENTER); photo.setContentDescription("Open original registry page"); photo.setOnClickListener(v -> showOriginal(r)); sent.addView(photo,new LinearLayout.LayoutParams(-1,dp(170)));
-        } else {
-            LinearLayout preview=horizontal(); preview.addView(new Icon("file",TEAL),new LinearLayout.LayoutParams(dp(40),dp(48)));
-            preview.addView(bold(r.optBoolean("manual")?"Manual entry":"Synthetic sample page",15,INK)); sent.addView(preview);
-        }
-        gap(sent,7); sent.addView(text("Registry page · " + patientCode + (r.has("image_file")?" · tap image to expand":""),13,INK)); stamp(sent,time(r.optString("captured_at")) + "  ✓✓");
-        LinearLayout card=bubble(false);
-        if(state.equals("SUPERSEDED")) { card.addView(text("Photo replaced. The previous capture is retained in encrypted storage.",14,MUTED)); return; }
+        LinearLayout tile=horizontal();tile.setPadding(dp(14),dp(11),dp(14),dp(11));
+        Icon icon=new Icon("file",TEAL);tile.addView(icon,new LinearLayout.LayoutParams(dp(40),dp(46)));LinearLayout info=vertical();info.setPadding(dp(8),0,0,0);info.addView(bold(RecordLibrary.title(r),16,INK));info.addView(text(catalog.title(r.getString("form_id")),12,MUTED));
         if(state.equals("PENDING_AI") || state.equals("CAPTURED")) {
-            card.addView(bold("Preparing your page…",17,INK)); gap(card,8); ProgressBar progress=new ProgressBar(this,null,android.R.attr.progressBarStyleHorizontal); progress.setIndeterminate(true); card.addView(progress);
-            card.addView(text(r.has("image_file")?"Running offline form detection and OCR. Your encrypted capture is already saved.":"Running the explicitly synthetic sample demo; no photo is being read.",13,MUTED)); return;
-        }
-        if(state.equals("PROCESSING_FAILED")) {
-            card.addView(bold("This page needs another try",17,INK)); card.addView(text("Your original photo is safe. "+r.optString("processing_error","Retry extraction or enter the fields manually."),14,MUTED));
-            card.addView(button("Retry parsing",false,() -> parse(id))); card.addView(button("Enter manually",false,() -> recoverManual(r))); return;
-        }
-        String type=r.getString("form_id"); JSONObject fields=r.getJSONObject("fields");
-        List<SchemaCatalog.Row> rows=SchemaCatalog.rows(catalog.schema(type).getJSONObject("fields"),fields);
-        int uncertain=(int)rows.stream().filter(SchemaCatalog.Row::needsReview).count();
-        boolean submitted=state.equals("REGISTERED") || state.equals("SYNCED") || state.equals("SYNC_FAILED");
-        card.addView(bold(submitted?(state.equals("SYNCED")?"✓ Synced to PC database":"✓ Saved securely on this phone"):uncertain==0?"Your results are ready":"Your page is ready to review",17,INK)); gap(card,5);
-        if(r.has("image_file")){ImageView attachment=new ImageView(this);attachment.setImageBitmap(thumbnails.get(id));attachment.setScaleType(ImageView.ScaleType.FIT_CENTER);attachment.setContentDescription("View original attached to these results");attachment.setOnClickListener(v -> showOriginal(r));card.addView(attachment,new LinearLayout.LayoutParams(-1,dp(190)));card.addView(button("Expand original image",false,() -> showOriginal(r)));gap(card,8);}
-        card.addView(text(catalog.title(type),14,TEAL)); card.addView(text(catalog.schema(type).optString("title_fr"),11,MUTED)); gap(card,12);
-        TextView badge=bold(submitted?(state.equals("SYNCED")?"SYNCED · PC SQLITE DATABASE":"OFFLINE QUEUE · ENCRYPTED"):uncertain+" fields to check · "+(r.optBoolean("mock")?"demo confidence":"uncalibrated confidence"),11,uncertain>0&&!submitted?0xFF946322:TEAL); card.addView(badge); gap(card,10);
-        List<SchemaCatalog.Row> populated=new ArrayList<>(); for(SchemaCatalog.Row row:rows) if(!row.field.isNull("value")) populated.add(row);
-        populated.sort((a,b) -> Boolean.compare(b.needsReview(),a.needsReview()));
-        for(int i=0;i<Math.min(5,populated.size());i++) fieldRow(card,populated.get(i));
-        final boolean[] expanded={false}; LinearLayout all=vertical(); all.setVisibility(View.GONE); card.addView(all);
-        TextView expand=button("View all " + rows.size() + " fields  ↓",false,() -> {
-            try { if(all.getChildCount()==0) for(SchemaCatalog.Row row:rows) fieldRow(all,row); expanded[0]=!expanded[0]; all.setVisibility(expanded[0]?View.VISIBLE:View.GONE); }
-            catch(Exception e) { error(e); }
-        }); card.addView(expand); gap(card,10);
-        if(!submitted) {
-            card.addView(text(uncertain>0?"Please check the marked values against the paper. Edit a value or mark it as checked before submitting.":"Check the extracted data, then submit when you’re ready.",13,MUTED)); gap(card,12);
-            card.addView(button("Submit record  ✓",true,() -> submit(id)));
-            LinearLayout actions=horizontal(); TextView edit=button("Edit data",false,() -> edit(id)); TextView retake=button("Retake",false,() -> captureMenu(id));
-            LinearLayout.LayoutParams a=new LinearLayout.LayoutParams(0,-2,1); a.rightMargin=dp(6); actions.addView(edit,a); actions.addView(retake,new LinearLayout.LayoutParams(0,-2,1)); gap(card,7); card.addView(actions);
-        } else {
-            card.addView(text(state.equals("SYNCED")?"Transferred over USB to the PC database. Your local copy remains available.":state.equals("SYNC_FAILED")?"USB transfer did not finish. Your record is safe locally and will retry.":"Saved locally. This reviewed record transfers when the PC USB database is connected.",13,MUTED));
-            if(state.equals("SYNC_FAILED")) card.addView(button("Retry sync",false,this::sync));
-        }
-        gap(card,8); stamp(card,"DayOne  ·  " + state.toLowerCase(Locale.ROOT).replace('_',' '));
+            info.addView(text(OcrService.progress(id),12,TEAL));
+        } else if(state.equals("PROCESSING_FAILED")){info.addView(text("Needs another scan",12,0xFF9A3D2F));}
+        else {int uncertain=0;if(r.has("fields"))for(SchemaCatalog.Row row:SchemaCatalog.rows(catalog.schema(r.getString("form_id")).getJSONObject("fields"),r.getJSONObject("fields")))if(row.needsReview())uncertain++;info.addView(text(state.equals("SYNCED")?"Synced":uncertain+" to review",12,uncertain>0?0xFF946322:TEAL));}
+        tile.addView(info,new LinearLayout.LayoutParams(0,-2,1));tile.addView(bold("›",28,MUTED));
+        tile.setOnClickListener(v->{try{JSONObject fresh=store.get(id);if(fresh.has("fields")){reviewId=id;expandedSections.clear();lastRender="";render(false);}else if(fresh.optString("state").equals("PROCESSING_FAILED"))failedActions(fresh);}catch(Exception e){error(e);}});
+        tile.setOnLongClickListener(v->{confirmDelete(r);return true;});parent.addView(tile);
+        View line=new View(this);line.setBackgroundColor(0xFFE7ECE8);parent.addView(line,new LinearLayout.LayoutParams(-1,dp(1)));
     }
-    private void fieldRow(LinearLayout parent,SchemaCatalog.Row row) {
-        LinearLayout field=vertical(); field.setPadding(0,dp(8),0,dp(8));
-        field.addView(text(row.label,12,MUTED)); LinearLayout value=horizontal();
-        String shown=row.field.isNull("value")?"—":row.field.opt("value").toString().replace('_',' ');
-        value.addView(bold(shown,15,INK),new LinearLayout.LayoutParams(0,-2,1));
-        TextView score=bold(Math.round(row.field.optDouble("confidence")*100)+"%",12,row.needsReview()?0xFF946322:TEAL); pad(score,5); score.setBackground(bg(row.needsReview()?0xFFFFF1D6:0xFFEDF5EF,7)); value.addView(score); field.addView(value);
-        field.addView(text(row.field.optString("status").replace('_',' ') + (row.field.optBoolean("human_reviewed")?" · checked by you":""),10,MUTED)); parent.addView(field);
-        View line=new View(this); line.setBackgroundColor(0xFFEDF0EA); parent.addView(line,new LinearLayout.LayoutParams(-1,dp(1)));
+    private void renderReview(JSONObject r)throws Exception {
+        String id=r.getString("id"),state=r.getString("state"),type=r.getString("form_id");JSONObject fields=r.getJSONObject("fields");List<SchemaCatalog.Row> rows=SchemaCatalog.rows(catalog.schema(type).getJSONObject("fields"),fields);int uncertain=(int)rows.stream().filter(SchemaCatalog.Row::needsReview).count();
+        TextView back=bold("‹  Records",15,TEAL);back.setPadding(0,0,0,dp(14));back.setOnClickListener(v->{reviewId=null;expandedSections.clear();lastRender="";render(false);});timeline.addView(back);
+        timeline.addView(bold(RecordLibrary.title(r),25,INK));timeline.addView(text(catalog.title(type),14,MUTED));gap(timeline,12);
+        if(r.has("image_file")){ImageView image=new ImageView(this);image.setImageBitmap(thumbnail(r));image.setScaleType(ImageView.ScaleType.CENTER_CROP);image.setContentDescription("Open original form");image.setOnClickListener(v->showOriginal(r));timeline.addView(image,new LinearLayout.LayoutParams(-1,dp(150)));}
+        LinearLayout summary=horizontal();summary.setPadding(0,dp(12),0,dp(10));summary.addView(bold(rows.size()+" fields",14,INK),new LinearLayout.LayoutParams(0,-2,1));summary.addView(bold(uncertain+" to review",13,uncertain>0?0xFF946322:TEAL));timeline.addView(summary);
+        LinkedHashMap<String,List<SchemaCatalog.Row>> groups=new LinkedHashMap<>();for(SchemaCatalog.Row row:rows)groups.computeIfAbsent(ReviewSections.title(type,row.path),k->new ArrayList<>()).add(row);
+        if(!id.equals(sectionRecordId)&&!groups.isEmpty()){expandedSections.clear();expandedSubsections.clear();String first=groups.keySet().iterator().next();for(Map.Entry<String,List<SchemaCatalog.Row>> entry:groups.entrySet())if(entry.getValue().stream().anyMatch(SchemaCatalog.Row::needsReview)){first=entry.getKey();break;}expandedSections.add(first);sectionRecordId=id;}
+        for(Map.Entry<String,List<SchemaCatalog.Row>> entry:groups.entrySet()){
+            String key=entry.getKey();List<SchemaCatalog.Row> groupRows=entry.getValue();boolean open=expandedSections.contains(key);boolean oversized=groupRows.size()>8;LinkedHashMap<String,List<SchemaCatalog.Row>> children=oversized?ReviewSections.subsections(type,key,groupRows):null;
+            int parentConfidence=oversized?ReviewSections.minimumSubsectionConfidence(children):ReviewSections.minimumConfidencePercent(groupRows);LinearLayout section=card();section.addView(reviewHeading(key,groupRows.size(),parentConfidence,open,false,()->{if(expandedSections.contains(key))expandedSections.remove(key);else expandedSections.add(key);lastRender="";render(false);}));LinearLayout body=vertical();body.setVisibility(open?View.VISIBLE:View.GONE);
+            if(!oversized)for(SchemaCatalog.Row row:groupRows)reviewField(body,id,row);
+            else for(Map.Entry<String,List<SchemaCatalog.Row>> child:children.entrySet()){String childKey=key+" / "+child.getKey();boolean childOpen=expandedSubsections.contains(childKey);LinearLayout childBox=vertical();childBox.setPadding(dp(6),dp(7),dp(6),0);childBox.addView(reviewHeading(child.getKey(),child.getValue().size(),ReviewSections.minimumConfidencePercent(child.getValue()),childOpen,true,()->{if(expandedSubsections.contains(childKey))expandedSubsections.remove(childKey);else expandedSubsections.add(childKey);lastRender="";render(false);}));LinearLayout childBody=vertical();childBody.setVisibility(childOpen?View.VISIBLE:View.GONE);for(SchemaCatalog.Row row:child.getValue())reviewField(childBody,id,row);childBox.addView(childBody);body.addView(childBox);}
+            section.addView(body);timeline.addView(section,cardParams());
+        }
+        boolean submitted=state.equals("REGISTERED")||state.equals("SYNCED")||state.equals("SYNC_FAILED");if(!submitted){timeline.addView(button("Save reviewed form",true,()->submit(id)));TextView retake=button("Retake photo",false,()->captureMenu(id));LinearLayout.LayoutParams rp=cardParams();rp.topMargin=dp(7);timeline.addView(retake,rp);}else timeline.addView(text(state.equals("SYNCED")?"Saved and synced to the PC database":"Saved securely on this device",13,TEAL));
     }
-    private String time(String iso) { try { return java.time.format.DateTimeFormatter.ofPattern("HH:mm").withZone(java.time.ZoneId.systemDefault()).format(Instant.parse(iso)); } catch(Exception e) { return ""; } }
+    private Bitmap thumbnail(JSONObject r)throws Exception {String id=r.getString("id");Bitmap image=thumbnails.get(id);if(image==null){byte[] bytes=store.read(r.getString("image_file"));BitmapFactory.Options opts=new BitmapFactory.Options();opts.inJustDecodeBounds=true;BitmapFactory.decodeByteArray(bytes,0,bytes.length,opts);opts.inSampleSize=Math.max(1,Math.max(opts.outWidth,opts.outHeight)/800);opts.inJustDecodeBounds=false;image=BitmapFactory.decodeByteArray(bytes,0,bytes.length,opts);thumbnails.put(id,image);}return image;}
+    private LinearLayout reviewHeading(String label,int count,int minimum,boolean open,boolean child,Runnable toggle){LinearLayout heading=horizontal();heading.setPadding(child?dp(8):0,child?dp(8):0,0,child?dp(8):0);if(child)heading.setBackground(bg(0xFFF4F7F4,8));TextView titleView=bold((open?"▾  ":"▸  ")+label,child?14:16,INK);heading.addView(titleView,new LinearLayout.LayoutParams(0,-2,1));TextView countView=text(count+(count==1?" field":" fields"),child?11:12,MUTED);countView.setPadding(dp(6),0,dp(8),0);heading.addView(countView);int scoreColor=minimum<0?MUTED:minimum>=80?TEAL:minimum>=70?0xFF946322:0xFFB3261E;int scoreBackground=minimum<0?0xFFECEFEC:minimum>=80?0xFFEDF5EF:minimum>=70?0xFFFFF1D6:0xFFFDE7E4;TextView score=bold(minimum<0?"—":minimum+"%",child?11:12,scoreColor);score.setGravity(Gravity.CENTER);score.setPadding(dp(7),dp(4),dp(7),dp(4));score.setBackground(bg(scoreBackground,7));heading.addView(score);heading.setOnClickListener(v->toggle.run());return heading;}
+    private void reviewField(LinearLayout parent,String id,SchemaCatalog.Row row){LinearLayout field=vertical();field.setPadding(0,dp(10),0,dp(10));field.addView(text(row.label,12,MUTED));LinearLayout value=horizontal();String shown=row.field.isNull("value")?row.field.optString("status").replace('_',' '):row.field.opt("value").toString().replace('_',' ');value.addView(bold(shown,15,INK),new LinearLayout.LayoutParams(0,-2,1));TextView score=bold(Math.round(row.field.optDouble("confidence")*100)+"%",12,row.needsReview()?0xFF946322:TEAL);score.setPadding(dp(7),dp(4),dp(7),dp(4));score.setBackground(bg(row.needsReview()?0xFFFFF1D6:0xFFEDF5EF,7));value.addView(score);field.addView(value);field.setOnClickListener(v->editField(id,row.path));parent.addView(field);View line=new View(this);line.setBackgroundColor(0xFFE7ECE8);parent.addView(line,new LinearLayout.LayoutParams(-1,dp(1)));}
+    private void editField(String id,String path){try{JSONObject r=store.get(id);new FormEditor(this,catalog.title(r.getString("form_id")),catalog.schema(r.getString("form_id")).getJSONObject("fields"),r.getJSONObject("fields"),path,updated->{catalog.validate(r.getString("form_id"),updated);r.put("fields",updated);EncryptedStore.state(r,"NEEDS_REVIEW");store.save(r);lastRender="";render(false);}).show();}catch(Exception e){error(e);}}
+    private void failedActions(JSONObject record){new AlertDialog.Builder(this).setTitle("This page needs another try").setMessage(record.optString("processing_error","The original image is still saved.")).setNegativeButton("Close",null).setNeutralButton("Enter manually",(d,w)->recoverManual(record)).setPositiveButton("Retry OCR",(d,w)->parse(record.optString("id"))).show();}
+    private void confirmDelete(JSONObject record){String name=RecordLibrary.title(record);String note=record.optString("state").equals("SYNCED")?" The copy already synced to the PC database will remain there.":" This cannot be undone.";activeDialog=new AlertDialog.Builder(this).setTitle("Delete record?").setMessage("Are you sure you want to delete “"+name+"”?"+note).setNegativeButton("Cancel",null).setPositiveButton("Delete",(d,w)->deleteRecord(record.optString("id"),name)).show();}
+    private void deleteRecord(String id,String name){try{if(store.deleteRecord(id)){thumbnails.remove(id);if(id.equals(pendingReviewId))pendingReviewId=null;if(id.equals(reviewId))reviewId=null;lastRender="";render(false);Toast.makeText(this,name+" deleted",Toast.LENGTH_SHORT).show();}}catch(Exception e){error(e);}}
     private void settings() {
-        LinearLayout panel=vertical(); pad(panel,20);panel.addView(button("Import model pack",true,() -> {if(activeDialog!=null)activeDialog.dismiss();chooseModelPack();}));gap(panel,12);panel.addView(text("Sample / manual form",14,MUTED));
-        List<String> ids=new ArrayList<>(catalog.forms.keySet()); List<String> titles=new ArrayList<>(); for(String id:ids) titles.add(catalog.title(id));
-        Spinner select=new Spinner(this); ArrayAdapter<String> adapter=new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item,titles); select.setAdapter(adapter); select.setSelection(ids.indexOf(formId)); panel.addView(select);
+        LinearLayout panel=vertical(); pad(panel,20);panel.addView(button("Import model pack",true,() -> {if(activeDialog!=null)activeDialog.dismiss();chooseModelPack();}));gap(panel,12);
         panel.addView(text("Results and images stay saved on this phone. Reviewed, submitted records transfer to the PC only when its authenticated USB database is reachable. Wi-Fi and mobile data are not used.",13,MUTED));
-        activeDialog=new AlertDialog.Builder(this).setTitle("Settings").setView(panel).setNegativeButton("Cancel",null).setPositiveButton("Apply",(d,w) -> {formId=ids.get(select.getSelectedItemPosition());render(false);sync();}).show();
+        activeDialog=new AlertDialog.Builder(this).setTitle("Settings").setView(panel).setPositiveButton("Done",null).show();
     }
     private void chooseModelPack() {
         if(modelImport.get()){Toast.makeText(this,modelImportStatus,Toast.LENGTH_SHORT).show();return;}
@@ -276,7 +255,7 @@ public final class MainActivity extends Activity {
                 byte[] bytes=out.toByteArray(); BitmapFactory.Options bounds=new BitmapFactory.Options(); bounds.inJustDecodeBounds=true; BitmapFactory.decodeByteArray(bytes,0,bytes.length,bounds);
                 if(bounds.outWidth<=0 || bounds.outHeight<=0) throw new IOException("This image could not be read. Choose a JPG, PNG, or supported photo.");
                 String id=createRecord(bytes,selectedForm,code,document,replacing,false);
-                runOnUiThread(() -> { importing=false; render(true); parse(id); });
+                runOnUiThread(() -> { importing=false; pendingReviewId=id; reviewId=null; lastRender=""; render(false); offerProcessingNotifications(); parse(id); });
             } catch(Exception e) { runOnUiThread(() -> { importing=false; error(e); }); }
             finally { if(request==101) new File(getCacheDir(),"capture.jpg").delete(); }
         });
@@ -286,7 +265,7 @@ public final class MainActivity extends Activity {
         JSONObject record=new JSONObject().put("id",id).put("document_id",document).put("patient_code",code).put("midwife_id","demo-midwife")
             .put("captured_at",Instant.now().toString()).put("form_id",selectedForm).put("mock",image==null&&!manual).put("manual",manual);
         if(image!=null) { String file=id+".image.enc"; store.write(file,image); record.put("image_file",file); }
-        EncryptedStore.state(record,"CAPTURED"); EncryptedStore.state(record,manual?"MANUAL_REVIEW_REQUIRED":"PENDING_AI");
+        EncryptedStore.state(record,"CAPTURED"); if(manual) EncryptedStore.state(record,"MANUAL_REVIEW_REQUIRED");
         if(manual) record.put("fields",SchemaCatalog.blank(catalog.schema(selectedForm).getJSONObject("fields")));
         if(replacing!=null) record.put("replaces_record_id",replacing);
         store.save(record);
@@ -299,31 +278,32 @@ public final class MainActivity extends Activity {
     private void manual() {
         List<String> ids=new ArrayList<>(catalog.forms.keySet()); String[] titles=new String[ids.size()]; for(int i=0;i<ids.size();i++) titles[i]=catalog.title(ids.get(i));
         new AlertDialog.Builder(this).setTitle("Choose a form for manual entry").setItems(titles,(d,w) -> {
-            try { String id=createRecord(null,ids.get(w),patientCode,documentId,null,true); render(true); edit(id); } catch(Exception e) { error(e); }
+            try { String id=createRecord(null,ids.get(w),patientCode,documentId,null,true); reviewId=id; lastRender=""; render(false); } catch(Exception e) { error(e); }
         }).show();
     }
     private void recoverManual(JSONObject record) {
-        try { record.put("manual",true).put("fields",SchemaCatalog.blank(catalog.schema(record.getString("form_id")).getJSONObject("fields"))); EncryptedStore.state(record,"MANUAL_REVIEW_REQUIRED"); store.save(record); render(false); edit(record.getString("id")); } catch(Exception e) { error(e); }
+        List<String> ids=new ArrayList<>(catalog.forms.keySet());String[] titles=new String[ids.size()];
+        for(int i=0;i<ids.size();i++)titles[i]=catalog.title(ids.get(i));
+        new AlertDialog.Builder(this).setTitle("Choose a form for manual entry").setItems(titles,(dialog,index) -> {
+            try {
+                String id=record.getString("id"),selected=ids.get(index);
+                synchronized(EncryptedStore.LOCK){store.save(ManualRecovery.prepare(store.get(id),selected,catalog.schema(selected)));}
+                reviewId=id;expandedSections.clear();lastRender="";render(false);
+            }catch(Exception e){error(e);}
+        }).show();
     }
     private void resumePending() throws Exception { for(JSONObject r:store.records()) if(r.optString("state").equals("PENDING_AI") || r.optString("state").equals("CAPTURED")) parse(r.getString("id")); }
+    private void offerProcessingNotifications() {
+        if(Build.VERSION.SDK_INT<33||checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS)==android.content.pm.PackageManager.PERMISSION_GRANTED)return;
+        SharedPreferences preferences=getSharedPreferences("ui",MODE_PRIVATE);
+        if(preferences.getBoolean("asked_processing_notifications",false))return;
+        preferences.edit().putBoolean("asked_processing_notifications",true).apply();
+        // Optional: denial never blocks recognition or encrypted capture storage.
+        requestPermissions(new String[]{android.Manifest.permission.POST_NOTIFICATIONS},103);
+    }
     private void parse(String id) {
-        if(!parsing.add(id)) return;
-        worker.submit(() -> {
-            try {
-                JSONObject record=store.get(id); EncryptedStore.state(record,"PENDING_AI"); store.save(record);
-                runOnUiThread(() -> render(false));
-                byte[] bytes=record.has("image_file")?store.read(record.getString("image_file")):new byte[0];
-                PresetForm form=bytes.length==0?new MockFormParser(catalog).parse(bytes,record.getString("form_id")):parser.parse(bytes,record.getString("form_id"));
-                catalog.validate(form.formId,form.toJson());
-                // Another capture may have superseded this one while the parser was working.
-                synchronized(EncryptedStore.LOCK) {
-                    if(store.get(id).optString("state").equals("SUPERSEDED")) return;
-                    record.remove("processing_error");record.put("mock",bytes.length==0).put("form_id",form.formId).put("fields",form.toJson()).put("extraction_metadata",form.extractionMetadata()); EncryptedStore.state(record,"AI_PROCESSED"); EncryptedStore.state(record,"NEEDS_REVIEW"); store.save(record);
-                }
-            } catch(Exception e) {
-                try { JSONObject r=store.get(id); r.put("processing_error",e.getMessage()==null?"OCR failed; capture retained.":e.getMessage()); EncryptedStore.state(r,"PROCESSING_FAILED"); store.save(r); } catch(Exception ignored) { runOnUiThread(() -> error(e)); }
-            } finally { parsing.remove(id); runOnUiThread(() -> render(true)); }
-        });
+        try { OcrService.enqueue(this,id);render(false); }
+        catch(Exception e) { error(e); }
     }
     private void edit(String id) {
         try {

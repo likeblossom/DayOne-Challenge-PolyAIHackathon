@@ -16,7 +16,7 @@ public final class MobileVision {
         private final OnDeviceModels models;private final OrtSession session;private final JSONObject config;
         public Classifier(OnDeviceModels models,String name)throws Exception{this.models=models;config=models.json(name+".json");session=models.open(name+".onnx");}
         public Prediction predict(Bitmap image)throws Exception {
-            int size=config.getInt("size");Bitmap input=MobileImages.fit(image,size,size,Color.WHITE);
+            int size=config.getInt("size");Bitmap input=MobileImages.fitAntialiased(image,size,size,Color.WHITE);
             FloatBuffer pixels=MobileImages.tensor(input,size,size,new double[]{.485,.456,.406},new double[]{.229,.224,.225});input.recycle();
             try(OnnxTensor tensor=OnnxTensor.createTensor(models.environment,pixels,new long[]{1,3,size,size});OrtSession.Result result=session.run(Collections.singletonMap("pixels",tensor))) {
                 FloatBuffer values=((OnnxTensor)result.get(0)).getFloatBuffer();int best=0;double max=values.get(0);for(int i=1;i<values.limit();i++)if(values.get(i)>max){best=i;max=values.get(i);}double sum=0;for(int i=0;i<values.limit();i++)sum+=Math.exp(values.get(i)-max);
@@ -48,6 +48,15 @@ public final class MobileVision {
     private static double probIou(Box a,Box b){double[] x=covariance(a),y=covariance(b);double eps=1e-7,A=x[0]+y[0],B=x[1]+y[1],C=x[2]+y[2],den=A*B-C*C+eps,dx=a.cx-b.cx,dy=a.cy-b.cy;
         double t1=(A*dy*dy+B*dx*dx)/den*.25,t2=-C*dx*dy/den*.5,t3=Math.log((A*B-C*C)/(4*Math.sqrt(Math.max(0,x[0]*x[1]-x[2]*x[2])*Math.max(0,y[0]*y[1]-y[2]*y[2]))+eps)+eps)*.5;
         double distance=Math.max(eps,Math.min(100,t1+t2+t3));return 1-Math.sqrt(1-Math.exp(-distance)+eps);
+    }
+    public static List<Box> excludePrinted(List<Box> hands,Collection<Box> anchors) {
+        List<Box> kept=new ArrayList<>();
+        for(Box hand:hands) {
+            boolean printed=false;
+            for(Box label:anchors)if(label.confidence>=.65&&PrintedOverlap.contains(label.quad,hand.cx,hand.cy)){printed=true;break;}
+            if(!printed)kept.add(hand);
+        }
+        return kept;
     }
     public static Map<String,Box> pair(Map<String,Box> anchors,List<Box> hands,JSONObject bindings,JSONObject priors)throws Exception {
         List<String> keys=new ArrayList<>();List<JSONObject> units=new ArrayList<>();

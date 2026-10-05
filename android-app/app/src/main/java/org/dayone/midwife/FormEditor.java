@@ -19,16 +19,21 @@ public final class FormEditor extends Dialog {
     private final List<Read> readers=new ArrayList<>();
     private LinearLayout body;
     private final String title;
+    private final String focusLabel;
     private boolean onlyUncertain;
     public FormEditor(Activity activity,String title,JSONObject specs,JSONObject data,Saved saved) throws JSONException {
-        super(activity); this.title=title; this.specs=specs; this.data=new JSONObject(data.toString()); this.saved=saved;
+        this(activity,title,specs,data,null,saved);
+    }
+    public FormEditor(Activity activity,String title,JSONObject specs,JSONObject data,String focusLabel,Saved saved) throws JSONException {
+        super(activity); this.title=title; this.specs=specs; this.data=new JSONObject(data.toString()); this.focusLabel=focusLabel; this.saved=saved;
     }
     @Override protected void onCreate(Bundle state) {
         super.onCreate(state); requestWindowFeature(Window.FEATURE_NO_TITLE);
         LinearLayout root=new LinearLayout(getContext()); root.setOrientation(LinearLayout.VERTICAL); root.setBackgroundColor(0xFFF8F8F4); root.setPadding(20,20,20,12);
         TextView heading=text("Review & edit",23); heading.setTypeface(null,android.graphics.Typeface.BOLD); root.addView(heading);
-        root.addView(text(title + "\nCheck values against the paper. Model confidence is not calibrated.",14));
+        root.addView(text(title + (focusLabel==null?"":"\n"+focusLabel) + "\nCheck the value against the paper.",14));
         Switch filter=new Switch(getContext()); filter.setText("Only fields needing review"); root.addView(filter);
+        if(focusLabel!=null)filter.setVisibility(View.GONE);
         filter.setOnCheckedChangeListener((v,checked) -> { try { flush(); onlyUncertain=checked; render(); } catch(Exception e) { error(e); } });
         ScrollView scroll=new ScrollView(getContext()); body=new LinearLayout(getContext()); body.setOrientation(LinearLayout.VERTICAL); scroll.addView(body);
         root.addView(scroll,new LinearLayout.LayoutParams(-1,0,1));
@@ -53,7 +58,8 @@ public final class FormEditor extends Dialog {
     }
     private void node(JSONObject spec,Object value,LinearLayout parent,String label) throws Exception {
         String type=spec.getString("type");
-        if(type.equals("object")) { TextView h=text(label,19); h.setTypeface(null,android.graphics.Typeface.BOLD); parent.addView(h); object(spec.getJSONObject("fields"),(JSONObject)value,parent,""); return; }
+        if(focusLabel!=null && !focusLabel.equals(label) && !focusLabel.startsWith(label+" / ") && !focusLabel.startsWith(label+" ")) return;
+        if(type.equals("object")) { TextView h=text(label,19); h.setTypeface(null,android.graphics.Typeface.BOLD); parent.addView(h); object(spec.getJSONObject("fields"),(JSONObject)value,parent,label+" / "); return; }
         if(type.equals("array")) {
             JSONArray array=(JSONArray)value; parent.addView(text(label + " · " + array.length() + " entries",18));
             for(int i=0;i<array.length();i++) {
